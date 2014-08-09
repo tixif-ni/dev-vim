@@ -7,3 +7,6 @@
 [submodule "bundle/emmet-vim"]
 	path = bundle/emmet-vim
 	url = https://github.com/mattn/emmet-vim.git
+[submodule "bundle/matchit"]
+	path = bundle/matchit
+	url = https://github.com/tmhedberg/matchit.git
