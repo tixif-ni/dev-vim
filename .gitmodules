@@ -79,3 +79,6 @@
 [submodule "colors/hybrid"]
 	path = colors/hybrid
 	url = https://github.com/w0ng/vim-hybrid.git
+[submodule "bundle/tagbar"]
+	path = bundle/tagbar
+	url = https://github.com/majutsushi/tagbar.git
