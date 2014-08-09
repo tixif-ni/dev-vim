@@ -37,3 +37,6 @@
 [submodule "bundle/vim-fugitive"]
 	path = bundle/vim-fugitive
 	url = https://github.com/tpope/vim-fugitive.git
+[submodule "bundle/vim-git-log"]
+	path = bundle/vim-git-log
+	url = https://github.com/kablamo/vim-git-log.git
