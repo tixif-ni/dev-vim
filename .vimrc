@@ -177,3 +177,8 @@ let g:snipMate.scope_aliases = {}
 let g:snipMate.scope_aliases['scss'] = 'css'
 imap <C-J> <Plug>snipMateNextOrTrigger
 smap <C-J> <Plug>snipMateNextOrTrigger
+
+" easymotion
+map / <Plug>(easymotion-sn)
+omap / <Plug>(easymotion-tn)
+
