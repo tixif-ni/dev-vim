@@ -144,17 +144,12 @@ cmap w!! w !sudo tee % >/dev/null
 " PLUGINS
 
 " syntastic
-"let g:syntastic_auto_jump=1
-let g:syntastic_auto_loc_list=1
 let g:syntastic_enable_highlighting=0
-"" enable to specify third party lib for java
-"" call :SyntasticJavacEditClassPath once and specify path
-"" android path: /opt/android/adt-bundle-linux-x86_64-20130917/sdk/platforms/android-18/android.jar
-let g:syntastic_java_javac_config_file_enabled=1
-"" javascript with node
 let g:syntastic_javascript_checkers=['jshint']
 "" Do not trigger with sass files types
 let g:syntastic_mode_map = { 'passive_filetypes': ['scss'] }
+"" Do not trigger checks if buffer is closed
+let g:syntastic_check_on_wq=0
 
 " Nerdtree
 let g:NERDTreeDirArrows = 0
