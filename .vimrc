@@ -155,9 +155,6 @@ let g:syntastic_check_on_wq=0
 let g:NERDTreeDirArrows = 0
 let NERDTreeIgnore=['\.pyc$']
 
-" easytags
-let g:easytags_updatetime_warn=0
-
 " ctrlP
 let g:ctrlp_custom_ignore='tags\|node_modules\|bower_components\'
 
