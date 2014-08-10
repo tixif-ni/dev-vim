@@ -182,3 +182,23 @@ smap <C-J> <Plug>snipMateNextOrTrigger
 map / <Plug>(easymotion-sn)
 omap / <Plug>(easymotion-tn)
 
+" easytags
+let g:easytags_async=1
+let g:easytags_syntax_keyword = 'always'
+let g:easytags_file = './tags'
+
+" Functions
+
+" Generate ctags for current folder
+map <f12> :call UpdateTags()<cr>
+
+"" Set correct tag_paths if working with virtualenv
+function! UpdateTags()
+  let tag_paths = './tags;'
+  if has('python') && isdirectory($VIRTUAL_ENV)
+     let tag_paths = tag_paths.",".$VIRTUAL_ENV."/tags"
+  endif
+  :let &tags=tag_paths
+endfunction
+"" Call function just when loading
+:call UpdateTags()
