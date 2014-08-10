@@ -156,7 +156,10 @@ let g:NERDTreeDirArrows = 0
 let NERDTreeIgnore=['\.pyc$']
 
 " ctrlP
-let g:ctrlp_custom_ignore='tags\|node_modules\|bower_components\'
+let g:ctrlp_custom_ignore= {
+      \'dir': '\v[\/](node_modules|bower_components)$',
+      \'file': '\vtags|\v\.(pyc)'
+      \}
 
 " airline bar
 let g:airline_theme='molokai'
