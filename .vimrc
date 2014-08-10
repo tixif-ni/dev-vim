@@ -159,7 +159,7 @@ let g:syntastic_check_on_wq=0
 
 " Nerdtree
 let g:NERDTreeDirArrows = 0
-let NERDTreeIgnore=['\.pyc$']
+let NERDTreeIgnore=['\.pyc$', 'tags']
 
 " ctrlP
 let g:ctrlp_custom_ignore= {
