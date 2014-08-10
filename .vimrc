@@ -196,7 +196,7 @@ let g:easytags_file = './tags'
 map <f12> :call UpdateTags()<cr>
 
 "" Set correct tag_paths if working with virtualenv
-function! UpdateTags()
+function! SetTagPath()
   let tag_paths = './tags;'
   if has('python') && isdirectory($VIRTUAL_ENV)
      let tag_paths = tag_paths.",".$VIRTUAL_ENV."/tags"
@@ -204,4 +204,4 @@ function! UpdateTags()
   :let &tags=tag_paths
 endfunction
 "" Call function just when loading
-:call UpdateTags()
+:call SetTagPath()
