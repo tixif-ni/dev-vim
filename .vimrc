@@ -192,16 +192,32 @@ let g:easytags_file = './tags'
 
 " Functions
 
-" Generate ctags for current folder
-map <f12> :call UpdateTags()<cr>
+" CTags related functions
+function! IsInPython()
+  return has('python') && isdirectory($VIRTUAL_ENV)
+endfunction
 
 "" Set correct tag_paths if working with virtualenv
 function! SetTagPath()
   let tag_paths = './tags;'
-  if has('python') && isdirectory($VIRTUAL_ENV)
+  if IsInPython()
      let tag_paths = tag_paths.",".$VIRTUAL_ENV."/tags"
   endif
   :let &tags=tag_paths
 endfunction
 "" Call function just when loading
 :call SetTagPath()
+
+function! UpsertTags()
+  let tag_command = 'ctags -R -f'
+  if IsInPython()
+    let ts_tags = getftime($VIRTUAL_ENV.'/tags')
+    let ts_requirements = getftime('requirements.txt')
+    if ts_requirements > 0 && (ts_tags == -1 || ts_requirements > ts_tags)
+      let tag_command =tag_command.' && cd '.$VIRTUAL_ENV.' && '.tag_command
+    endif
+  endif
+  execute ":! ".tag_command
+endfunction
+
+map <f12> :call UpsertTags()<CR>
