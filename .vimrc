@@ -141,6 +141,12 @@ vnoremap ; :
 "Sudo into file to make changes
 cmap w!! w !sudo tee % >/dev/null
 
+" Buffer resizing
+map <Leader>j :5winc +<CR>
+map <Leader>k :5winc -<CR>
+map <Leader>l :5winc ><CR>
+map <Leader>h :5winc <<CR>
+
 " PLUGINS
 
 " syntastic
