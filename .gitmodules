@@ -70,9 +70,6 @@
 [submodule "bundle/vim-virtualenv"]
 	path = bundle/vim-virtualenv
 	url = https://github.com/jmcantrell/vim-virtualenv.git
-[submodule "bundle/ropevim"]
-	path = bundle/ropevim
-	url = https://github.com/python-rope/ropevim.git
 [submodule "bundle/vim-buffergator"]
 	path = bundle/vim-buffergator
 	url = https://github.com/jeetsukumaran/vim-buffergator.git
