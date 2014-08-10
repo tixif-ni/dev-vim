@@ -191,11 +191,6 @@ smap <C-J> <Plug>snipMateNextOrTrigger
 map / <Plug>(easymotion-sn)
 omap / <Plug>(easymotion-tn)
 
-" easytags
-let g:easytags_async=1
-let g:easytags_syntax_keyword = 'always'
-let g:easytags_file = './tags'
-
 " Functions
 
 " CTags related functions
