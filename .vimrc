@@ -40,6 +40,7 @@ execute pathogen#helptags()
 "Do not create backup files
 :set nobackup
 :set noswapfile
+:set nowritebackup
 
 "I like to see hidden spaces, tabs, etc
 :set listchars=eol:$,tab:>-,trail:-
@@ -127,12 +128,47 @@ nmap <Leader><CR> i<CR><Esc>
 nnoremap <Leader>t :Tabularize /
 vnoremap <Leader>t :Tabularize /
 
-"Not working, review when possible...
-"Yank/paste to the OS clipboard
-"nnoremap <leader>y "+y
-"nnoremap <leader>Y "+yy
-"nnoremap <leader>p "+p
-"nnoremap <leader>P "+P
+if has("python")
+  " let python figure out the path to pydoc
+  python << EOF
+import sys
+import vim
+vim.command("let s:pydoc_path=\'" + sys.prefix + "/lib/pydoc.py\'")
+EOF
+else
+  " manually set the path to pydoc
+  let s:pydoc_path = "/path/to/python/lib/pydoc.py"
+endif
+
+nnoremap <buffer> K :<C-u>let save_isk = &iskeyword \|
+    \ set iskeyword+=. \|
+    \ execute "Pyhelp " . expand("<cword>") \|
+    \ let &iskeyword = save_isk<CR>
+command! -nargs=1 -bar Pyhelp :call ShowPydoc(<f-args>)
+function! ShowPydoc(what)
+  let bufname = a:what . ".pydoc"
+  " check if the buffer exists already
+  if bufexists(bufname)
+    let winnr = bufwinnr(bufname)
+    if winnr != -1
+      " if the buffer is already displayed, switch to that window
+      execute winnr "wincmd w"
+    else
+      " otherwise, open the buffer in a split
+      execute "sbuffer" bufname
+    endif
+  else
+    " create a new buffer, set the nofile buftype and don't display it in the
+    " buffer list
+    execute "split" fnameescape(bufname)
+    setlocal buftype=nofile
+    setlocal nobuflisted
+    " read the output from pydoc
+    execute "r !" . shellescape(s:pydoc_path, 1) . " " . shellescape(a:what, 1)
+  endif
+  " go to the first line of the document
+  1
+endfunction
 
 " : => ;
 nnoremap ; :
