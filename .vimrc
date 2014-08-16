@@ -183,6 +183,9 @@ map <Leader>k :5winc -<CR>
 map <Leader>l :5winc <<CR>
 map <Leader>h :5winc ><CR>
 
+" Map tab to % for easier navigation between ({[
+nnoremap <Tab> %
+
 " PLUGINS
 
 " syntastic
