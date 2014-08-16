@@ -104,9 +104,6 @@ nnoremap <Leader>gp :Git push<CR>
 " vim-git-log
 nnoremap <Leader>gl :GitLog<CR>
 
-" zoomwin
-noremap <Leader>zw :ZoomWin<CR>
-
 " buffergator
 nmap <Leader>b :BuffergatorToggle<CR>
 
