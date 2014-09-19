@@ -54,21 +54,14 @@ filetype plugin on
 set noerrorbells visualbell t_vb=
 autocmd GUIEnter * set visualbell t_vb=
 
-" Maximize window on start
-if has("gui_running")
-" GUI is running or is about to start.
-" Maximize gvim windows.
-set lines=999 columns=999
-endif
 
 " Colorscheme 
-if has("gui_running")
-:set background=dark
-:set t_Co=16
-:colorscheme solarized
-else
-:set t_Co=256
 :colorscheme hybrid
+if has("gui_running")
+ " Maximize window on start
+   au GUIEnter * simalt ~x
+else
+  :set t_Co=256
 endif
 
 "Let's try not to exceed 80 char columns
