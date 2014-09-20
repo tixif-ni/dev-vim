@@ -54,15 +54,22 @@ filetype plugin on
 set noerrorbells visualbell t_vb=
 autocmd GUIEnter * set visualbell t_vb=
 
+" Maximize window on start
+if has("gui_running")
+    au GUIEnter * simalt ~x
+else
+    :set t_Co=256
+endif
 
 " Colorscheme 
-:colorscheme hybrid
-if has("gui_running")
- " Maximize window on start
-   au GUIEnter * simalt ~x
+if has("win32") || has("win64")
+    " Set solarized theme in windows so it matches conemu's pallete
+    :set background=dark
+    :colorscheme solarized
+    let g:solarized_termcolors=256
 else
-  :set t_Co=256
-endif
+    :colorscheme hybrid
+end
 
 "Let's try not to exceed 80 char columns
 "with a lighter background warning
