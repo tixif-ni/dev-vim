@@ -79,3 +79,6 @@
 [submodule "colors/solarized"]
 	path = colors/solarized
 	url = https://github.com/altercation/solarized.git
+[submodule "bundle/pytest.vim"]
+	path = bundle/pytest.vim
+	url = https://github.com/alfredodeza/pytest.vim.git
