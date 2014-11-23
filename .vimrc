@@ -125,13 +125,6 @@ nmap <Leader><CR> i<CR><Esc>
 nnoremap <Leader>t :Tabularize /
 vnoremap <Leader>t :Tabularize /
 
-" Pytest
-nmap <Leader>tm :Pytest method<CR>
-nmap <Leader>tf :Pytest file<CR>
-nmap <Leader>tc :Pytest class<CR>
-nmap <Leader>tp :Pytest project<CR>
-nmap <Leader>ts :Pytest session<CR>
-
 if has("python")
   " let python figure out the path to pydoc
   python << EOF
