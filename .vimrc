@@ -29,7 +29,7 @@ execute pathogen#helptags()
 :set incsearch
 
 :set expandtab
-:set tabstop=4 shiftwidth=4 softtabstop=4
+:set tabstop=2 shiftwidth=2 softtabstop=2
 :set autoindent
 :set smartindent
 :set showmatch
@@ -124,6 +124,13 @@ nmap <Leader><CR> i<CR><Esc>
 " Tabularize
 nnoremap <Leader>t :Tabularize /
 vnoremap <Leader>t :Tabularize /
+
+" Pytest
+nmap <Leader>tm :Pytest method<CR>
+nmap <Leader>tf :Pytest file<CR>
+nmap <Leader>tc :Pytest class<CR>
+nmap <Leader>tp :Pytest project<CR>
+nmap <Leader>ts :Pytest session<CR>
 
 if has("python")
   " let python figure out the path to pydoc
