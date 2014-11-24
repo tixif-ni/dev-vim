@@ -15,9 +15,6 @@ execute pathogen#helptags()
 "Stop vim's crazy formatting when pasting with the mouse
 :set pastetoggle=<F5>
 
-"Open all folds on load - fixes fugitive exiting diff mode
-:set foldlevel=20
-
 "Faster character redrawing
 :set ttyfast
 
