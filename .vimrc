@@ -78,49 +78,54 @@ endif
 "Leader
 :let mapleader=","
 
+" select word where cursor is
+:nnoremap <space> viw
+:inoremap <c-u> <esc>viw~ea
+
 " toogle invisibles
-:nmap <Leader>l :set list!<CR>
-:vmap <Leader>l :set list!<CR>
+:nnoremap <Leader>l :set list!<CR>
+:vnoremap <Leader>l :set list!<CR>
 
 " moved up|down in wrapped lines
-:nmap j gj
-:nmap k gk
+:nnoremap j gj
+:nnoremap k gk
 
 " nerdtree
-nmap <F9> :NERDTreeToggle<CR>
+:nnoremap <F9> :NERDTreeToggle<CR>
 " tagbar
-nmap <F10> :TagbarToggle<CR>
+:nnoremap <F10> :TagbarToggle<CR>
 
 " fugitive
-nnoremap <Leader>gb :Gblame<CR>
-nnoremap <Leader>gs :Gstatus<CR>
-nnoremap <Leader>gd :Gdiff<CR>
-nnoremap <Leader>gc :Gcommit<CR>
-nnoremap <Leader>gp :Git push<CR>
+:nnoremap <Leader>gb :Gblame<CR>
+:nnoremap <Leader>gs :Gstatus<CR>
+:nnoremap <Leader>gd :Gdiff<CR>
+:nnoremap <Leader>gc :Gcommit<CR>
+:nnoremap <Leader>gp :Git push<CR>
 
 " vim-git-log
-nnoremap <Leader>gl :GitLog<CR>
+:nnoremap <Leader>gl :GitLog<CR>
 
 " buffergator
-nmap <Leader>b :BuffergatorToggle<CR>
+:nnoremap <Leader>b :BuffergatorToggle<CR>
 
 " Move around buffers
-map <C-h> <C-w>h
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
+:nnoremap <C-h> <C-w>h
+:nnoremap <C-j> <C-w>j
+:nnoremap <C-k> <C-w>k
+:nnoremap <C-l> <C-w>l
+
 " Make current buffer only buffer in split modes
-map <Leader>o <C-w><C-o>
+:nnoremap <Leader>o <C-w><C-o>
 " Undo buffer
-map <Leader>q <C-w>q
+:nnoremap <Leader>q <C-w>q
 " Close buffer without losing splits
-nnoremap <C-c> :bp\|bd #<CR>
+:nnoremap <C-c> :bp\|bd #<CR>
 " Break line without 
-nmap <Leader><CR> i<CR><Esc>
+:nnoremap <Leader><CR> i<CR><Esc>
 
 " Tabularize
-nnoremap <Leader>t :Tabularize /
-vnoremap <Leader>t :Tabularize /
+:nnoremap <Leader>t :Tabularize /
+:vnoremap <Leader>t :Tabularize /
 
 if has("python")
   " let python figure out the path to pydoc
@@ -134,7 +139,7 @@ else
   let s:pydoc_path = "/path/to/python/lib/pydoc.py"
 endif
 
-nnoremap <buffer> K :<C-u>let save_isk = &iskeyword \|
+:nnoremap <buffer> K :<C-u>let save_isk = &iskeyword \|
     \ set iskeyword+=. \|
     \ execute "Pyhelp " . expand("<cword>") \|
     \ let &iskeyword = save_isk<CR>
@@ -165,11 +170,11 @@ function! ShowPydoc(what)
 endfunction
 
 " : => ;
-nnoremap ; :
-vnoremap ; :
+:nnoremap ; :
+:vnoremap ; :
 
 "Sudo into file to make changes
-cmap w!! w !sudo tee % >/dev/null
+:cnoremap w!! w !sudo tee % >/dev/null
 
 " Buffer resizing
 map <Leader>j :5winc +<CR>
@@ -178,7 +183,7 @@ map <Leader>l :5winc <<CR>
 map <Leader>h :5winc ><CR>
 
 " Map tab to % for easier navigation between ({[
-nnoremap <Tab> %
+:nnoremap <Tab> %
 
 " PLUGINS
 
@@ -217,12 +222,12 @@ let g:SuperTabDefaultCompletionType="context"
 let g:snipMate = {}
 let g:snipMate.scope_aliases = {}
 let g:snipMate.scope_aliases['scss'] = 'css'
-imap <C-J> <Plug>snipMateNextOrTrigger
-smap <C-J> <Plug>snipMateNextOrTrigger
+:inoremap <C-J> <Plug>snipMateNextOrTrigger
+:snoremap <C-J> <Plug>snipMateNextOrTrigger
 
 " easymotion
-map / <Plug>(easymotion-sn)
-omap / <Plug>(easymotion-tn)
+:map / <Plug>(easymotion-sn)
+:omap / <Plug>(easymotion-tn)
 
 " Functions
 
