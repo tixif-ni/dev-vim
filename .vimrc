@@ -74,9 +74,29 @@ if exists('+colorcolumn')
  let &colorcolumn="80,".join(range(80, 320),",")
 endif
 
+" ABBREVIATIONS
+" make sure to fill these in as they come
+:iabbrev waht what
+:iabbrev tehn then
+
 " REMAPS
-"Leader
+" Leader
 :let mapleader=","
+:let maplocalleader = "\\"
+
+" Disable arrows like a mofo
+:inoremap <Up> <nop>
+:inoremap <Down> <nop>
+:inoremap <Left> <nop>
+:inoremap <Right> <nop>
+:nnoremap <Up> <nop>
+:nnoremap <Down> <nop>
+:nnoremap <Left> <nop>
+:nnoremap <Right> <nop>
+
+" Edit vimrc
+:nnoremap <leader>ev :sp $MYVIMRC<cr>
+:nnoremap <leader>sv :source $MYVIMRC<cr>
 
 " select word where cursor is
 :nnoremap <space> viw
