@@ -102,9 +102,14 @@ endif
 :nnoremap <space> viw
 :inoremap <c-u> <esc>viw~ea
 
+" OPERATOR-PENDING mappings
+:onoremap p i(
+:onoremap b i{
+:onoremap s i[
+
 " toogle invisibles
-:nnoremap <Leader>l :set list!<CR>
-:vnoremap <Leader>l :set list!<CR>
+":nnoremap <Leader>l :set list!<CR>
+":vnoremap <Leader>l :set list!<CR>
 
 " moved up|down in wrapped lines
 :nnoremap j gj
