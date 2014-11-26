@@ -152,6 +152,9 @@ endif
 :nnoremap <Leader>t :Tabularize /
 :vnoremap <Leader>t :Tabularize /
 
+" Ack
+:nnoremap <Leader>g :execute ":Ack! ". shellescape("<cword>")<CR>
+
 if has("python")
   " let python figure out the path to pydoc
   python << EOF
