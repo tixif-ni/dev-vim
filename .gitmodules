@@ -46,9 +46,6 @@
 [submodule "bundle/vim-signify"]
 	path = bundle/vim-signify
 	url = https://github.com/mhinz/vim-signify.git
-[submodule "bundle/vim-snipmate"]
-	path = bundle/vim-snipmate
-	url = https://github.com/garbas/vim-snipmate.git
 [submodule "bundle/vim-addon-mw-utils"]
 	path = bundle/vim-addon-mw-utils
 	url = https://github.com/MarcWeber/vim-addon-mw-utils.git
@@ -88,3 +85,6 @@
 [submodule "bundle/neocomplcache.vim"]
 	path = bundle/neocomplcache.vim
 	url = https://github.com/Shougo/neocomplcache.vim.git
+[submodule "bundle/neosnippet.vim"]
+	path = bundle/neosnippet.vim
+	url = https://github.com/Shougo/neosnippet.vim.git

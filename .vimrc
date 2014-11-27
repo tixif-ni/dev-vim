@@ -100,7 +100,8 @@ endif
 
 " select word where cursor is
 :nnoremap <space> viw
-:inoremap <c-u> <esc>viw~ea
+" toggle case
+:inoremap <Leader>t <esc>viw~ea
 
 " OPERATOR-PENDING mappings
 :onoremap p i(
@@ -229,6 +230,17 @@ let NERDTreeIgnore=['\.pyc$', 'tags']
 
 " neocomplete
 let g:neocomplcache_enable_at_startup = 1
+let g:neocomplcache_max_list = 10
+let g:neocomplcache_auto_completion_start_length = 4
+" use Tab for completion
+:noremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+
+" neosnippets
+" Tell Neosnippet about the other snippets
+let g:neosnippet#snippets_directory='~/.vim/snippets'
+imap <c-j> <Plug>(neosnippet_expand_or_jump)
+smap <c-j> <Plug>(neosnippet_expand_or_jump)
+xmap <c-j> <Plug>(neosnippet_expand_target)
 
 " ctrlP
 let g:ctrlp_custom_ignore= {
@@ -245,13 +257,6 @@ set ttimeoutlen=50
 
 " buffergator
 let g:buffergator_suppress_keymaps=1
-
-" snipmate
-let g:snipMate = {}
-let g:snipMate.scope_aliases = {}
-let g:snipMate.scope_aliases['scss'] = 'css'
-:imap <C-J> <Plug>snipMateNextOrTrigger
-:smap <C-J> <Plug>snipMateNextOrTrigger
 
 " easymotion
 :map / <Plug>(easymotion-sn)
