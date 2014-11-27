@@ -233,7 +233,7 @@ let g:neocomplcache_enable_at_startup = 1
 let g:neocomplcache_max_list = 10
 let g:neocomplcache_auto_completion_start_length = 4
 " use Tab for completion
-:noremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+:inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 " neosnippets
 " Tell Neosnippet about the other snippets
