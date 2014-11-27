@@ -231,7 +231,7 @@ let NERDTreeIgnore=['\.pyc$', 'tags']
 " neocomplete
 let g:neocomplcache_enable_at_startup = 1
 let g:neocomplcache_max_list = 10
-let g:neocomplcache_auto_completion_start_length = 4
+let g:neocomplcache_auto_completion_start_length = 3
 " use Tab for completion
 :inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
