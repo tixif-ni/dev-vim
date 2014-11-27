@@ -227,6 +227,9 @@ let g:syntastic_check_on_wq=0
 let g:NERDTreeDirArrows = 0
 let NERDTreeIgnore=['\.pyc$', 'tags']
 
+" neocomplete
+let g:neocomplcache_enable_at_startup = 1
+
 " ctrlP
 let g:ctrlp_custom_ignore= {
       \'dir': '\v[\/](node_modules|bower_components)$',
@@ -243,15 +246,12 @@ set ttimeoutlen=50
 " buffergator
 let g:buffergator_suppress_keymaps=1
 
-" supertab
-let g:SuperTabDefaultCompletionType="context"
-
 " snipmate
 let g:snipMate = {}
 let g:snipMate.scope_aliases = {}
 let g:snipMate.scope_aliases['scss'] = 'css'
-:inoremap <C-J> <Plug>snipMateNextOrTrigger
-:snoremap <C-J> <Plug>snipMateNextOrTrigger
+:imap <C-J> <Plug>snipMateNextOrTrigger
+:smap <C-J> <Plug>snipMateNextOrTrigger
 
 " easymotion
 :map / <Plug>(easymotion-sn)
