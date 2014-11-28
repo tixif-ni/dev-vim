@@ -116,10 +116,10 @@ endif
 :nnoremap j gj
 :nnoremap k gk
 
-" nerdtree
-:nnoremap <F9> :NERDTreeToggle<CR>
-" tagbar
-:nnoremap <F10> :TagbarToggle<CR>
+" nerdtree, Open file tree
+:nnoremap <Leader>ft :NERDTreeToggle<CR>
+" tagbar, Open source code tree
+:nnoremap <Leader>sc :TagbarToggle<CR>
 
 " fugitive
 :nnoremap <Leader>gb :Gblame<CR>
@@ -241,6 +241,14 @@ let g:neosnippet#snippets_directory='~/.vim/snippets'
 imap <c-j> <Plug>(neosnippet_expand_or_jump)
 smap <c-j> <Plug>(neosnippet_expand_or_jump)
 xmap <c-j> <Plug>(neosnippet_expand_target)
+
+" SuperTab like snippets behavior.
+ imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+ \ "\<Plug>(neosnippet_expand_or_jump)"
+ \: pumvisible() ? "\<C-n>" : "\<TAB>"
+ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+ \ "\<Plug>(neosnippet_expand_or_jump)"
+ \: "\<TAB>""
 
 " ctrlP
 let g:ctrlp_custom_ignore= {
