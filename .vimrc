@@ -26,7 +26,7 @@ execute pathogen#helptags()
 :set incsearch
 
 :set expandtab
-:set tabstop=2 shiftwidth=2 softtabstop=2
+:set tabstop=4 shiftwidth=4 softtabstop=4
 :set autoindent
 :set smartindent
 :set showmatch
@@ -41,6 +41,9 @@ execute pathogen#helptags()
 
 "I like to see hidden spaces, tabs, etc
 :set listchars=eol:$,tab:>-,trail:-
+
+" Hide preview when auto completing
+:set completeopt-=preview
 
 syntax on
 filetype on
@@ -104,9 +107,9 @@ endif
 :inoremap <Leader>t <esc>viw~ea
 
 " OPERATOR-PENDING mappings
-:onoremap p i(
-:onoremap b i{
-:onoremap s i[
+":onoremap p i(
+":onoremap b i{
+":onoremap s i[
 
 " toogle invisibles
 ":nnoremap <Leader>l :set list!<CR>
@@ -116,8 +119,11 @@ endif
 :nnoremap j gj
 :nnoremap k gk
 
-" nerdtree, Open file tree
-:nnoremap <Leader>ft :NERDTreeToggle<CR>
+" nerdtree
+:nnoremap <Leader>nt :NERDTreeToggle<CR>
+:nnoremap <Leader>nb :Bookmark
+:nnoremap <Leader>nob :OpenBookmark
+
 " tagbar, Open source code tree
 :nnoremap <Leader>sc :TagbarToggle<CR>
 
