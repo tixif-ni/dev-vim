@@ -6,3 +6,92 @@ snippet ngto
 	var ${1:timer} = $timeout(function () {
 	  ${2}
 	}, ${0});
+
+snippet ngctrl
+    (function () {
+        'use strict';
+
+        angular
+            .module('${1}')
+            .controller('${2:value}', $2);
+
+        /* @ngInject */
+        function $2($scope) {
+            var vm = this;
+
+            ${0}
+        }
+    })();
+
+snippet ngfac
+    (function () {
+        'use strict';
+
+        angular
+            .module('${1}')
+            .factory('${2:value}', $2);
+
+        /* @ngInject */
+        function $2() {
+            var factory = {
+                ${0}
+            };
+
+            return factory;
+
+            //////////////
+        }
+    })();
+
+snippet ngsta
+    (function () {
+        'use strict';
+
+        angular
+            .module('${1}')
+            .config(${2:value});
+
+        /* @ngInject */
+        function $2($stateProvider) {
+            $stateProvider.state('${3}', {
+                ${0}
+            });
+        }
+    })();
+
+snippet ngdir
+    (function () {
+        'use strict';
+
+        angular
+            .module('${1}')
+            .directive('${2:value}', $2);
+
+        /* @ngInject */
+        function $2() {
+            var directive = {
+                ${0}
+            };
+
+            return directive;
+
+            //////////////
+        }
+    })();
+
+snippet ngconf
+    (function () {
+        'use strict';
+
+        angular
+            .module('${1}')
+            .config(${2:value});
+
+        /* @ngInject */
+        function $2(${3}) {
+            ${0}
+        }
+    })();
+
+snippet nginj
+    /* @ngInject */
