@@ -4,3 +4,18 @@ snippet ngbe
 	}));
 snippet ngbm
 	beforeEach(module('${0:module}'));
+
+snippet ngtest
+    (funtion () {
+        'use strict';
+
+        describe('${1}', function() {
+            ${0}
+
+            beforeEach(module('${2}'));
+
+            beforeEach(inject(function($injector) {
+
+            }));
+        });
+    })();
