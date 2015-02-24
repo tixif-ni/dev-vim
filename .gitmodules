@@ -36,7 +36,7 @@
 	url = https://github.com/kablamo/vim-git-log.git
 [submodule "bundle/vim-javascript-syntax"]
 	path = bundle/vim-javascript-syntax
-    url = https://github.com/jelera/vim-javascript-syntax.git
+        url = https://github.com/jelera/vim-javascript-syntax.git
 [submodule "bundle/vim-less"]
 	path = bundle/vim-less
 	url = https://github.com/groenewege/vim-less.git
