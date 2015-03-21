@@ -88,3 +88,6 @@
 [submodule "bundle/neosnippet.vim"]
 	path = bundle/neosnippet.vim
 	url = https://github.com/Shougo/neosnippet.vim.git
+[submodule "bundle/vim-virtualenv"]
+	path = bundle/vim-virtualenv
+	url = git@github.com:jmcantrell/vim-virtualenv.git
