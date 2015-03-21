@@ -225,6 +225,7 @@ map <Leader>h :5winc ><CR>
 " syntastic
 let g:syntastic_enable_highlighting=0
 let g:syntastic_javascript_checkers=['jshint']
+let g:syntastic_python_checkers=['flake8']
 "" Do not trigger with sass files types
 let g:syntastic_mode_map = { 'passive_filetypes': ['scss'] }
 "" Do not trigger checks if buffer is closed
