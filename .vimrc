@@ -239,6 +239,9 @@ let NERDTreeIgnore=['\.pyc$', 'tags']
 let g:neocomplcache_enable_at_startup = 1
 let g:neocomplcache_max_list = 10
 let g:neocomplcache_auto_completion_start_length = 3
+" Like g:neocomplcache_snippets_disable_runtime_snippets
+" behavior(all runtime snippets are disabled).
+let g:neosnippet#disable_runtime_snippets = { '_' : 1 }
 " use Tab for completion
 :inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
