@@ -62,11 +62,10 @@ else
 endif
 
 " Colorscheme 
-if has("win32") || has("win64")
+if (has("win32") || has("win64")) && !has("gui_running")
     " Set solarized theme in windows so it matches conemu's pallete
     :set background=dark
     :colorscheme solarized
-    let g:solarized_termcolors=256
 else
     :colorscheme hybrid
 end
