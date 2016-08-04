@@ -34,6 +34,9 @@
 [submodule "bundle/vim-git-log"]
 	path = bundle/vim-git-log
 	url = https://github.com/kablamo/vim-git-log.git
+[submodule "bundle/vim-javascript-syntax"]
+	path = bundle/vim-javascript-syntax
+	url = https://github.com/jelera/vim-javascript-syntax.git
 [submodule "bundle/vim-less"]
 	path = bundle/vim-less
 	url = https://github.com/groenewege/vim-less.git
@@ -88,3 +91,12 @@
 [submodule "bundle/vim-http-client"]
 	path = bundle/vim-http-client
 	url = https://github.com/aquach/vim-http-client.git
+[submodule "bundle/NrrwRgn"]
+	path = bundle/NrrwRgn
+	url = https://github.com/chrisbra/NrrwRgn.git
+[submodule "bundle/bundle/vim-js-indent"]
+	path = bundle/bundle/vim-js-indent
+	url = https://github.com/jason0x43/vim-js-indent.git
+[submodule "bundle/vim-virtualenv"]
+	path = bundle/vim-virtualenv
+	url = https://github.com/jmcantrell/vim-virtualenv.git
