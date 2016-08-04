@@ -19,9 +19,6 @@
 [submodule "bundle/syntastic"]
 	path = bundle/syntastic
 	url = https://github.com/scrooloose/syntastic.git
-[submodule "bundle/tabular"]
-	path = bundle/tabular
-	url = https://github.com/godlygeek/tabular.git
 [submodule "bundle/vim-airline"]
 	path = bundle/vim-airline
 	url = https://github.com/bling/vim-airline.git
@@ -73,9 +70,6 @@
 [submodule "bundle/vim-python-pep8-indent"]
 	path = bundle/vim-python-pep8-indent
 	url = https://github.com/hynek/vim-python-pep8-indent.git
-[submodule "colors/solarized"]
-	path = colors/solarized
-	url = https://github.com/altercation/solarized.git
 [submodule "bundle/pytest.vim"]
 	path = bundle/pytest.vim
 	url = https://github.com/alfredodeza/pytest.vim.git

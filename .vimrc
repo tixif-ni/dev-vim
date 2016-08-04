@@ -154,10 +154,6 @@ endif
 " Break line without 
 :nnoremap <Leader><CR> i<CR><Esc>
 
-" Tabularize
-:nnoremap <Leader>t :Tabularize /
-:vnoremap <Leader>t :Tabularize /
-
 " Ack
 :nnoremap <Leader>g :execute ":Ack! ". shellescape("<cword>")<CR>
 
