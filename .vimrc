@@ -225,6 +225,9 @@ let g:syntastic_python_checkers=['flake8']
 let g:syntastic_mode_map = { 'passive_filetypes': ['scss'] }
 "" Do not trigger checks if buffer is closed
 let g:syntastic_check_on_wq=0
+"" Typescript
+let g:tsuquyomi_disable_quickfix=1
+let g:syntastic_typescript_checkers=['tsuquyomi']
 
 " Nerdtree
 let g:NERDTreeDirArrows = 0
