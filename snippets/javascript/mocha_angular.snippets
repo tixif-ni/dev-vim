@@ -10,12 +10,17 @@ snippet ngtest
         'use strict';
 
         describe('${1}', function() {
-            ${0}
 
             beforeEach(module('${2}'));
+
+            beforeEach(module(function($urlRouterProvider) {
+                $urlRouterProvider.deferIntercept();
+            }));
 
             beforeEach(inject(function($injector) {
 
             }));
+
+            ${0}
         });
     })();
