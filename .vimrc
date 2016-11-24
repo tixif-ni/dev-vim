@@ -231,7 +231,7 @@ let g:syntastic_typescript_checkers=['tsuquyomi']
 
 " Nerdtree
 let g:NERDTreeDirArrows = 0
-let NERDTreeIgnore=['\.pyc$', 'tags']
+let NERDTreeIgnore=['\.pyc$', '\.pyo$', '__pycache__$', 'tags']
 
 " neocomplete
 let g:neocomplcache_enable_at_startup = 1
