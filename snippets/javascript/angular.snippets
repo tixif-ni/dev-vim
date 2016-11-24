@@ -79,6 +79,21 @@ snippet ngdir
         }
     })();
 
+snippet ngcom
+    (function () {
+        'use strict';
+
+        angular
+            .module('${1}')
+            .component('${2:value}', {
+                templateUrl: '${3}',
+                controller: '${4}',
+                controllerAs: 'vm',
+                bindings: {
+                }
+            });
+    })();
+
 snippet ngconf
     (function () {
         'use strict';
