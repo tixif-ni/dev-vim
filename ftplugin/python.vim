@@ -12,4 +12,3 @@
 :onoremap <buffer> fn :<c-u>execute "normal! ?def\\s\r:nohlsearch\rwviw"<cr>
 " class name
 :onoremap <buffer> cn :<c-u>execute "normal! ?class\\s\r:nohlsearch\rwviw"<cr>
-
