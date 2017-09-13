@@ -1,7 +1,9 @@
 " Pytest
 :nnoremap <buffer> <localleader>tm :Pytest method<CR>
 :nnoremap <buffer> <localleader>tmd :Pytest method -s<CR>
-:nnoremap <buffer> <localleader>tf :Pytest file<CR>
+:nnoremap <buffer> <localleader>ta :Pytest file<CR>
+:nnoremap <buffer> <localleader>tf :Pytest function<CR>
+:nnoremap <buffer> <localleader>tfd :Pytest function -s<CR>
 :nnoremap <buffer> <localleader>tc :Pytest class<CR>
 :nnoremap <buffer> <localleader>tp :Pytest project<CR>
 :nnoremap <buffer> <localleader>ts :Pytest session<CR>
