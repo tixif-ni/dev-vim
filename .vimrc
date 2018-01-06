@@ -216,18 +216,20 @@ map <Leader>h :5winc ><CR>
 :nnoremap <Tab> %
 
 " PLUGINS
-
-" syntastic
-let g:syntastic_enable_highlighting=0
-let g:syntastic_javascript_checkers=['jshint']
-let g:syntastic_python_checkers=['flake8']
-"" Do not trigger with sass files types
-let g:syntastic_mode_map = { 'passive_filetypes': ['scss'] }
-"" Do not trigger checks if buffer is closed
-let g:syntastic_check_on_wq=0
-"" Typescript
-let g:tsuquyomi_disable_quickfix=1
-let g:syntastic_typescript_checkers=['tsuquyomi']
+let g:ale_lint_on_enter = 0
+let g:ale_lint_on_text_changed = 'never'
+let g:airline#extensions#ale#enabled = 1
+let g:ale_completion_enabled = 1
+let g:ale_fixers = {
+\   'html': ['htmlhint'],
+\   'sass': ['sass-lint'],
+\   'css': ['prettier'],
+\   'less': ['prettier'],
+\   'json': ['prettier'],
+\   'javascript': ['prettier'],
+\   'typescript': ['prettier'],
+\   'python': ['flake8', 'autopep8'],
+\}
 
 " Nerdtree
 let g:NERDTreeDirArrows = 0
