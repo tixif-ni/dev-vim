@@ -155,7 +155,7 @@ endif
 :nnoremap <Leader><CR> i<CR><Esc>
 
 " Ack
-:nnoremap <Leader>g :execute ":Ack! ". shellescape("<cword>")<CR>
+:nnoremap <Leader>ak :execute ":Ack! ". shellescape("<cword>")<CR>
 
 if has("python")
   " let python figure out the path to pydoc
