@@ -132,9 +132,7 @@ endif
 :nnoremap <Leader>gd :Gdiff<CR>
 :nnoremap <Leader>gc :Gcommit<CR>
 :nnoremap <Leader>gp :Git push<CR>
-
-" vim-git-log
-:nnoremap <Leader>gl :GitLog<CR>
+:nnoremap <Leader>gh :GV<CR>
 
 " Move around buffers
 :nnoremap <C-h> <C-w>h
