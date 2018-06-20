@@ -55,9 +55,6 @@
 [submodule "bundle/delimitMate"]
 	path = bundle/delimitMate
 	url = https://github.com/Raimondi/delimitMate.git
-[submodule "bundle/vim-buffergator"]
-	path = bundle/vim-buffergator
-	url = https://github.com/jeetsukumaran/vim-buffergator.git
 [submodule "colors/hybrid"]
 	path = colors/hybrid
 	url = https://github.com/w0ng/vim-hybrid.git

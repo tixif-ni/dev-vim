@@ -136,14 +136,15 @@ endif
 " vim-git-log
 :nnoremap <Leader>gl :GitLog<CR>
 
-" buffergator
-:nnoremap <Leader>b :BuffergatorToggle<CR>
-
 " Move around buffers
 :nnoremap <C-h> <C-w>h
 :nnoremap <C-j> <C-w>j
 :nnoremap <C-k> <C-w>k
 :nnoremap <C-l> <C-w>l
+:nnoremap <Tab> :bnext<CR>
+:nnoremap <S-Tab> :bprevious<CR>
+:nnoremap <C-X> :bdelete<CR>
+:nnoremap <Leader>b :CtrlPBuffer<CR>
 
 " Make current buffer only buffer in split modes
 :nnoremap <Leader>o <C-w><C-o>
@@ -212,12 +213,11 @@ map <Leader>k :5winc -<CR>
 map <Leader>l :5winc <<CR>
 map <Leader>h :5winc ><CR>
 
-" Map tab to % for easier navigation between ({[
-:nnoremap <Tab> %
-
 " PLUGINS
 let g:ale_lint_on_enter = 0
 let g:ale_lint_on_text_changed = 'never'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 let g:airline#extensions#ale#enabled = 1
 let g:ale_completion_enabled = 1
 let g:ale_fixers = {
