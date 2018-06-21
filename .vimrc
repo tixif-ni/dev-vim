@@ -164,26 +164,29 @@ map <Leader>l :5winc <<CR>
 map <Leader>h :5winc ><CR>
 
 " PLUGINS
-let g:ale_lint_on_enter = 0
-let g:ale_lint_on_text_changed = 'never'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 let g:airline#extensions#ale#enabled = 1
+let g:ale_lint_on_enter = 0
+let g:ale_lint_on_text_changed = 'never'
 let g:ale_completion_enabled = 1
+"let g:ale_python_flake8_executable = $VIRTUAL_ENV . '/bin/flake8'
+"let g:ale_python_flake8_use_global = 1
+"let g:ale_python_flake8_args = '-m flake8'
 let g:ale_fixers = {
-\   'html': ['htmlhint'],
-\   'sass': ['sass-lint'],
+\   'html': ['eslint'],
+\   'sass': ['prettier'],
 \   'css': ['prettier'],
 \   'less': ['prettier'],
 \   'json': ['prettier'],
 \   'javascript': ['prettier'],
 \   'typescript': ['prettier'],
-\   'python': ['flake8', 'autopep8'],
+\   'python': ['autopep8'],
 \}
 
 " Nerdtree
 let g:NERDTreeDirArrows = 0
-let NERDTreeIgnore=['\.pyc$', '\.pyo$', '__pycache__$', 'tags']
+let NERDTreeIgnore=['\.pyc$', '\.pyo$', '__pycache__$']
 
 " neocomplete
 let g:neocomplcache_enable_at_startup = 1
