@@ -112,3 +112,6 @@
 [submodule "bundle/vim-python-match"]
 	path = bundle/vim-python-match
 	url = https://github.com/okcompute/vim-python-match
+[submodule "bundle/splitjoin.vim"]
+	path = bundle/splitjoin.vim
+	url = https://github.com/AndrewRadev/splitjoin.vim
