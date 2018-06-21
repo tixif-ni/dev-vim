@@ -79,9 +79,6 @@
 [submodule "bundle/NrrwRgn"]
 	path = bundle/NrrwRgn
 	url = https://github.com/chrisbra/NrrwRgn.git
-[submodule "bundle/bundle/vim-js-indent"]
-	path = bundle/bundle/vim-js-indent
-	url = https://github.com/jason0x43/vim-js-indent.git
 [submodule "bundle/vim-virtualenv"]
 	path = bundle/vim-virtualenv
 	url = https://github.com/jmcantrell/vim-virtualenv.git
