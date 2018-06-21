@@ -109,3 +109,6 @@
 [submodule "bundle/vim-lengthmatters"]
 	path = bundle/vim-lengthmatters
 	url = https://github.com/whatyouhide/vim-lengthmatters.git
+[submodule "bundle/vim-python-match"]
+	path = bundle/vim-python-match
+	url = https://github.com/okcompute/vim-python-match
