@@ -72,9 +72,8 @@ end
 
 "Let's try not to exceed 80 char columns
 "with a lighter background warning
-if exists('+colorcolumn')
- let &colorcolumn="80,".join(range(80, 320),",")
-endif
+highlight ColorColumn ctermbg=red
+call matchadd('ColorColumn', '\%81v', 100)
 
 " ABBREVIATIONS
 " make sure to fill these in as they come
