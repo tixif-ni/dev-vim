@@ -70,11 +70,6 @@ else
     :colorscheme hybrid
 end
 
-"Let's try not to exceed 80 char columns
-"with a lighter background warning
-highlight ColorColumn ctermbg=red
-call matchadd('ColorColumn', '\%81v', 100)
-
 " ABBREVIATIONS
 " make sure to fill these in as they come
 :iabbrev waht what
