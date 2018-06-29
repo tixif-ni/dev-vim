@@ -79,6 +79,7 @@ end
 " Leader
 :let mapleader=","
 :let maplocalleader = "\\"
+:imap jj <Esc>
 
 " Disable arrows like a mofo
 :inoremap <Up> <nop>
