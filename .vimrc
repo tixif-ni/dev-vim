@@ -146,6 +146,8 @@ end
 :nnoremap <C-c> :bp\|bd #<CR>
 " Break line without 
 :nnoremap <Leader><CR> i<CR><Esc>
+:nnoremap <Leader><Bar> :vert sp<CR>
+:nnoremap <Leader>- :sp<CR>
 
 " Ack
 :nnoremap <Leader>ak :execute ":Ack! ". shellescape("<cword>")<CR>
