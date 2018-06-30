@@ -79,6 +79,7 @@ end
 " Leader
 :let mapleader=","
 :let maplocalleader = "\\"
+:imap jj <Esc>
 
 " Disable arrows like a mofo
 :inoremap <Up> <nop>
@@ -234,3 +235,7 @@ let g:buffergator_suppress_keymaps=1
 " easymotion
 :map / <Plug>(easymotion-sn)
 :omap / <Plug>(easymotion-tn)
+
+" vim-http-client
+let g:http_client_bind_hotkey = 0
+silent! nnoremap <unique> <Leader>hc :HTTPClientDoRequest<cr>
