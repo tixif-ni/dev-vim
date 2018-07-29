@@ -115,3 +115,6 @@
 [submodule "bundle/splitjoin.vim"]
 	path = bundle/splitjoin.vim
 	url = https://github.com/AndrewRadev/splitjoin.vim
+[submodule "bundle/vim-illuminate.gi"]
+	path = bundle/vim-illuminate.gi
+	url = https://github.com/RRethy/vim-illuminate.git

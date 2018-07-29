@@ -229,9 +229,6 @@ let g:airline#extensions#virtualenv#enabled=1
 set laststatus=2
 set ttimeoutlen=50
 
-" buffergator
-let g:buffergator_suppress_keymaps=1
-
 " easymotion
 :map / <Plug>(easymotion-sn)
 :omap / <Plug>(easymotion-tn)
@@ -239,3 +236,8 @@ let g:buffergator_suppress_keymaps=1
 " vim-http-client
 let g:http_client_bind_hotkey = 0
 silent! nnoremap <unique> <Leader>hc :HTTPClientDoRequest<cr>
+
+" vim-illuminate
+let g:Illuminate_delay = 300
+let g:Illuminate_ftblacklist = ['nerdtree', 'ctrlp']
+hi illuminatedWord cterm=underline gui=underline
