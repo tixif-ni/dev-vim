@@ -1,6 +1,53 @@
-:"Pathogen plugin in order to handle the installation of every other plugin
-execute pathogen#infect()
-execute pathogen#helptags()
+" Specify a directory for plugins
+" - For Neovim: ~/.local/share/nvim/plugged
+" - Avoid using standard Vim directory names like 'plugin'
+call plug#begin('~/.vim/plugged')
+
+" Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
+Plug 'https://github.com/mattn/emmet-vim.git'
+Plug 'https://github.com/tmhedberg/matchit.git'
+Plug 'https://github.com/scrooloose/nerdcommenter.git'
+Plug 'https://github.com/scrooloose/nerdtree.git'
+Plug 'https://github.com/tpope/vim-pathogen.git'
+Plug 'https://github.com/bling/vim-airline.git'
+Plug 'https://github.com/vim-airline/vim-airline-themes.git'
+Plug 'https://github.com/Lokaltog/vim-easymotion.git'
+Plug 'https://github.com/tpope/vim-fugitive.git'
+Plug 'https://github.com/jelera/vim-javascript-syntax.git'
+Plug 'https://github.com/groenewege/vim-less.git'
+Plug 'https://github.com/terryma/vim-multiple-cursors.git'
+Plug 'https://github.com/mhinz/vim-signify.git'
+Plug 'https://github.com/MarcWeber/vim-addon-mw-utils.git'
+Plug 'https://github.com/tomtom/tlib_vim.git'
+Plug 'https://github.com/tpope/vim-surround.git'
+Plug 'https://github.com/tpope/vim-unimpaired.git'
+Plug 'https://github.com/Raimondi/delimitMate.git'
+Plug 'https://github.com/w0ng/vim-hybrid.git'
+Plug 'https://github.com/majutsushi/tagbar.git'
+Plug 'https://github.com/hynek/vim-python-pep8-indent.git'
+Plug 'https://github.com/alfredodeza/pytest.vim.git'
+Plug 'https://github.com/mileszs/ack.vim.git'
+Plug 'https://github.com/Shougo/neocomplcache.vim.git'
+Plug 'https://github.com/Shougo/neosnippet.vim.git'
+Plug 'https://github.com/aquach/vim-http-client.git'
+Plug 'https://github.com/chrisbra/NrrwRgn.git'
+Plug 'https://github.com/jmcantrell/vim-virtualenv.git'
+Plug 'https://github.com/mattn/webapi-vim.git'
+Plug 'https://github.com/leafgarland/typescript-vim.git'
+Plug 'https://github.com/Shougo/vimproc.vim.git'
+Plug 'https://github.com/w0rp/ale.git'
+Plug 'https://github.com/davidhalter/jedi-vim'
+Plug 'https://github.com/Quramy/tsuquyomi'
+Plug 'https://github.com/junegunn/gv.vim.git'
+Plug 'https://github.com/dhruvasagar/vim-table-mode'
+Plug 'https://github.com/ctrlpvim/ctrlp.vim'
+Plug 'https://github.com/whatyouhide/vim-lengthmatters.git'
+Plug 'https://github.com/okcompute/vim-python-match'
+Plug 'https://github.com/AndrewRadev/splitjoin.vim'
+Plug 'https://github.com/RRethy/vim-illuminate.git'
+
+" Initialize plugin system
+call plug#end()
 
 :set encoding=utf-8
 :set wildmenu
@@ -198,6 +245,7 @@ let g:neocomplcache_auto_completion_start_length = 3
 " Like g:neocomplcache_snippets_disable_runtime_snippets
 " behavior(all runtime snippets are disabled).
 let g:neosnippet#disable_runtime_snippets = { '_' : 1 }
+let g:neocomplcache_temporary_dir = "$HOME/.vim/tmp/neocomplcache"
 " use Tab for completion
 :inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
