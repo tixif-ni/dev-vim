@@ -22,7 +22,6 @@ Plug 'https://github.com/tomtom/tlib_vim.git'
 Plug 'https://github.com/tpope/vim-surround.git'
 Plug 'https://github.com/tpope/vim-unimpaired.git'
 Plug 'https://github.com/Raimondi/delimitMate.git'
-Plug 'https://github.com/w0ng/vim-hybrid.git'
 Plug 'https://github.com/majutsushi/tagbar.git'
 Plug 'https://github.com/hynek/vim-python-pep8-indent.git'
 Plug 'https://github.com/alfredodeza/pytest.vim.git'
@@ -45,6 +44,7 @@ Plug 'https://github.com/whatyouhide/vim-lengthmatters.git'
 Plug 'https://github.com/okcompute/vim-python-match'
 Plug 'https://github.com/AndrewRadev/splitjoin.vim'
 Plug 'https://github.com/RRethy/vim-illuminate.git'
+Plug 'kristijanhusak/vim-hybrid-material'
 
 " Initialize plugin system
 call plug#end()
@@ -109,13 +109,9 @@ else
 endif
 
 " Colorscheme 
-if (has("win32") || has("win64")) && !has("gui_running")
-    " Set solarized theme in windows so it matches conemu's pallete
-    :set background=dark
-    :colorscheme solarized
-else
-    :colorscheme hybrid
-end
+set background=dark
+colorscheme hybrid_material
+let g:airline_theme = "hybrid"
 
 " ABBREVIATIONS
 " make sure to fill these in as they come
