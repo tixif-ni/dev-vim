@@ -23,28 +23,24 @@ Plug 'https://github.com/tpope/vim-surround.git'
 Plug 'https://github.com/tpope/vim-unimpaired.git'
 Plug 'https://github.com/Raimondi/delimitMate.git'
 Plug 'https://github.com/majutsushi/tagbar.git'
-Plug 'https://github.com/hynek/vim-python-pep8-indent.git'
 Plug 'https://github.com/alfredodeza/pytest.vim.git'
 Plug 'https://github.com/mileszs/ack.vim.git'
 Plug 'https://github.com/Shougo/neocomplcache.vim.git'
-Plug 'https://github.com/Shougo/neosnippet.vim.git'
 Plug 'https://github.com/aquach/vim-http-client.git'
 Plug 'https://github.com/chrisbra/NrrwRgn.git'
-Plug 'https://github.com/jmcantrell/vim-virtualenv.git'
 Plug 'https://github.com/mattn/webapi-vim.git'
 Plug 'https://github.com/leafgarland/typescript-vim.git'
-Plug 'https://github.com/Shougo/vimproc.vim.git'
-Plug 'https://github.com/w0rp/ale.git'
-Plug 'https://github.com/davidhalter/jedi-vim'
-Plug 'https://github.com/Quramy/tsuquyomi'
+Plug 'https://github.com/Shougo/vimproc.vim.git', {'do': 'make'}
 Plug 'https://github.com/junegunn/gv.vim.git'
 Plug 'https://github.com/dhruvasagar/vim-table-mode'
 Plug 'https://github.com/ctrlpvim/ctrlp.vim'
 Plug 'https://github.com/whatyouhide/vim-lengthmatters.git'
-Plug 'https://github.com/okcompute/vim-python-match'
 Plug 'https://github.com/AndrewRadev/splitjoin.vim'
-Plug 'https://github.com/RRethy/vim-illuminate.git'
 Plug 'kristijanhusak/vim-hybrid-material'
+Plug 'dart-lang/dart-vim-plugin'
+Plug 'thosakwe/vim-flutter'
+Plug 'https://github.com/neoclide/coc.nvim.git', {'branch': 'release'}
+Plug 'https://github.com/Shougo/neosnippet.vim.git'
 
 " Initialize plugin system
 call plug#end()
@@ -101,17 +97,12 @@ filetype plugin on
 set noerrorbells visualbell t_vb=
 autocmd GUIEnter * set visualbell t_vb=
 
-" Maximize window on start
-if has("gui_running")
-    au GUIEnter * simalt ~x
-else
-    :set t_Co=256
-endif
-
 " Colorscheme 
-set background=dark
-colorscheme hybrid_material
-let g:airline_theme = "hybrid"
+:set t_Co=256
+:set termguicolors
+:set background=dark
+:colorscheme hybrid_material
+:let g:airline_theme = "hybrid"
 
 " ABBREVIATIONS
 " make sure to fill these in as they come
@@ -142,15 +133,6 @@ let g:airline_theme = "hybrid"
 :nnoremap <space> viw
 " toggle case
 :inoremap <Leader>t <esc>viw~ea
-
-" OPERATOR-PENDING mappings
-":onoremap p i(
-":onoremap b i{
-":onoremap s i[
-
-" toogle invisibles
-":nnoremap <Leader>l :set list!<CR>
-":vnoremap <Leader>l :set list!<CR>
 
 " moved up|down in wrapped lines
 :nnoremap j gj
@@ -210,25 +192,22 @@ map <Leader>l :5winc <<CR>
 map <Leader>h :5winc ><CR>
 
 " PLUGINS
+
+" Coc
+:let g:coc_global_extensions=[
+            \'coc-marketplace',
+            \'coc-neosnippet',
+            \'coc-python',
+            \'coc-tsserver',
+            \'coc-html',
+            \'coc-highlight',
+            \'coc-omnisharp']
+
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
-let g:airline#extensions#ale#enabled = 1
-let g:ale_lint_on_enter = 0
-let g:ale_lint_on_text_changed = 'never'
-let g:ale_completion_enabled = 1
-"let g:ale_python_flake8_executable = $VIRTUAL_ENV . '/bin/flake8'
-"let g:ale_python_flake8_use_global = 1
-"let g:ale_python_flake8_args = '-m flake8'
-let g:ale_fixers = {
-\   'html': ['eslint'],
-\   'sass': ['prettier'],
-\   'css': ['prettier'],
-\   'less': ['prettier'],
-\   'json': ['prettier'],
-\   'javascript': ['prettier'],
-\   'typescript': ['prettier'],
-\   'python': ['autopep8'],
-\}
 
 " Nerdtree
 let g:NERDTreeDirArrows = 0
@@ -242,8 +221,6 @@ let g:neocomplcache_auto_completion_start_length = 3
 " behavior(all runtime snippets are disabled).
 let g:neosnippet#disable_runtime_snippets = { '_' : 1 }
 let g:neocomplcache_temporary_dir = "$HOME/.vim/tmp/neocomplcache"
-" use Tab for completion
-:inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 " neosnippets
 " Tell Neosnippet about the other snippets
@@ -252,13 +229,15 @@ imap <c-j> <Plug>(neosnippet_expand_or_jump)
 smap <c-j> <Plug>(neosnippet_expand_or_jump)
 xmap <c-j> <Plug>(neosnippet_expand_target)
 
+" Use Tab for completion
+:inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 " SuperTab like snippets behavior.
- imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
- \ "\<Plug>(neosnippet_expand_or_jump)"
- \: pumvisible() ? "\<C-n>" : "\<TAB>"
- smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
- \ "\<Plug>(neosnippet_expand_or_jump)"
- \: "\<TAB>""
+imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)"
+\: pumvisible() ? "\<C-n>" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)"
+\: "\<TAB>""
 
 " ctrlP
 let g:ctrlp_custom_ignore= {
@@ -268,7 +247,6 @@ let g:ctrlp_custom_ignore= {
 
 " airline bar
 let g:airline_theme='molokai'
-let g:airline#extensions#virtualenv#enabled=1
 "" required for airline so it shows on normal buffers
 set laststatus=2
 set ttimeoutlen=50

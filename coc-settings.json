@@ -1,0 +1,15 @@
+{
+    "coc.preferences.colorSupport": true,
+    "languageserver": {
+        "dart": {
+            "command": "dart",
+            "args": [
+                "/usr/lib/dart/bin/snapshots/analysis_server.dart.snapshot",
+                "--lsp"
+            ],
+            "filetypes": ["dart"],
+            "disableDynamicRegister": true,
+            "trace.server": "verbose"
+        }
+    }
+}
