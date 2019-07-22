@@ -52,6 +52,7 @@ call plug#end()
 :set number
 :set more
 :set cursorline
+:set cmdheight=2
 
 "Stop vim's crazy formatting when pasting with the mouse
 :set pastetoggle=<F5>
@@ -225,6 +226,10 @@ inoremap <silent><expr> <c-space> coc#refresh()
 " Coc only does snippet and additional edit on confirm.
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
+" Use `[c` and `]c` to navigate diagnostics
+nmap <silent> [c <Plug>(coc-diagnostic-prev)
+nmap <silent> ]c <Plug>(coc-diagnostic-next)
+
 " Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
@@ -279,9 +284,6 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 
 " use `:OR` for organize import of current buffer
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
-
-" Add status line support, for integration with other plugin, checkout `:h coc-status`
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " Using CocList
 " Show all diagnostics
@@ -364,4 +366,10 @@ let g:ctrlp_custom_ignore= {
 :nnoremap <Leader>gd :Gdiff<CR>
 :nnoremap <Leader>gc :Gcommit<CR>
 :nnoremap <Leader>gp :Git push<CR>
-:nnoremap <Leader>gh :GV<CR>
+:nnoremap <Leader>gl :GV<CR>
+
+" ============================================================================
+" SIGNIFY
+" ============================================================================
+nmap <leader>gh <plug>(signify-next-hunk)
+nmap <leader>gH <plug>(signify-prev-hunk)
