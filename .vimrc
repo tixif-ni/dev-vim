@@ -126,8 +126,6 @@ autocmd GUIEnter * set visualbell t_vb=
 :nnoremap <leader>ev :sp $MYVIMRC<cr>
 :nnoremap <leader>sv :source $MYVIMRC<cr>
 
-" select word where cursor is
-:nnoremap <space> viw
 " toggle case
 :inoremap <Leader>t <esc>viw~ea
 
@@ -148,8 +146,6 @@ autocmd GUIEnter * set visualbell t_vb=
 :nnoremap <C-j> <C-w>j
 :nnoremap <C-k> <C-w>k
 :nnoremap <C-l> <C-w>l
-:nnoremap <Tab> :bnext<CR>
-:nnoremap <S-Tab> :bprevious<CR>
 :nnoremap <C-X> :bdelete<CR>
 :nnoremap <Leader>b :CtrlPBuffer<CR>
 
@@ -189,6 +185,7 @@ map <Leader>h :5winc ><CR>
             \'coc-marketplace',
             \'coc-highlight',
             \'coc-neosnippet',
+            \'coc-snippets',
             \'coc-yaml',
             \'coc-post',
             \'coc-prettier',
