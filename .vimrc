@@ -100,7 +100,7 @@ autocmd GUIEnter * set visualbell t_vb=
 :set t_Co=256
 :set termguicolors
 :set background=dark
-:colorscheme hybrid_material
+:colorscheme hybrid_reverse
 
 " ABBREVIATIONS
 " make sure to fill these in as they come
