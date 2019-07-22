@@ -25,7 +25,6 @@ Plug 'https://github.com/Raimondi/delimitMate.git'
 Plug 'https://github.com/majutsushi/tagbar.git'
 Plug 'https://github.com/alfredodeza/pytest.vim.git'
 Plug 'https://github.com/mileszs/ack.vim.git'
-Plug 'https://github.com/Shougo/neocomplcache.vim.git'
 Plug 'https://github.com/chrisbra/NrrwRgn.git'
 Plug 'https://github.com/leafgarland/typescript-vim.git'
 Plug 'https://github.com/Shougo/vimproc.vim.git', {'do': 'make'}
@@ -39,6 +38,7 @@ Plug 'dart-lang/dart-vim-plugin'
 Plug 'thosakwe/vim-flutter'
 Plug 'https://github.com/neoclide/coc.nvim.git', {'branch': 'release'}
 Plug 'https://github.com/Shougo/neosnippet.vim.git'
+Plug 'https://github.com/Shougo/neosnippet-snippets.git'
 
 " Initialize plugin system
 call plug#end()
@@ -52,7 +52,6 @@ call plug#end()
 :set number
 :set more
 :set cursorline
-:set cmdheight=2
 
 "Stop vim's crazy formatting when pasting with the mouse
 :set pastetoggle=<F5>
@@ -323,17 +322,6 @@ set ttimeoutlen=50
 " ============================================================================
 let g:NERDTreeDirArrows = 0
 let NERDTreeIgnore=['\.pyc$', '\.pyo$', '__pycache__$']
-
-" ============================================================================
-" NEOCOMPLETE
-" ============================================================================
-let g:neocomplcache_enable_at_startup = 1
-let g:neocomplcache_max_list = 10
-let g:neocomplcache_auto_completion_start_length = 3
-" Like g:neocomplcache_snippets_disable_runtime_snippets
-" behavior(all runtime snippets are disabled).
-let g:neosnippet#disable_runtime_snippets = { '_' : 1 }
-let g:neocomplcache_temporary_dir = "$HOME/.vim/tmp/neocomplcache"
 
 " ============================================================================
 " NEOSNIPPETS
