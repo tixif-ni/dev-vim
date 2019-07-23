@@ -8,13 +8,10 @@ Plug 'https://github.com/mattn/emmet-vim.git'
 Plug 'https://github.com/tmhedberg/matchit.git'
 Plug 'https://github.com/scrooloose/nerdcommenter.git'
 Plug 'https://github.com/scrooloose/nerdtree.git'
-Plug 'https://github.com/tpope/vim-pathogen.git'
 Plug 'https://github.com/bling/vim-airline.git'
 Plug 'https://github.com/vim-airline/vim-airline-themes.git'
 Plug 'https://github.com/Lokaltog/vim-easymotion.git'
 Plug 'https://github.com/tpope/vim-fugitive.git'
-Plug 'https://github.com/jelera/vim-javascript-syntax.git'
-Plug 'https://github.com/groenewege/vim-less.git'
 Plug 'https://github.com/terryma/vim-multiple-cursors.git'
 Plug 'https://github.com/mhinz/vim-signify.git'
 Plug 'https://github.com/MarcWeber/vim-addon-mw-utils.git'
@@ -26,20 +23,17 @@ Plug 'https://github.com/majutsushi/tagbar.git'
 Plug 'https://github.com/alfredodeza/pytest.vim.git'
 Plug 'https://github.com/mileszs/ack.vim.git'
 Plug 'https://github.com/chrisbra/NrrwRgn.git'
-Plug 'https://github.com/leafgarland/typescript-vim.git'
-Plug 'https://github.com/Shougo/vimproc.vim.git', {'do': 'make'}
 Plug 'https://github.com/junegunn/gv.vim.git'
 Plug 'https://github.com/dhruvasagar/vim-table-mode'
 Plug 'https://github.com/ctrlpvim/ctrlp.vim'
 Plug 'https://github.com/whatyouhide/vim-lengthmatters.git'
-Plug 'https://github.com/AndrewRadev/splitjoin.vim'
 Plug 'kristijanhusak/vim-hybrid-material'
-Plug 'dart-lang/dart-vim-plugin'
-Plug 'thosakwe/vim-flutter'
+Plug 'https://github.com/thosakwe/vim-flutter.git'
 Plug 'https://github.com/neoclide/coc.nvim.git', {'branch': 'release'}
 Plug 'https://github.com/Shougo/neosnippet.vim.git'
 Plug 'https://github.com/Shougo/neosnippet-snippets.git'
-
+Plug 'https://github.com/Shougo/vimproc.vim.git', {'do': 'make'}
+Plug 'https://github.com/sheerun/vim-polyglot.git'
 " Initialize plugin system
 call plug#end()
 
