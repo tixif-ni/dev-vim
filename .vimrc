@@ -131,8 +131,8 @@ autocmd GUIEnter * set visualbell t_vb=
 
 " nerdtree
 :nnoremap <Leader>nt :NERDTreeToggle<CR>
-:nnoremap <Leader>nb :Bookmark
-:nnoremap <Leader>nob :OpenBookmark
+:let g:NERDTreeDirArrowExpandable = '→'
+:let g:NERDTreeDirArrowCollapsible = '↓'
 
 " tagbar, Open source code tree
 :nnoremap <Leader>sc :TagbarToggle<CR>
