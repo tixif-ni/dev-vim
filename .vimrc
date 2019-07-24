@@ -35,6 +35,7 @@ Plug 'https://github.com/Shougo/neosnippet.vim.git'
 Plug 'https://github.com/Shougo/neosnippet-snippets.git'
 Plug 'https://github.com/Shougo/vimproc.vim.git', {'do': 'make'}
 Plug 'https://github.com/sheerun/vim-polyglot.git'
+Plug 'https://github.com/ryanoasis/vim-devicons.git'
 " Initialize plugin system
 call plug#end()
 
