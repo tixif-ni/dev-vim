@@ -47,7 +47,8 @@ call plug#end()
 :set ignorecase
 :set number
 :set more
-:set cursorline
+:set nocursorline
+:set lazyredraw
 
 "Stop vim's crazy formatting when pasting with the mouse
 :set pastetoggle=<F5>
