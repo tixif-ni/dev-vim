@@ -47,14 +47,17 @@ call plug#end()
 :set ignorecase
 :set number
 :set more
+
+" Performance boosters
 :set nocursorline
 :set lazyredraw
+:set regexpengine=1
+:set noshowcmd
+:set synmaxcol=120
+:set ttyfast
 
 "Stop vim's crazy formatting when pasting with the mouse
 :set pastetoggle=<F5>
-
-"Faster character redrawing
-:set ttyfast
 
 "Reload file if modified
 :set autoread
