@@ -102,11 +102,6 @@ autocmd GUIEnter * set visualbell t_vb=
 :set background=dark
 :colorscheme hybrid_reverse
 
-" ABBREVIATIONS
-" make sure to fill these in as they come
-:iabbrev waht what
-:iabbrev tehn then
-
 " REMAPS
 " Leader
 :let mapleader=","
@@ -148,7 +143,6 @@ autocmd GUIEnter * set visualbell t_vb=
 :nnoremap <C-k> <C-w>k
 :nnoremap <C-l> <C-w>l
 :nnoremap <C-X> :bdelete<CR>
-:nnoremap <Leader>b :CtrlPBuffer<CR>
 
 " Make current buffer only buffer in split modes
 :nnoremap <Leader>o <C-w><C-o>
@@ -201,7 +195,6 @@ map <Leader>h :5winc ><CR>
             \'coc-omnisharp']
 
 set shortmess+=c
-set updatetime=300
 autocmd CursorHold * silent call CocActionAsync('highlight')
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
@@ -341,6 +334,7 @@ xmap <c-j> <Plug>(neosnippet_expand_target)
 " ============================================================================
 " CTRLP
 " ============================================================================
+:nnoremap <Leader>b :CtrlPBuffer<CR>
 let g:ctrlp_custom_ignore= {
       \'dir': '\v[\/](node_modules|bower_components)$',
       \'file': '\vtags|\v\.(pyc)'
