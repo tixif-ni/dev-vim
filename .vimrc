@@ -55,6 +55,7 @@ call plug#end()
 :set noshowcmd
 :set synmaxcol=120
 :set ttyfast
+:syntax sync minlines=64
 
 "Stop vim's crazy formatting when pasting with the mouse
 :set pastetoggle=<F5>
