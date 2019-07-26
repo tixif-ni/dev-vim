@@ -12,11 +12,9 @@ Plug 'https://github.com/Xuyuanp/nerdtree-git-plugin.git'
 Plug 'https://github.com/bling/vim-airline.git'
 Plug 'https://github.com/vim-airline/vim-airline-themes.git'
 Plug 'https://github.com/Lokaltog/vim-easymotion.git'
-Plug 'https://github.com/tpope/vim-fugitive.git'
 Plug 'https://github.com/terryma/vim-multiple-cursors.git'
 Plug 'https://github.com/mhinz/vim-signify.git'
-Plug 'https://github.com/MarcWeber/vim-addon-mw-utils.git'
-Plug 'https://github.com/tomtom/tlib_vim.git'
+Plug 'https://github.com/tpope/vim-fugitive.git'
 Plug 'https://github.com/tpope/vim-surround.git'
 Plug 'https://github.com/tpope/vim-unimpaired.git'
 Plug 'https://github.com/Raimondi/delimitMate.git'
@@ -299,6 +297,11 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 imap <C-l> <Plug>(coc-snippets-expand)
 " Use <C-j> for both expand and jump (make expand higher priority.)
 imap <C-j> <Plug>(coc-snippets-expand-jump)
+
+" ============================================================================
+" ULTISNIPS
+" ============================================================================
+let g:UltiSnipsExpandTrigger = '<C-j>'
 
 " ============================================================================
 " HYBRID
