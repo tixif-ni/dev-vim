@@ -328,13 +328,6 @@ let g:NERDTreeDirArrows = 0
 let NERDTreeIgnore=['\.pyc$', '\.pyo$', '__pycache__$']
 
 " ============================================================================
-" UTILSNIPS
-" ============================================================================
-let g:UltiSnipsExpandTrigger='<Nop>'
-let g:UltiSnipsJumpForwardTrigger = '<TAB>'
-let g:UltiSnipsJumpBackwardTrigger = '<S-TAB>'
-
-" ============================================================================
 " CTRLP
 " ============================================================================
 :nnoremap <Leader>b :CtrlPBuffer<CR>
