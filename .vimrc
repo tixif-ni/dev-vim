@@ -31,12 +31,11 @@ Plug 'https://github.com/whatyouhide/vim-lengthmatters.git'
 Plug 'kristijanhusak/vim-hybrid-material'
 Plug 'https://github.com/reisub0/hot-reload.vim.git'
 Plug 'https://github.com/neoclide/coc.nvim.git', {'branch': 'release'}
-Plug 'https://github.com/Shougo/neosnippet.vim.git'
-Plug 'https://github.com/Shougo/neosnippet-snippets.git'
-Plug 'https://github.com/Shougo/vimproc.vim.git', {'do': 'make'}
 Plug 'https://github.com/sheerun/vim-polyglot.git'
 Plug 'https://github.com/ryanoasis/vim-devicons.git'
 Plug 'https://github.com/rhysd/git-messenger.vim.git'
+Plug 'https://github.com/SirVer/ultisnips.git'
+Plug 'https://github.com/honza/vim-snippets.git'
 " Initialize plugin system
 call plug#end()
 
@@ -181,7 +180,6 @@ map <Leader>h :5winc ><CR>
             \'coc-diagnostic',
             \'coc-marketplace',
             \'coc-highlight',
-            \'coc-neosnippet',
             \'coc-snippets',
             \'coc-yaml',
             \'coc-post',
@@ -296,6 +294,12 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
+" UltiSnips Snippets integration
+" Use <C-l> for trigger snippet expand.
+imap <C-l> <Plug>(coc-snippets-expand)
+" Use <C-j> for both expand and jump (make expand higher priority.)
+imap <C-j> <Plug>(coc-snippets-expand-jump)
+
 " ============================================================================
 " HYBRID
 " ============================================================================
@@ -324,13 +328,11 @@ let g:NERDTreeDirArrows = 0
 let NERDTreeIgnore=['\.pyc$', '\.pyo$', '__pycache__$']
 
 " ============================================================================
-" NEOSNIPPETS
+" UTILSNIPS
 " ============================================================================
-" Tell Neosnippet about the other snippets
-let g:neosnippet#snippets_directory='~/.vim/snippets'
-imap <c-j> <Plug>(neosnippet_expand_or_jump)
-smap <c-j> <Plug>(neosnippet_expand_or_jump)
-xmap <c-j> <Plug>(neosnippet_expand_target)
+let g:UltiSnipsExpandTrigger='<Nop>'
+let g:UltiSnipsJumpForwardTrigger = '<TAB>'
+let g:UltiSnipsJumpBackwardTrigger = '<S-TAB>'
 
 " ============================================================================
 " CTRLP
