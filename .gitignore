@@ -3,3 +3,4 @@ tmp
 colors
 autoload
 .netrwhist
+init.vim

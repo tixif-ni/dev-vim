@@ -29,7 +29,7 @@ Plug 'https://github.com/dhruvasagar/vim-table-mode'
 Plug 'https://github.com/ctrlpvim/ctrlp.vim'
 Plug 'https://github.com/whatyouhide/vim-lengthmatters.git'
 Plug 'kristijanhusak/vim-hybrid-material'
-Plug 'https://github.com/thosakwe/vim-flutter.git'
+Plug 'https://github.com/reisub0/hot-reload.vim.git'
 Plug 'https://github.com/neoclide/coc.nvim.git', {'branch': 'release'}
 Plug 'https://github.com/Shougo/neosnippet.vim.git'
 Plug 'https://github.com/Shougo/neosnippet-snippets.git'
