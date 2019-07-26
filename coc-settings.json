@@ -1,5 +1,14 @@
 {
+    // preferences
     "coc.preferences.colorSupport": true,
+    "coc.preferences.formatOnSaveFiletypes": [
+        "dart"
+    ],
+    // diagnostic
+    "diagnostic.infoSign": "ღ",
+    "diagnostic.hintSign": "ஐ",
+    "diagnostic.warningSign": "⚠",
+    "diagnostic.errorSign": "✖",
     "languageserver": {
         "dart": {
             "command": "dart",
@@ -11,5 +20,8 @@
             "disableDynamicRegister": true,
             "trace.server": "verbose"
         }
+    },
+    "diagnostic-languageserver.formatFiletypes": {
+        "dart": "dartfmt"
     }
 }
