@@ -25,7 +25,7 @@
         "dart": "dartfmt"
     },
     // python
-    "python.jediEnabled": false,
+    "python.jediEnabled": true,
     "python.linting.enabled": true,
     "python.linting.pylintEnabled": true,
     "python.analysis.logLevel": "Warning"
