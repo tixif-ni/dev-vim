@@ -23,5 +23,10 @@
     },
     "diagnostic-languageserver.formatFiletypes": {
         "dart": "dartfmt"
-    }
+    },
+    // python
+    "python.jediEnabled": true,
+    "python.linting.enabled": true,
+    "python.linting.pylintEnabled": true,
+    "python.analysis.logLevel": "Warning"
 }
