@@ -5,10 +5,10 @@
         "dart"
     ],
     // diagnostic
-    "diagnostic.infoSign": "ღ",
-    "diagnostic.hintSign": "ஐ",
-    "diagnostic.warningSign": "⚠",
-    "diagnostic.errorSign": "✖",
+    "diagnostic.infoSign": "?",
+    "diagnostic.hintSign": "+",
+    "diagnostic.warningSign": "!",
+    "diagnostic.errorSign": "x",
     "languageserver": {
         "dart": {
             "command": "dart",
@@ -25,7 +25,7 @@
         "dart": "dartfmt"
     },
     // python
-    "python.jediEnabled": false,
+    "python.jediEnabled": true,
     "python.linting.enabled": true,
     "python.linting.pylintEnabled": true,
     "python.analysis.logLevel": "Warning"
