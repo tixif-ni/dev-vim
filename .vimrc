@@ -379,4 +379,4 @@ hi def link ErrorBetterComments ErrorMsg
 hi def link HighlightBetterComments CocUnderline 
 hi def link QuestionBetterComments CursorLineNr 
 hi def link StrikeoutBetterComments CocInfoSign 
-hi def link TodoBetterComments Todo A
+hi def link TodoBetterComments Todo
