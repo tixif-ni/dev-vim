@@ -176,5 +176,7 @@ augroup fl_dart
    \ UserScrollNotification ValueKey ValueListenableBuilder ValueNotifier
    \ Velocity Viewport Visibility Widget WidgetInspector WidgetsApp
    \ WidgetsBindingObserver WidgetsFlutterBinding WidgetsLocalizations
-   \ WidgetToRenderBoxAdapter WillPopScope Wrap
+   \ WidgetToRenderBoxAdapter WillPopScope Wrap Scaffold AppBar
+   \ Icons PopupMenuItem IconButton GridTile Theme Colors GridTileBar
+   \ CircleAvatar Divider ListTile RefreshIndicator Future
 augroup end

@@ -35,6 +35,8 @@ Plug 'https://github.com/rhysd/git-messenger.vim.git'
 Plug 'https://github.com/SirVer/ultisnips.git'
 Plug 'https://github.com/honza/vim-snippets.git'
 Plug 'https://github.com/AndrewRadev/splitjoin.vim.git'
+Plug 'https://github.com/RRethy/vim-illuminate.git'
+Plug 'https://github.com/jbgutierrez/vim-better-comments.git'
 " Initialize plugin system
 call plug#end()
 
@@ -178,7 +180,6 @@ map <Leader>h :5winc ><CR>
 :let g:coc_global_extensions=[
             \'coc-diagnostic',
             \'coc-marketplace',
-            \'coc-highlight',
             \'coc-snippets',
             \'coc-yaml',
             \'coc-post',
@@ -365,3 +366,17 @@ nmap <leader>gH <plug>(signify-prev-hunk)
 " ============================================================================
 let g:splitjoin_split_mapping = 'gS'
 let g:splitjoin_join_mapping = 'gJ'
+
+" ============================================================================
+" ILLUMINATE
+" ============================================================================
+hi illuminatedWord cterm=underline gui=underline 
+
+" ============================================================================
+" BETTER COMMENTS 
+" ============================================================================
+hi def link ErrorBetterComments ErrorMsg 
+hi def link HighlightBetterComments CocUnderline 
+hi def link QuestionBetterComments CursorLineNr 
+hi def link StrikeoutBetterComments CocInfoSign 
+hi def link TodoBetterComments Todo
