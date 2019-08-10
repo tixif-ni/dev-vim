@@ -37,6 +37,7 @@ Plug 'https://github.com/honza/vim-snippets.git'
 Plug 'https://github.com/AndrewRadev/splitjoin.vim.git'
 Plug 'https://github.com/RRethy/vim-illuminate.git'
 Plug 'https://github.com/jbgutierrez/vim-better-comments.git'
+Plug 'https://github.com/andymass/vim-matchup.git'
 " Initialize plugin system
 call plug#end()
 
@@ -194,7 +195,6 @@ map <Leader>h :5winc ><CR>
             \'coc-omnisharp']
 
 set shortmess+=c
-autocmd CursorHold * silent call CocActionAsync('highlight')
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
 " Use tab for trigger completion with characters ahead and navigate.
@@ -380,3 +380,9 @@ hi def link HighlightBetterComments CocUnderline
 hi def link QuestionBetterComments CursorLineNr 
 hi def link StrikeoutBetterComments CocInfoSign 
 hi def link TodoBetterComments Todo
+
+" ============================================================================
+" MATCHUP
+" ============================================================================
+:hi MatchParen ctermbg=blue guibg=lightblue cterm=italic gui=italic
+let g:matchup_matchparen_deferred = 1
