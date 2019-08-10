@@ -168,6 +168,12 @@ map <Leader>k :5winc -<CR>
 map <Leader>l :5winc <<CR>
 map <Leader>h :5winc ><CR>
 
+" Misc
+" copy current files path to clipboard
+nmap cp :let @+ = expand("%") <cr>"
+noremap H ^
+noremap L g_
+
 " PLUGINS
 
 " ============================================================================
