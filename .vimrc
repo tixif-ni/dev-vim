@@ -38,6 +38,7 @@ Plug 'https://github.com/AndrewRadev/splitjoin.vim.git'
 Plug 'https://github.com/RRethy/vim-illuminate.git'
 Plug 'https://github.com/jbgutierrez/vim-better-comments.git'
 Plug 'https://github.com/andymass/vim-matchup.git'
+Plug 'https://github.com/christoomey/vim-tmux-navigator.git'
 " Initialize plugin system
 call plug#end()
 
@@ -139,13 +140,7 @@ autocmd GUIEnter * set visualbell t_vb=
 " tagbar, Open source code tree
 :nnoremap <Leader>sc :TagbarToggle<CR>
 
-" Move around buffers
-:nnoremap <C-h> <C-w>h
-:nnoremap <C-j> <C-w>j
-:nnoremap <C-k> <C-w>k
-:nnoremap <C-l> <C-w>l
 :nnoremap <C-X> :bdelete<CR>
-
 " Make current buffer only buffer in split modes
 :nnoremap <Leader>o <C-w><C-o>
 " Undo buffer
