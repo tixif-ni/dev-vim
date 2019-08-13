@@ -190,6 +190,7 @@ noremap L g_
             \'coc-python',
             \'coc-tsserver',
             \'coc-tslint-plugin',
+            \'coc-eslint',
             \'coc-json',
             \'coc-html',
             \'coc-css',
