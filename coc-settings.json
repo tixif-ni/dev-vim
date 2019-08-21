@@ -1,8 +1,10 @@
 {
     // preferences
     "coc.preferences.colorSupport": true,
+    "coc.preferences.formatOnType": true,
     "coc.preferences.formatOnSaveFiletypes": [
-        "dart"
+        "dart",
+        "python"
     ],
     // diagnostic
     "diagnostic.infoSign": "?",
