@@ -101,7 +101,6 @@ autocmd GUIEnter * set visualbell t_vb=
 
 " Colorscheme 
 :set t_Co=256
-:set termguicolors
 :set background=dark
 :colorscheme hybrid_reverse
 
@@ -310,6 +309,14 @@ let g:UltiSnipsExpandTrigger = '<C-j>'
 " ============================================================================
 let g:enable_bold_font = 1
 let g:enable_italic_font = 1
+
+if (has("nvim"))
+  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+endif
+
+if (has("termguicolors"))
+  set termguicolors
+endif
 
 " ============================================================================
 " AIRLINE
