@@ -178,5 +178,6 @@ augroup fl_dart
    \ WidgetsBindingObserver WidgetsFlutterBinding WidgetsLocalizations
    \ WidgetToRenderBoxAdapter WillPopScope Wrap Scaffold AppBar
    \ Icons PopupMenuItem IconButton GridTile Theme Colors GridTileBar
-   \ CircleAvatar Divider ListTile RefreshIndicator Future
+   \ CircleAvatar Divider ListTile RefreshIndicator Future MaterialApp
+   \ MaterialPageRouter Dio Provider 
 augroup end
