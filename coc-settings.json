@@ -38,5 +38,7 @@
     "python.linting.enabled": true,
     "python.linting.pylintEnabled": false,
     "python.linting.flake8Enabled": true,
-    "python.analysis.logLevel": "Warning"
+    "python.analysis.logLevel": "Warning",
+    "python.formatting.provider": "black",
+    "python.formatting.blackArgs": ["--line-length", "80"]
 }
