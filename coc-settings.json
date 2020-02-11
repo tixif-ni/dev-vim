@@ -4,6 +4,7 @@
     "coc.preferences.formatOnType": true,
     "coc.preferences.formatOnSaveFiletypes": [
         "dart",
+        "php",
         "python",
         "javascript",
         "javascriptreact",
@@ -38,5 +39,10 @@
     "python.linting.enabled": true,
     "python.linting.pylintEnabled": false,
     "python.linting.flake8Enabled": true,
-    "python.analysis.logLevel": "Warning"
+    "python.analysis.logLevel": "Warning",
+
+    //prettier
+    "prettier.semi": true,
+    "prettier.singleQuote": true,
+    "prettier.tabWidth": 4
 }
