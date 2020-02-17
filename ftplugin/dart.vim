@@ -1,4 +1,7 @@
-:setlocal tabstop=2 shiftwidth=2 softtabstop=2
+:autocmd Filetype dart set softtabstop=2
+:autocmd Filetype dart set sw=2
+:autocmd Filetype dart set ts=2
+
 augroup fl_dart
   autocmd!
   autocmd Syntax dart highlight default link dartFlutterClasses     Type
