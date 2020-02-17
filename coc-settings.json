@@ -40,5 +40,8 @@
     "python.linting.flake8Enabled": true,
     "python.analysis.logLevel": "Warning",
     "python.formatting.provider": "black",
-    "python.formatting.blackArgs": ["--line-length", "80"]
+    "python.formatting.blackArgs": ["--line-length", "80"],
+    // yaml
+    "yaml.format.enable": true,
+    "yaml.validate": true
 }

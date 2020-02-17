@@ -178,6 +178,9 @@ noremap L g_
 " ============================================================================
 " Coc
 " ============================================================================
+:let g:coc_filetype_map = {
+    \'yaml.ansible': 'yaml',
+    \ }
 :let g:coc_global_extensions=[
             \'coc-diagnostic',
             \'coc-marketplace',
