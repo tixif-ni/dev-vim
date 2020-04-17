@@ -15,7 +15,8 @@ Plug 'https://github.com/Lokaltog/vim-easymotion.git'
 Plug 'https://github.com/terryma/vim-multiple-cursors.git'
 Plug 'https://github.com/mhinz/vim-signify.git'
 Plug 'https://github.com/tpope/vim-fugitive.git'
-Plug 'https://github.com/tpope/vim-surround.git'
+Plug 'https://github.com/tpope/vim-fugitive.git'
+Plug 'https://github.com/sodapopcan/vim-twiggy.git'
 Plug 'https://github.com/tpope/vim-unimpaired.git'
 Plug 'https://github.com/Raimondi/delimitMate.git'
 Plug 'https://github.com/majutsushi/tagbar.git'
@@ -357,7 +358,7 @@ let g:ctrlp_custom_ignore= {
 :omap / <Plug>(easymotion-tn)
 
 " ============================================================================
-" FUGITIVE
+" Git
 " ============================================================================
 :nnoremap <Leader>gb :Gblame<CR>
 :nnoremap <Leader>gs :Gstatus<CR>
@@ -365,6 +366,8 @@ let g:ctrlp_custom_ignore= {
 :nnoremap <Leader>gc :Gcommit<CR>
 :nnoremap <Leader>gp :Git push<CR>
 :nnoremap <Leader>gl :GV<CR>
+:nnoremap <Leader>gr :Gread<CR>
+:nnoremap <Leader>gt :Twiggy<CR>
 
 " ============================================================================
 " SIGNIFY
