@@ -182,6 +182,7 @@ noremap L g_
 :let g:coc_global_extensions=[
             \'coc-diagnostic',
             \'coc-marketplace',
+            \'coc-tabnine',
             \'coc-snippets',
             \'coc-yaml',
             \'coc-post',
