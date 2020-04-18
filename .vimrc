@@ -160,10 +160,10 @@ autocmd GUIEnter * set visualbell t_vb=
 :cnoremap w!! w !sudo tee % >/dev/null
 
 " Buffer resizing
-map <Leader>j :5winc +<CR>
-map <Leader>k :5winc -<CR>
-map <Leader>l :5winc <<CR>
-map <Leader>h :5winc ><CR>
+map <Leader>j :10winc +<CR>
+map <Leader>k :10winc -<CR>
+map <Leader>l :10winc <<CR>
+map <Leader>h :10winc ><CR>
 
 " Misc
 " copy current files path to clipboard
