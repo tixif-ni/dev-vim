@@ -53,6 +53,7 @@ call plug#end()
 " Performance boosters
 :set nocursorline
 :set lazyredraw
+:set re=1
 :set noshowcmd
 :set synmaxcol=120
 :set ttyfast
