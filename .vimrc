@@ -361,7 +361,7 @@ let g:ctrlp_custom_ignore= {
 " ============================================================================
 autocmd VimEnter * if empty(expand('<amatch>'))|call FugitiveDetect(getcwd())|endif
 :nnoremap <Leader>gb :Gblame<CR>
-:nnoremap <Leader>gs :Gstatus<CR>
+:nnoremap <Leader>gs :Git<CR>
 :nnoremap <Leader>gd :Gdiff<CR>
 :nnoremap <Leader>gc :Gcommit<CR>
 :nnoremap <Leader>gp :Git push<CR>
