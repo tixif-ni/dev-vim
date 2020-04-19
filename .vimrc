@@ -347,7 +347,7 @@ let NERDTreeIgnore=['\.pyc$', '\.pyo$', '__pycache__$']
 " ============================================================================
 :nnoremap <Leader>b :CtrlPBuffer<CR>
 let g:ctrlp_custom_ignore= {
-      \'dir': '\v[\/](node_modules|bower_components)$',
+      \'dir': '\v[\/](node_modules|bower_components|dist)$',
       \'file': '\vtags|\v\.(pyc)'
       \}
 
