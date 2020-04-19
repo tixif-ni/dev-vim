@@ -68,6 +68,7 @@ call plug#end()
 :set hlsearch
 :set incsearch
 
+"Indents
 :set expandtab
 :set tabstop=4 shiftwidth=4 softtabstop=4
 :set autoindent
@@ -126,17 +127,9 @@ autocmd GUIEnter * set visualbell t_vb=
 :noremap <Leader>tl <esc>viwu
 :noremap <Leader>tu <esc>viwU
 
-" moved up|down in wrapped lines
+" move up|down in wrapped lines
 :nnoremap j gj
 :nnoremap k gk
-
-" nerdtree
-:nnoremap <Leader>nt :NERDTreeToggle<CR>
-:let g:NERDTreeDirArrowExpandable = '→'
-:let g:NERDTreeDirArrowCollapsible = '↓'
-
-" tagbar, Open source code tree
-:nnoremap <Leader>sc :TagbarToggle<CR>
 
 :nnoremap <C-X> :bdelete<CR>
 " Make current buffer only buffer in split modes
@@ -149,9 +142,6 @@ autocmd GUIEnter * set visualbell t_vb=
 :nnoremap <Leader><CR> i<CR><Esc>
 :nnoremap <Leader><Bar> :vert sp<CR>
 :nnoremap <Leader>- :sp<CR>
-
-" Ack
-:nnoremap <Leader>ak :execute ":Ack! ". shellescape("<cword>")<CR>
 
 " : => ;
 :nnoremap ; :
@@ -173,6 +163,15 @@ noremap H ^
 noremap L g_
 
 " PLUGINS
+" ============================================================================
+" Ack
+" ============================================================================
+:nnoremap <Leader>ak :execute ":Ack! ". shellescape("<cword>")<CR>
+
+" ============================================================================
+" Tagbar
+" ============================================================================
+:nnoremap <Leader>sc :TagbarToggle<CR>
 
 " ============================================================================
 " Coc
@@ -339,6 +338,9 @@ set ttimeoutlen=50
 " ============================================================================
 " NERDTREE
 " ============================================================================
+:nnoremap <Leader>nt :NERDTreeToggle<CR>
+let g:NERDTreeDirArrowExpandable = '→'
+let g:NERDTreeDirArrowCollapsible = '↓'
 let g:NERDTreeDirArrows = 0
 let NERDTreeIgnore=['\.pyc$', '\.pyo$', '__pycache__$']
 
