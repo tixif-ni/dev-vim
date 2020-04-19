@@ -23,7 +23,6 @@ Plug 'https://github.com/alfredodeza/pytest.vim.git'
 Plug 'https://github.com/mileszs/ack.vim.git'
 Plug 'https://github.com/chrisbra/NrrwRgn.git'
 Plug 'https://github.com/junegunn/gv.vim.git'
-Plug 'https://github.com/dhruvasagar/vim-table-mode'
 Plug 'https://github.com/ctrlpvim/ctrlp.vim'
 Plug 'https://github.com/whatyouhide/vim-lengthmatters.git'
 Plug 'kristijanhusak/vim-hybrid-material'
@@ -124,7 +123,8 @@ autocmd GUIEnter * set visualbell t_vb=
 :nnoremap <leader>sv :source $MYVIMRC<cr>
 
 " toggle case
-:inoremap <Leader>t <esc>viw~ea
+:noremap <Leader>tl <esc>viwu
+:noremap <Leader>tu <esc>viwU
 
 " moved up|down in wrapped lines
 :nnoremap j gj
