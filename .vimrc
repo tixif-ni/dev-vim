@@ -168,7 +168,7 @@ map <Leader>h :10winc ><CR>
 
 " Misc
 " copy current files path to clipboard
-nmap cp :let @+ = expand("%") <cr>"
+nmap cp :let @+ = expand('%:p')<CR>
 noremap H ^
 noremap L g_
 
