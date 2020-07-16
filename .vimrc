@@ -196,7 +196,8 @@ noremap L g_
             \'coc-json',
             \'coc-html',
             \'coc-css',
-            \'coc-omnisharp']
+            \'coc-lists',
+            \'coc-todolist']
 
 set shortmess+=c
 command! -nargs=0 Prettier :CocCommand prettier.formatFile

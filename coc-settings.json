@@ -45,8 +45,10 @@
     // yaml
     "yaml.format.enable": true,
     "yaml.validate": true,
-    //prettier
+    // prettier
     "prettier.semi": true,
     "prettier.singleQuote": true,
-    "prettier.tabWidth": 4
+    "prettier.tabWidth": 4,
+    // todolist
+    "todolist.promptForReminder": false
 }
