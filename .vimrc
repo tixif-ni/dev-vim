@@ -293,6 +293,8 @@ nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
 nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
 " List todos
 nnoremap <silent> <space>t  :<C-u>CocList todolist<CR>
+" List posts
+nnoremap <silent> <space>p  :<C-u>CocList post<CR>
 
 " UltiSnips Snippets integration
 " Use <C-j> for both expand and jump (make expand higher priority.)
