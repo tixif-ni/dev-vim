@@ -41,6 +41,7 @@ Plug 'https://github.com/andymass/vim-matchup.git'
 Plug 'https://github.com/christoomey/vim-tmux-navigator.git'
 Plug 'https://github.com/blueyed/vim-diminactive.git'
 Plug 'tmux-plugins/vim-tmux-focus-events'
+Plug 'ruanyl/vim-gh-line'
 " Initialize plugin system
 call plug#end()
 
@@ -174,16 +175,7 @@ let g:clipboard = {
   \   },
   \   'cache_enabled': 1,
   \ }
-
-function! s:copy_file_path()
-    try
-      :GBrowse!
-      :let @+ .= '#L'.line('.')
-    catch
-      :let @+ = expand('%').':'.line('.')
-    endtry
-endfunction
-nmap cp :call <SID>copy_file_path()<CR>
+nmap cp :let @+ = expand('%').':'.line('.')<CR>
 
 " Misc
 noremap H ^
@@ -387,24 +379,29 @@ let g:ctrlp_custom_ignore= {
 " ============================================================================
 " Git
 " ============================================================================
+" Fugitive
 autocmd VimEnter * if empty(expand('<amatch>'))|call FugitiveDetect(getcwd())|endif
 :nnoremap <Leader>gb :Gblame<CR>
 :nnoremap <Leader>gs :Git<CR>
 :nnoremap <Leader>gd :Gvdiffsplit!<CR>
 :nnoremap <Leader>gc :Gcommit<CR>
 :nnoremap <Leader>gp :Git push<CR>
-:nnoremap <Leader>gl :GV<CR>
 :nnoremap <Leader>gr :Gread<CR>
-:nnoremap <Leader>gt :Twiggy<CR>
 :nnoremap gdh :diffget //2<CR>
 :nnoremap gdl :diffget //3<CR>
-
-" ============================================================================
-" SIGNIFY
-" ============================================================================
+" Twiggy
+:nnoremap <Leader>gt :Twiggy<CR>
+" GV
+:nnoremap <Leader>gl :GV<CR>
+" Signify
 nmap <leader>gj <plug>(signify-next-hunk)
 nmap <leader>gk <plug>(signify-prev-hunk)
 :nnoremap <Leader>gh :SignifyHunkDiff<CR>
+" Line
+let g:gh_line_map_default = 0
+let g:gh_line_blame_map_default = 1
+let g:gh_line_map = '<leader>gu'
+let g:gh_open_command = 'fn() { echo "$@" | xclip; }; fn '
 
 " ============================================================================
 " ILLUMINATE
