@@ -159,9 +159,23 @@ map <Leader>k :10winc -<CR>
 map <Leader>l :10winc <<CR>
 map <Leader>h :10winc ><CR>
 
+" Copy current file path to clipboard using xclip
+set clipboard=unnamedplus
+let g:clipboard = {
+  \   'name': 'xclip-xfce4-clipman',
+  \   'copy': {
+  \      '+': 'xclip',
+  \      '*': 'xclip',
+  \    },
+  \   'paste': {
+  \      '+': 'xclip -o',
+  \      '*': 'xclip -o',
+  \   },
+  \   'cache_enabled': 1,
+  \ }
+nmap cp :let @+ = expand('%').':'.line('.')<CR>
+
 " Misc
-" copy current files path to clipboard
-nmap cp :let @+ = expand('%:p')<CR>
 noremap H ^
 noremap L g_
 
