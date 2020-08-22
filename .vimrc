@@ -38,6 +38,8 @@ Plug 'https://github.com/RRethy/vim-illuminate.git'
 Plug 'https://github.com/jbgutierrez/vim-better-comments.git'
 Plug 'https://github.com/andymass/vim-matchup.git'
 Plug 'https://github.com/christoomey/vim-tmux-navigator.git'
+Plug 'https://github.com/blueyed/vim-diminactive.git'
+Plug 'tmux-plugins/vim-tmux-focus-events'
 " Initialize plugin system
 call plug#end()
 
@@ -397,3 +399,8 @@ hi def link TodoBetterComments Todo
 " ============================================================================
 :hi MatchParen ctermbg=blue guibg=lightblue cterm=italic gui=italic
 let g:matchup_matchparen_deferred = 1
+
+" ============================================================================
+" Diminactive
+" ============================================================================
+let g:diminactive_enable_focus = 1
