@@ -27,7 +27,6 @@ Plug 'https://github.com/chrisbra/NrrwRgn.git'
 Plug 'https://github.com/junegunn/gv.vim.git'
 Plug 'https://github.com/ctrlpvim/ctrlp.vim'
 Plug 'https://github.com/whatyouhide/vim-lengthmatters.git'
-Plug 'kristijanhusak/vim-hybrid-material'
 Plug 'https://github.com/reisub0/hot-reload.vim.git'
 Plug 'https://github.com/neoclide/coc.nvim.git', {'branch': 'release'}
 Plug 'https://github.com/sheerun/vim-polyglot.git'
@@ -42,6 +41,7 @@ Plug 'https://github.com/christoomey/vim-tmux-navigator.git'
 Plug 'https://github.com/blueyed/vim-diminactive.git'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'ruanyl/vim-gh-line'
+Plug 'https://github.com/NLKNguyen/papercolor-theme.git'
 " Initialize plugin system
 call plug#end()
 
@@ -104,9 +104,19 @@ set noerrorbells visualbell t_vb=
 autocmd GUIEnter * set visualbell t_vb=
 
 " Colorscheme 
+let g:PaperColor_Theme_Options = {
+\   'theme': {
+\     'default.light': {
+\       'override' : {
+\         'color03' : ['#ff875f', ''],
+\         'color17' : ['#ff875f', '']
+\       }
+\     }
+\   }
+\ }
 :set t_Co=256
-:set background=dark
-:colorscheme hybrid_reverse
+:set background=light
+:colorscheme PaperColor
 
 " REMAPS
 " Leader
@@ -324,30 +334,15 @@ imap <C-j> <Plug>(coc-snippets-expand-jump)
 let g:UltiSnipsExpandTrigger = '<C-j>'
 
 " ============================================================================
-" HYBRID
-" ============================================================================
-let g:enable_bold_font = 1
-let g:enable_italic_font = 1
-
-if (has("nvim"))
-  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-endif
-
-if (has("termguicolors"))
-  set termguicolors
-endif
-
-" ============================================================================
 " AIRLINE
 " ============================================================================
-let g:airline_theme = "hybrid"
+let g:airline_theme = "papercolor"
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 
 " ============================================================================
 " AIRLINEBAR
 " ============================================================================
-let g:airline_theme='molokai'
 "" required for airline so it shows on normal buffers
 set laststatus=2
 set ttimeoutlen=50
@@ -375,6 +370,7 @@ let g:ctrlp_custom_ignore= {
 " ============================================================================
 :map / <Plug>(easymotion-sn)
 :omap / <Plug>(easymotion-tn)
+:hi EasyMotionIncSearch ctermbg=0287af ctermfg=white
 
 " ============================================================================
 " Git
@@ -414,9 +410,11 @@ hi illuminatedWord cterm=underline gui=underline
 " ============================================================================
 hi def link ErrorBetterComments ErrorMsg 
 hi def link HighlightBetterComments CocUnderline 
-hi def link QuestionBetterComments CursorLineNr 
+"hi def link QuestionBetterComments CursorLineNr 
 hi def link StrikeoutBetterComments CocInfoSign 
-hi def link TodoBetterComments Todo
+"hi def link TodoBetterComments Todo
+hi QuestionBetterComments ctermbg=585858 ctermfg=white
+hi TodoBetterComments ctermbg=0287af ctermfg=white
 
 " ============================================================================
 " MATCHUP
