@@ -15,6 +15,7 @@ Plug 'https://github.com/Lokaltog/vim-easymotion.git'
 Plug 'https://github.com/terryma/vim-multiple-cursors.git'
 Plug 'https://github.com/mhinz/vim-signify.git'
 Plug 'https://github.com/tpope/vim-fugitive.git'
+Plug 'https://github.com/tpope/vim-rhubarb.git'
 Plug 'https://github.com/tpope/vim-surround.git'
 Plug 'https://github.com/sodapopcan/vim-twiggy.git'
 Plug 'https://github.com/tpope/vim-unimpaired.git'
@@ -173,7 +174,16 @@ let g:clipboard = {
   \   },
   \   'cache_enabled': 1,
   \ }
-nmap cp :let @+ = (fugitive#head() ? fugitive#head().'@' : '').expand('%').':'.line('.')<CR>
+
+function! s:copy_file_path()
+    try
+      :GBrowse!
+      :let @+ .= '#L'.line('.')
+    catch
+      :let @+ = expand('%').':'.line('.')
+    endtry
+endfunction
+nmap cp :call <SID>copy_file_path()<CR>
 
 " Misc
 noremap H ^
