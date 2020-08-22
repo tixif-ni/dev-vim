@@ -393,6 +393,7 @@ autocmd VimEnter * if empty(expand('<amatch>'))|call FugitiveDetect(getcwd())|en
 :nnoremap <Leader>gt :Twiggy<CR>
 " GV
 :nnoremap <Leader>gl :GV<CR>
+:nnoremap <Leader>glc :GV!<CR>
 " Signify
 nmap <leader>gj <plug>(signify-next-hunk)
 nmap <leader>gk <plug>(signify-prev-hunk)
