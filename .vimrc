@@ -173,7 +173,7 @@ let g:clipboard = {
   \   },
   \   'cache_enabled': 1,
   \ }
-nmap cp :let @+ = expand('%').':'.line('.')<CR>
+nmap cp :let @+ = (fugitive#head() ? fugitive#head().'@' : '').expand('%').':'.line('.')<CR>
 
 " Misc
 noremap H ^
