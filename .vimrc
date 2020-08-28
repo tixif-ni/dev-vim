@@ -124,9 +124,10 @@ autocmd GUIEnter * set visualbell t_vb=
 :nnoremap <Left> <nop>
 :nnoremap <Right> <nop>
 
-" Edit vimrc
+" Edit common files
 :nnoremap <leader>ev :sp $MYVIMRC<cr>
 :nnoremap <leader>sv :source $MYVIMRC<cr>
+:nnoremap <leader>ep :sp <C-R>=expand($VIRTUAL_ENV)."/bin/postactivate"<CR><CR>
 
 " toggle case
 :noremap <Leader>tl <esc>viwu
