@@ -217,7 +217,6 @@ noremap L g_
             \'coc-html',
             \'coc-css',
             \'coc-lists',
-            \'coc-todolist',
             \'coc-sql']
 
 set shortmess+=c
@@ -311,8 +310,6 @@ nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
 nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
 " Find symbol of current document
 nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
-" List todos
-nnoremap <silent> <space>t  :<C-u>CocList todolist<CR>
 " List posts
 nnoremap <silent> <space>p  :<C-u>CocList post<CR>
 
