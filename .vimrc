@@ -137,7 +137,7 @@ autocmd GUIEnter * set visualbell t_vb=
 :nnoremap j gj
 :nnoremap k gk
 
-:nnoremap <C-X> :bdelete<CR>
+:nnoremap <C-X> :bd!<CR>
 " Make current buffer only buffer in split modes
 :nnoremap <Leader>o <C-w><C-o>
 " Undo buffer
