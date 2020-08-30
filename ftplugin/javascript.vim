@@ -1,2 +1,2 @@
 " run file
-:nnoremap <buffer> <localleader>r :ter node "%"<CR>
+:nnoremap <buffer> <localleader>r :!node %<CR>

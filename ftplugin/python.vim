@@ -14,4 +14,4 @@
 :onoremap <buffer> cn :<c-u>execute "normal! ?class\\s\r:nohlsearch\rwviw"<cr>
 
 " run file
-:nnoremap <buffer> <localleader>r :ter python "%"<CR>
+:nnoremap <buffer> <localleader>r :!python %<CR>
