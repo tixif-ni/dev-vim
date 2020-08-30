@@ -9,13 +9,13 @@ Plug 'https://github.com/tmhedberg/matchit.git'
 Plug 'https://github.com/scrooloose/nerdcommenter.git'
 Plug 'https://github.com/scrooloose/nerdtree.git'
 Plug 'https://github.com/Xuyuanp/nerdtree-git-plugin.git'
+Plug 'https://github.com/tiagofumo/vim-nerdtree-syntax-highlight.git'
 Plug 'https://github.com/bling/vim-airline.git'
 Plug 'https://github.com/vim-airline/vim-airline-themes.git'
 Plug 'https://github.com/Lokaltog/vim-easymotion.git'
 Plug 'https://github.com/terryma/vim-multiple-cursors.git'
 Plug 'https://github.com/mhinz/vim-signify.git'
 Plug 'https://github.com/tpope/vim-fugitive.git'
-Plug 'https://github.com/tpope/vim-rhubarb.git'
 Plug 'https://github.com/tpope/vim-surround.git'
 Plug 'https://github.com/sodapopcan/vim-twiggy.git'
 Plug 'https://github.com/tpope/vim-unimpaired.git'
@@ -134,9 +134,10 @@ let g:PaperColor_Theme_Options = {
 :nnoremap <Left> <nop>
 :nnoremap <Right> <nop>
 
-" Edit vimrc
+" Edit common files
 :nnoremap <leader>ev :sp $MYVIMRC<cr>
 :nnoremap <leader>sv :source $MYVIMRC<cr>
+:nnoremap <leader>ep :sp <C-R>=expand($VIRTUAL_ENV)."/bin/postactivate"<CR><CR>
 
 " toggle case
 :noremap <Leader>tl <esc>viwu
@@ -146,7 +147,7 @@ let g:PaperColor_Theme_Options = {
 :nnoremap j gj
 :nnoremap k gk
 
-:nnoremap <C-X> :bdelete<CR>
+:nnoremap <C-X> :bd!<CR>
 " Make current buffer only buffer in split modes
 :nnoremap <Leader>o <C-w><C-o>
 " Undo buffer
@@ -225,7 +226,6 @@ noremap L g_
             \'coc-html',
             \'coc-css',
             \'coc-lists',
-            \'coc-todolist',
             \'coc-sql']
 
 set shortmess+=c
@@ -319,8 +319,6 @@ nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
 nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
 " Find symbol of current document
 nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
-" List todos
-nnoremap <silent> <space>t  :<C-u>CocList todolist<CR>
 " List posts
 nnoremap <silent> <space>p  :<C-u>CocList post<CR>
 
