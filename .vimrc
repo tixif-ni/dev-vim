@@ -359,6 +359,8 @@ let g:NERDTreeDirArrowCollapsible = '↓'
 let g:NERDTreeDirArrows = 0
 let NERDTreeIgnore=['\.pyc$', '\.pyo$', '__pycache__$']
 
+let g:NERDTreeGitStatusShowIgnored = 1
+let g:NERDTreeGitStatusUseNerdFonts = 1
 " ============================================================================
 " CTRLP
 " ============================================================================
