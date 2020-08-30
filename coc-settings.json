@@ -48,7 +48,5 @@
     // prettier
     "prettier.semi": true,
     "prettier.singleQuote": true,
-    "prettier.tabWidth": 4,
-    // todolist
-    "todolist.promptForReminder": false
+    "prettier.tabWidth": 4
 }
