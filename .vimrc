@@ -381,6 +381,7 @@ let g:ctrlp_custom_ignore= {
 " ============================================================================
 " Fugitive
 autocmd VimEnter * if empty(expand('<amatch>'))|call FugitiveDetect(getcwd())|endif
+:nnoremap <Leader>gf :!git fetch --all<CR>
 :nnoremap <Leader>gb :Gblame<CR>
 :nnoremap <Leader>gs :Git<CR>
 :nnoremap <Leader>gd :Gvdiffsplit!<CR>
