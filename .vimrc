@@ -42,6 +42,7 @@ Plug 'https://github.com/blueyed/vim-diminactive.git'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'ruanyl/vim-gh-line'
 Plug 'https://github.com/NLKNguyen/papercolor-theme.git'
+Plug 'https://github.com/jeetsukumaran/vim-buffergator.git'
 " Initialize plugin system
 call plug#end()
 
@@ -356,14 +357,18 @@ let NERDTreeIgnore=['\.pyc$', '\.pyo$', '__pycache__$']
 
 let g:NERDTreeGitStatusShowIgnored = 1
 let g:NERDTreeGitStatusUseNerdFonts = 1
+
 " ============================================================================
 " CTRLP
 " ============================================================================
-:nnoremap <Leader>b :CtrlPBuffer<CR>
 let g:ctrlp_custom_ignore= {
       \'dir': '\v[\/](node_modules|bower_components|dist)$',
       \'file': '\vtags|\v\.(pyc)'
       \}
+
+" ============================================================================
+" Buffergator
+" ============================================================================
 
 " ============================================================================
 " EASYMOTION
