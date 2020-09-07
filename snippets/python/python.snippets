@@ -1,0 +1,4 @@
+snippet pyram
+	pytest.param(
+		${1:param},
+		marks=pytest.mark.xfail(reason="${2:reason}", raises=${3:error}))
