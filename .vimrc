@@ -361,6 +361,12 @@ let NERDTreeIgnore=['\.pyc$', '\.pyo$', '__pycache__$']
 
 let g:NERDTreeGitStatusShowIgnored = 1
 let g:NERDTreeGitStatusUseNerdFonts = 1
+
+let g:NERDTreeSyntaxDisableDefaultExtensions = 1
+let g:NERDTreeSyntaxDisableDefaultExactMatches = 1
+let g:NERDTreeSyntaxDisableDefaultPatternMatches = 1
+let g:NERDTreeSyntaxEnabledExtensions = ['md', 'json', 'js', 'css', 'html', 'jsx', 'ts', 'py', 'sh', 'sql', 'docker', 'log'] " enabled extensions with default colors
+let g:NERDTreeSyntaxEnabledExactMatches = ['node_modules', 'favicon.ico'] " enabled exact matches with default colors
 " ============================================================================
 " CTRLP
 " ============================================================================
@@ -401,8 +407,9 @@ nmap <leader>gk <plug>(signify-prev-hunk)
 :nnoremap <Leader>gh :SignifyHunkDiff<CR>
 " Line
 let g:gh_line_map_default = 0
-let g:gh_line_blame_map_default = 1
+let g:gh_line_blame_map_default = 0
 let g:gh_line_map = '<leader>gu'
+let g:gh_line_blame_map = '<leader>gub'
 let g:gh_open_command = 'fn() { echo "$@" | xclip; }; fn '
 
 " ============================================================================
