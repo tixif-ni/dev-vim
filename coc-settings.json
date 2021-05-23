@@ -12,7 +12,9 @@
         "typescriptreact",
         "json",
         "css",
-        "html"
+        "html",
+        "tf",
+        "terraform"
     ],
     // diagnostic
     "diagnostic.infoSign": "?",
@@ -23,12 +25,19 @@
         "dart": {
             "command": "dart",
             "args": [
-                "/usr/lib/dart/bin/snapshots/analysis_server.dart.snapshot",
+                "/usr/local/opt/dart/libexec/bin/snapshots/analysis_server.dart.snapshot",
                 "--lsp"
             ],
             "filetypes": ["dart"],
             "disableDynamicRegister": true,
             "trace.server": "verbose"
+        },
+        "terraform": {
+            "command": "terraform-lsp",
+            "filetypes": ["terraform", "tf"],
+            "initializationOptions": {},
+            "trace.server": "verbose",
+            "settings": {}
         }
     },
     "diagnostic-languageserver.formatFiletypes": {
@@ -39,9 +48,16 @@
     "python.linting.enabled": true,
     "python.linting.pylintEnabled": false,
     "python.linting.flake8Enabled": true,
+    "python.linting.flake8Args": ["--max-line-length", "88"],
     "python.analysis.logLevel": "Warning",
     "python.formatting.provider": "black",
-    "python.formatting.blackArgs": ["--line-length", "80"],
+    "python.formatting.autopep8Args": [
+        "--aggressive",
+        "--aggressive",
+        "--experimental",
+        "--max-line-length",
+        "88"
+    ],
     // yaml
     "yaml.format.enable": true,
     "yaml.validate": true,
@@ -50,3 +66,4 @@
     "prettier.singleQuote": true,
     "prettier.tabWidth": 4
 }
+

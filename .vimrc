@@ -42,6 +42,14 @@ Plug 'https://github.com/christoomey/vim-tmux-navigator.git'
 Plug 'https://github.com/blueyed/vim-diminactive.git'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'ruanyl/vim-gh-line'
+Plug 'https://github.com/editorconfig/editorconfig-vim.git'
+Plug 'https://github.com/pseewald/vim-anyfold.git'
+Plug 'https://github.com/MattesGroeger/vim-bookmarks'
+Plug 'https://github.com/jalvesaq/Nvim-R.git'
+Plug 'https://github.com/junegunn/fzf.git'
+Plug 'https://github.com/junegunn/fzf.vim.git'
+Plug 'https://github.com/antoinemadec/coc-fzf.git'
+
 " Initialize plugin system
 call plug#end()
 
@@ -57,7 +65,7 @@ call plug#end()
 " Performance boosters
 :set nocursorline
 :set lazyredraw
-:set re=1
+:set re=0
 :set noshowcmd
 :set synmaxcol=120
 :set ttyfast
@@ -107,6 +115,7 @@ autocmd GUIEnter * set visualbell t_vb=
 :set t_Co=256
 :set background=dark
 :colorscheme hybrid_reverse
+:set synmaxcol=0
 
 " REMAPS
 " Leader
@@ -202,8 +211,8 @@ noremap L g_
 :let g:coc_global_extensions=[
             \'coc-diagnostic',
             \'coc-marketplace',
-            \'coc-tabnine',
             \'coc-snippets',
+            \'coc-tabnine',
             \'coc-yaml',
             \'coc-post',
             \'coc-prettier',
@@ -215,6 +224,7 @@ noremap L g_
             \'coc-json',
             \'coc-html',
             \'coc-css',
+            \'coc-flutter',
             \'coc-lists',
             \'coc-sql']
 
@@ -354,6 +364,7 @@ set ttimeoutlen=50
 " NERDTREE
 " ============================================================================
 :nnoremap <Leader>nt :NERDTreeToggle<CR>
+:nnoremap <Leader>nf :NERDTreeFind<CR>
 let g:NERDTreeDirArrowExpandable = '→'
 let g:NERDTreeDirArrowCollapsible = '↓'
 let g:NERDTreeDirArrows = 0
@@ -375,6 +386,8 @@ let g:ctrlp_custom_ignore= {
       \'dir': '\v[\/](node_modules|bower_components|dist)$',
       \'file': '\vtags|\v\.(pyc)'
       \}
+
+let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:20,results:20'
 
 " ============================================================================
 " EASYMOTION
@@ -404,7 +417,8 @@ autocmd VimEnter * if empty(expand('<amatch>'))|call FugitiveDetect(getcwd())|en
 " Signify
 nmap <leader>gj <plug>(signify-next-hunk)
 nmap <leader>gk <plug>(signify-prev-hunk)
-:nnoremap <Leader>gh :SignifyHunkDiff<CR>
+:nnoremap <Leader>ghd :SignifyHunkDiff<CR>
+:nnoremap <Leader>ghu :SignifyHunkUndo<CR>
 " Line
 let g:gh_line_map_default = 0
 let g:gh_line_blame_map_default = 0
@@ -420,6 +434,8 @@ hi illuminatedWord cterm=underline gui=underline
 " ============================================================================
 " BETTER COMMENTS 
 " ============================================================================
+let g:bettercomments_skipped = ['python']
+
 hi def link ErrorBetterComments ErrorMsg 
 hi def link HighlightBetterComments CocUnderline 
 hi def link QuestionBetterComments CursorLineNr 
@@ -436,3 +452,33 @@ let g:matchup_matchparen_deferred = 1
 " Diminactive
 " ============================================================================
 let g:diminactive_enable_focus = 1
+
+" ============================================================================
+" ANYFOLDS
+" ============================================================================
+autocmd Filetype * AnyFoldActivate   
+set foldlevel=99 " Open all folds
+
+" ============================================================================
+" LENGTHMATTERS
+" ============================================================================
+let g:lengthmatters_start_at_column = 88
+
+" ============================================================================
+" FZF 
+" ============================================================================
+fun! s:fzf_root()
+	let path = finddir(".git", expand("%:p:h").";")
+	return fnamemodify(substitute(path, ".git", "", ""), ":p:h")
+endfun
+
+"nnoremap <silent> <space>f :exe 'Files ' . <SID>fzf_root()<CR>
+nnoremap <silent> <space>f :call fzf#run(fzf#vim#with_preview(fzf#wrap({'source': 'ag --hidden --ignore node_modules --ignore .git -g ""', 'dir': <SID>fzf_root()})))<CR>
+nnoremap <silent> <space><space> :call fzf#run(fzf#vim#with_preview(fzf#wrap({'source': 'ag --hidden --ignore node_modules --ignore .git -g ""'})))<CR>
+nnoremap <silent> <space>c :CocFzfList<CR>
+
+" ============================================================================
+" COC PYTHON 
+" ============================================================================
+
+call coc#config('python', {'pythonPath': split(execute('!which python'), '\n')[-1]})
