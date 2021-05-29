@@ -208,7 +208,7 @@ noremap L g_
             \'coc-post',
             \'coc-prettier',
             \'coc-docker',
-            \'coc-python',
+            \'coc-pyright',
             \'coc-tsserver',
             \'coc-tslint-plugin',
             \'coc-eslint',

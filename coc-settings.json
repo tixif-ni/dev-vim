@@ -34,19 +34,16 @@
     "diagnostic-languageserver.formatFiletypes": {
         "dart": "dartfmt"
     },
-    // python
-    "python.jediEnabled": true,
+    // coc-pyright
     "python.linting.enabled": true,
-    "python.linting.pylintEnabled": false,
     "python.linting.flake8Enabled": true,
-    "python.analysis.logLevel": "Warning",
     "python.formatting.provider": "black",
-    "python.formatting.blackArgs": ["--line-length", "80"],
     // yaml
     "yaml.format.enable": true,
     "yaml.validate": true,
     // prettier
     "prettier.semi": true,
     "prettier.singleQuote": true,
-    "prettier.tabWidth": 4
+    "prettier.tabWidth": 4,
+    "python.linting.pylintEnabled": false
 }
