@@ -165,14 +165,14 @@ map <Leader>h :10winc ><CR>
 " Copy current file path to clipboard using xclip
 set clipboard=unnamedplus
 let g:clipboard = {
-  \   'name': 'xclip-xfce4-clipman',
+  \   'name': 'clip.exe',
   \   'copy': {
-  \      '+': 'xclip',
-  \      '*': 'xclip',
+  \      '+': 'clip.exe',
+  \      '*': 'clip.exe',
   \    },
   \   'paste': {
-  \      '+': 'xclip -o',
-  \      '*': 'xclip -o',
+  \      '+': 'clip.exe -o',
+  \      '*': 'clip.exe -o',
   \   },
   \   'cache_enabled': 1,
   \ }
@@ -208,7 +208,7 @@ noremap L g_
             \'coc-post',
             \'coc-prettier',
             \'coc-docker',
-            \'coc-python',
+            \'coc-pyright',
             \'coc-tsserver',
             \'coc-tslint-plugin',
             \'coc-eslint',
@@ -410,7 +410,7 @@ let g:gh_line_map_default = 0
 let g:gh_line_blame_map_default = 0
 let g:gh_line_map = '<leader>gu'
 let g:gh_line_blame_map = '<leader>gub'
-let g:gh_open_command = 'fn() { echo "$@" | xclip; }; fn '
+let g:gh_open_command = 'fn() { echo "$@" | clip.exe; }; fn '
 
 " ============================================================================
 " ILLUMINATE
