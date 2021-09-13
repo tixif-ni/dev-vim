@@ -42,6 +42,7 @@ Plug 'https://github.com/christoomey/vim-tmux-navigator.git'
 Plug 'https://github.com/blueyed/vim-diminactive.git'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'ruanyl/vim-gh-line'
+Plug 'OmniSharp/omnisharp-vim'
 " Initialize plugin system
 call plug#end()
 
@@ -216,7 +217,8 @@ noremap L g_
             \'coc-html',
             \'coc-css',
             \'coc-lists',
-            \'coc-sql']
+            \'coc-sql',
+            \'coc-omnisharp']
 
 set shortmess+=c
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
