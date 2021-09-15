@@ -1,1 +1,1 @@
-:nnoremap <silent> gd :OmniSharpGotoDefinition<CR>
+:nnoremap <buffer> gd :OmniSharpGotoDefinition<CR>
