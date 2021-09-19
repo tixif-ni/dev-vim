@@ -24,7 +24,16 @@ Plug 'https://github.com/RRethy/vim-illuminate.git'
 Plug 'https://github.com/whatyouhide/vim-lengthmatters.git'
 Plug 'https://github.com/blueyed/vim-diminactive.git'
 
+" Explorer
+Plug 'https://github.com/nvim-lua/plenary.nvim'
+Plug 'https://github.com/nvim-telescope/telescope.nvim'
+Plug 'https://github.com/nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'https://github.com/kyazdani42/nvim-web-devicons'
+Plug 'https://github.com/kyazdani42/nvim-tree.lua'
+
 " Language
+Plug 'https://github.com/neovim/nvim-lspconfig'
+Plug 'https://github.com/glepnir/lspsaga.nvim'
 Plug 'https://github.com/mattn/emmet-vim.git'
 Plug 'https://github.com/alfredodeza/pytest.vim.git'
 
@@ -37,15 +46,6 @@ Plug 'https://github.com/Raimondi/delimitMate.git'
 Plug 'https://github.com/scrooloose/nerdcommenter.git'
 Plug 'https://github.com/jbgutierrez/vim-better-comments.git'
 Plug 'https://github.com/andymass/vim-matchup.git'
-
-Plug 'https://github.com/neovim/nvim-lspconfig'
-Plug 'https://github.com/nvim-lua/plenary.nvim'
-Plug 'https://github.com/nvim-telescope/telescope.nvim'
-Plug 'https://github.com/nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-
-
-Plug 'https://github.com/kyazdani42/nvim-web-devicons'
-Plug 'https://github.com/kyazdani42/nvim-tree.lua'
 
 "Plug 'https://github.com/mileszs/ack.vim.git'
 "Plug 'https://github.com/reisub0/hot-reload.vim.git'
