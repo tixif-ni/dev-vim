@@ -1,4 +1,13 @@
 lua << EOF
+local parser_configs = require("nvim-treesitter.parsers").get_parser_configs()
+parser_configs.http = {
+  install_info = {
+    url = "https://github.com/NTBBloodbath/tree-sitter-http",
+    files = { "src/parser.c" },
+    branch = "main",
+  },
+}
+
 require'nvim-treesitter.configs'.setup {
   highlight = {
     enable = true,
@@ -7,6 +16,7 @@ require'nvim-treesitter.configs'.setup {
     enable = true,
   },
   ensure_installed = {
+    "http",
     "comment",
     "tsx",
     "toml",
@@ -25,6 +35,7 @@ require'nvim-treesitter.configs'.setup {
     "lua"
   },
 }
+
 local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
 parser_config.tsx.used_by = { "javascript", "typescript.tsx" }
 EOF
