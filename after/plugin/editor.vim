@@ -17,7 +17,7 @@ parser_configs.http = {
   },
 }
 
-require'nvim-treesitter.configs'.setup {
+require("nvim-treesitter.configs").setup {
   highlight = {
     enable = true,
   },
@@ -64,9 +64,98 @@ nnoremap <silent><C-f> <cmd>lua require('lspsaga.action').smart_scroll_with_saga
 nnoremap <silent><C-b> <cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>
 
 lua << EOF
-local saga = require 'lspsaga'
-
-saga.init_lsp_saga {
+ require("lspsaga").init_lsp_saga {
   border_style = "round",
+}
+EOF
+
+"=============================================================================
+" LSP-KIND
+"=============================================================================
+lua <<EOF
+local lspkind = require("lspkind")
+lspkind.init({
+  symbol_map = {
+    Text = "",
+    Method = "",
+    Function = "",
+    Constructor = "",
+    Field = "ﰠ",
+    Variable = "",
+    Class = "ﴯ",
+    Interface = "",
+    Module = "",
+    Property = "ﰠ",
+    Unit = "塞",
+    Value = "",
+    Enum = "",
+    Keyword = "",
+    Snippet = "",
+    Color = "",
+    File = "",
+    Reference = "",
+    Folder = "",
+    EnumMember = "",
+    Constant = "",
+    Struct = "פּ",
+    Event = "",
+    Operator = "",
+    TypeParameter = ""
+  },
+})
+EOF
+
+"=============================================================================
+" LSP-CMP
+"=============================================================================
+lua <<EOF
+require("cmp_tabnine.config"):setup {
+  max_lines = 1000,
+  max_num_results = 20,
+  sort = true,
+}
+
+local source_mapping = {
+  buffer = "[Buffer]",
+  nvim_lsp = "[LSP]",
+  cmp_tabnine = "[TN]",
+  path = "[Path]",
+  ultisnips = "[Snippets]"
+}
+
+local cmp = require("cmp")
+cmp.setup {
+  formatting = {
+    format = function(entry, vim_item)
+      vim_item.kind = require("lspkind").presets.default[vim_item.kind]
+      vim_item.menu = source_mapping[entry.source.name]
+      return vim_item
+    end
+  },
+  snippet = {
+    expand = function(args)
+      -- For `ultisnips` user.
+      vim.fn["vsnip#anonymous"](args.body)
+    end,
+  },
+  mapping = {
+    ['<C-e>'] = cmp.mapping.close(),
+    ['<CR>'] = cmp.mapping.confirm({ select = true }),
+    ['<Tab>'] = cmp.mapping(cmp.mapping.select_next_item(), { 'i', 's' }),
+    ['<S-Tab>'] = cmp.mapping(cmp.mapping.select_prev_item(), { 'i', 's' })
+  },
+  sources = {
+    { name = 'nvim_lsp' },
+    { name = 'buffer' },
+    { name = 'path' },
+    { name = 'calc' },
+    { name = 'ultisnips' },
+    { name = 'cmp_tabnine' },
+    { name = 'treesitter' },
+  }
+}
+
+require('lspconfig').tsserver.setup {
+  capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
 }
 EOF
