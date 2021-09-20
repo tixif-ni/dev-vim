@@ -1,3 +1,42 @@
+"=============================================================================
+" FUGITIVE
+"=============================================================================
+
+autocmd VimEnter * if empty(expand('<amatch>'))|call FugitiveDetect(getcwd())|endif
+:nnoremap <Leader>gf :!git fetch --all<CR>
+:nnoremap <Leader>gb :Git blame<CR>
+:nnoremap <Leader>gs :Git<CR>
+:nnoremap <Leader>gd :Gvdiffsplit!<CR>
+:nnoremap <Leader>gc :Git commit<CR>
+:nnoremap <Leader>gp :Git push<CR>
+:nnoremap <Leader>gr :Gread<CR>
+:nnoremap gdh :diffget //2<CR>
+:nnoremap gdl :diffget //3<CR>
+
+"=============================================================================
+" GH-LINE
+"=============================================================================
+
+nmap <leader>gy <Plug>(gh-line)
+let g:gh_open_command = 'fn() { echo "$@" | pbcopy; }; fn '
+
+"=============================================================================
+" TWIGGY
+"=============================================================================
+
+:nnoremap <Leader>gt :Twiggy<CR>
+
+"=============================================================================
+" GV
+"=============================================================================
+
+:nnoremap <Leader>gl :GV<CR>
+:nnoremap <Leader>glf :GV!<CR>
+
+"=============================================================================
+" GITSIGNS
+"=============================================================================
+
 lua << EOF
 require('gitsigns').setup {
   signs = {
