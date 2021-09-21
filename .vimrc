@@ -65,8 +65,9 @@ Plug 'https://github.com/tpope/vim-unimpaired.git'
 Plug 'https://github.com/terryma/vim-multiple-cursors.git'
 Plug 'https://github.com/Raimondi/delimitMate.git'
 Plug 'https://github.com/scrooloose/nerdcommenter.git'
-Plug 'https://github.com/jbgutierrez/vim-better-comments.git'
+Plug 'folke/todo-comments.nvim'
 Plug 'https://github.com/andymass/vim-matchup.git'
+Plug 'ellisonleao/glow.nvim'
 
 " Initialize plugin system
 call plug#end()
