@@ -24,26 +24,8 @@ require("nvim-treesitter.configs").setup {
   indent = {
     enable = true,
   },
-  ensure_installed = {
-    "http",
-    "comment",
-    "tsx",
-    "toml",
-    "fish",
-    "dot",
-    "python",
-    "javascript",
-    "typescript",
-    "json",
-    "yaml",
-    "dockerfile",
-    "html",
-    "scss",
-    "c_sharp",
-    "dart",
-    "vim",
-    "lua"
-  },
+  ensure_installed = "all",
+  ignore_install = { "haskell" },
 }
 EOF
 
@@ -156,6 +138,6 @@ cmp.setup {
 }
 
 require('lspconfig').tsserver.setup {
-  capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
+  capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities()),
 }
 EOF

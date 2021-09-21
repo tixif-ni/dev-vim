@@ -5,6 +5,7 @@ call plug#begin('~/.vim/plugged')
 
 " Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
 " Core
+Plug 'nvim-lua/popup.nvim'
 Plug 'https://github.com/nvim-lua/plenary.nvim'
 Plug 'https://github.com/NTBBloodbath/rest.nvim.git'
 Plug 'https://github.com/neovim/nvim-lspconfig'
