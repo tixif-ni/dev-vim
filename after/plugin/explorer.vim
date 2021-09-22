@@ -9,7 +9,9 @@ nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 nnoremap <leader>fw <cmd>Telescope grep_string<cr>
-nnoremap <leader>fd <cmd>Telescope treesitter<cr>
+nnoremap <leader>ft <cmd>Telescope treesitter<cr>
+nnoremap <leader>fdc <cmd>Telescope lsp_document_diagnostics<cr>
+nnoremap <leader>fda <cmd>Telescope lsp_workspace_diagnostics<cr>
 
 "=============================================================================
 " TREE
