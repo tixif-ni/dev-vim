@@ -1,4 +1,17 @@
 "=============================================================================
+" LSP-CONFIG
+"=============================================================================
+
+" Disable text object diagnostic to avoid overbloating UI
+lua << EOF
+  vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+    vim.lsp.diagnostic.on_publish_diagnostics, {
+        virtual_text = false
+    }
+)
+EOF
+
+"=============================================================================
 " TREESITTER
 "=============================================================================
 set nofoldenable
@@ -33,22 +46,30 @@ EOF
 " LSP-SAGA
 "=============================================================================
 
-nnoremap <silent>gh :Lspsaga lsp_finder<CR>
-nnoremap <silent>gr :Lspsaga rename<CR>
+highlight link LspSagaFinderSelection Search
+
+nnoremap <silent>gu :Lspsaga lsp_finder<CR>
 nnoremap <silent>gD :Lspsaga preview_definition<CR>
 nnoremap <silent>gd <Cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent><leader>ca :Lspsaga code_action<CR>
 vnoremap <silent><leader>ca :<C-U>Lspsaga range_code_action<CR>
+nnoremap <silent><leader>cr :Lspsaga rename<CR>
 
 inoremap <silent><C-k> <Cmd>Lspsaga signature_help<CR>
 nnoremap <silent>K :Lspsaga hover_doc<CR>
 nnoremap <silent><C-f> <cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>
 nnoremap <silent><C-b> <cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>
+nnoremap <silent><leader>cd <cmd>lua require'lspsaga.diagnostic'.show_line_diagnostics()<CR>
 
 lua << EOF
  require("lspsaga").init_lsp_saga {
-  border_style = "round",
-}
+    error_sign = '',
+    warn_sign = '',
+    hint_sign = '',
+    infor_sign = ' ',
+    dianostic_header_icon = '   ',
+    code_action_icon = ' ',
+  }
 EOF
 
 "=============================================================================
