@@ -13,6 +13,10 @@ nnoremap <leader>ft <cmd>Telescope treesitter<cr>
 nnoremap <leader>fdf <cmd>Telescope lsp_document_diagnostics<cr>
 nnoremap <leader>fda <cmd>Telescope lsp_workspace_diagnostics<cr>
 
+lua << EOF
+require'telescope'.setup()
+EOF
+
 "=============================================================================
 " TREE
 "=============================================================================
@@ -38,7 +42,6 @@ let g:nvim_tree_window_picker_exclude = {
     \ }
 let g:nvim_tree_ignore = [
             \'.git',
-            \'node_modules',
             \'.cache',
             \'__pycache__',
             \'.pyc',
