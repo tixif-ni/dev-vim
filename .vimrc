@@ -36,10 +36,9 @@ Plug 'https://github.com/rhysd/git-messenger.vim.git'
 Plug 'https://github.com/SirVer/ultisnips.git'
 Plug 'https://github.com/honza/vim-snippets.git'
 Plug 'https://github.com/RRethy/vim-illuminate.git'
-Plug 'https://github.com/jbgutierrez/vim-better-comments.git'
 Plug 'https://github.com/andymass/vim-matchup.git'
 Plug 'https://github.com/christoomey/vim-tmux-navigator.git'
-Plug 'https://github.com/blueyed/vim-diminactive.git'
+" Plug 'https://github.com/blueyed/vim-diminactive.git'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'ruanyl/vim-gh-line'
 Plug 'https://github.com/editorconfig/editorconfig-vim.git'
@@ -49,6 +48,18 @@ Plug 'https://github.com/jalvesaq/Nvim-R.git'
 Plug 'https://github.com/junegunn/fzf.git'
 Plug 'https://github.com/junegunn/fzf.vim.git'
 Plug 'https://github.com/antoinemadec/coc-fzf.git'
+Plug 'junegunn/vim-easy-align'
+
+" Lua
+Plug 'https://github.com/kyazdani42/nvim-tree.lua'
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'folke/todo-comments.nvim'
+
+Plug 'nvim-lua/popup.nvim'
+Plug 'https://github.com/nvim-lua/plenary.nvim'
+Plug 'https://github.com/NTBBloodbath/rest.nvim.git'
+Plug 'https://github.com/neovim/nvim-lspconfig'
+Plug 'ellisonleao/glow.nvim'
 
 " Initialize plugin system
 call plug#end()
@@ -226,6 +237,7 @@ noremap L g_
             \'coc-css',
             \'coc-flutter',
             \'coc-lists',
+            \'coc-docthis',
             \'coc-sql']
 
 set shortmess+=c
@@ -404,7 +416,7 @@ autocmd VimEnter * if empty(expand('<amatch>'))|call FugitiveDetect(getcwd())|en
 :nnoremap <Leader>gb :Gblame<CR>
 :nnoremap <Leader>gs :Git<CR>
 :nnoremap <Leader>gd :Gvdiffsplit!<CR>
-:nnoremap <Leader>gc :Gcommit<CR>
+:nnoremap <Leader>gc :Git commit<CR>
 :nnoremap <Leader>gp :Git push<CR>
 :nnoremap <Leader>gr :Gread<CR>
 :nnoremap gdh :diffget //2<CR>
@@ -482,3 +494,9 @@ nnoremap <silent> <space>c :CocFzfList<CR>
 " ============================================================================
 
 call coc#config('python', {'pythonPath': split(execute('!which python'), '\n')[-1]})
+
+" ============================================================================
+" COC-DOCTHIS 
+" ============================================================================
+command! -nargs=0 DocThis :CocCommand docthis.documentThis
+nnoremap <silent> <space>d :DocThis<CR>
