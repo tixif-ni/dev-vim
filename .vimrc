@@ -42,7 +42,6 @@ Plug 'https://github.com/mattn/emmet-vim.git'
 Plug 'https://github.com/alfredodeza/pytest.vim.git'
 Plug 'mfussenegger/nvim-dap'
 Plug 'Pocco81/DAPInstall.nvim'
-Plug 'theHamsta/nvim-dap-virtual-text'
 Plug 'rcarriga/nvim-dap-ui'
 
 " Auto complete

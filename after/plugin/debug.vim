@@ -5,6 +5,7 @@ lua << EOF
 local dap = require'dap'
 
 dap.adapters.node2 = {
+  name = 'node-debug',
   type = 'executable',
   command = 'node',
   args = { os.getenv('HOME') .. '/.local/share/nvim/dapinstall/jsnode/vscode-node-debug2/out/src/nodeDebug.js' }
@@ -20,7 +21,7 @@ function dap_node_attach()
     cwd = vim.fn.getcwd(),
     sourceMaps = true,
     protocol = 'inspector',
-    skipFiles = {'<node_internals>/**/*.js'},
+    skipFiles = {'<node_internals>/**'},
   })
 end
 
@@ -38,9 +39,6 @@ nnoremap <leader>d_ :lua require'dap'.run_last()<CR>
 nnoremap <leader>dr :lua require'dap'.repl.open({}, 'vsplit')<CR>
 nnoremap <leader>d? :lua local widgets=require'dap.ui.widgets';widgets.centered_float(widgets.scopes)<CR>
 nnoremap <leader>de :lua require'dap'.set_exception_breakpoints({'all'})<CR>
-
-
-let g:dap_virtual_text = v:true
 
 augroup process_attach
     autocmd!
