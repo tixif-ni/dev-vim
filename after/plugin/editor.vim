@@ -46,7 +46,7 @@ EOF
 " LSP-SAGA
 "=============================================================================
 
-nnoremap <silent>gu :Lspsaga lsp_finder<CR>
+nnoremap <silent>gr :Lspsaga lsp_finder<CR>
 nnoremap <silent>gD :Lspsaga preview_definition<CR>
 nnoremap <silent>gd <Cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent><leader>ca :Lspsaga code_action<CR>
