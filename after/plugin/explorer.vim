@@ -14,7 +14,18 @@ nnoremap <leader>fdf <cmd>Telescope lsp_document_diagnostics<cr>
 nnoremap <leader>fda <cmd>Telescope lsp_workspace_diagnostics<cr>
 
 lua << EOF
-require'telescope'.setup()
+require'telescope'.setup {
+  extensions = {
+    fzf = {
+      fuzzy = true,
+      override_generic_sorter = true,
+      override_file_sorter = true,
+      case_mode = "smart_case",
+    }
+  }
+}
+
+require('telescope').load_extension('fzf')
 EOF
 
 "=============================================================================
