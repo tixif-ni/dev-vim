@@ -7,13 +7,13 @@ command! -nargs=1 Livegrep lua require('telescope.builtin').live_grep({search_di
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
-nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 nnoremap <leader>fw <cmd>Telescope grep_string<cr>
 nnoremap <leader>ft <cmd>Telescope treesitter<cr>
 nnoremap <leader>fdf <cmd>Telescope lsp_document_diagnostics<cr>
 nnoremap <leader>fda <cmd>Telescope lsp_workspace_diagnostics<cr>
 nnoremap <leader>fma <cmd>Telescope vim_bookmarks all<cr>
 nnoremap <leader>fmf <cmd>Telescope vim_bookmarks current_file<cr>
+nnoremap <leader>fc <cmd>TodoTelescope<cr>
 
 lua << EOF
 require'telescope'.setup {
