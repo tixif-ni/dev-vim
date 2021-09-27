@@ -50,17 +50,18 @@ dap.adapters.node2 = {
   args = { os.getenv('HOME') .. '/.local/share/nvim/dapinstall/jsnode/vscode-node-debug2/out/src/nodeDebug.js' }
 }
 
-dap.configurations.javascript = {
-  {
-    type = 'node2',
-    request = 'attach',
-    cwd = vim.fn.getcwd(),
-    sourceMaps = true,
-    protocol = 'inspector',
-    skipFiles = {'<node_internals>/**'},
-    pid = pick_process({pattern='[node|nodemon]*--inspect*'}),
-  }
+local node_configurations = {
+  type = 'node2',
+  request = 'attach',
+  cwd = vim.fn.getcwd(),
+  sourceMaps = true,
+  protocol = 'inspector',
+  skipFiles = {'<node_internals>/**'},
+  pid = pick_process({pattern='[node|nodemon|npm]*--inspect*'}),
 }
+
+dap.configurations.javascript = { node_configurations }
+dap.configurations.typescript = { node_configurations }
 
 vim.fn.sign_define('DapBreakpoint', {text='', texthl='DapBreakpoint', linehl='', numhl=''})
 vim.fn.sign_define('DapStopped', {text='', texthl='DapStopped', linehl='', numhl=''})
