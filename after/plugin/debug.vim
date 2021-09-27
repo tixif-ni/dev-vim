@@ -57,6 +57,7 @@ local node_configurations = {
   sourceMaps = true,
   protocol = 'inspector',
   skipFiles = {'<node_internals>/**'},
+  smartStep = false,
   pid = pick_process({pattern='[node|nodemon|npm]*--inspect*'}),
 }
 
