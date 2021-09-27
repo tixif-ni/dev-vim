@@ -137,7 +137,10 @@ set noerrorbells visualbell t_vb=
 autocmd GUIEnter * set visualbell t_vb=
 
 " Colorscheme 
-:set t_Co=256
+let g:enable_bold_font = 1
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+
+:set termguicolors
 :set background=dark
 :colorscheme hybrid_material
 
