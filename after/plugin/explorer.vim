@@ -2,6 +2,7 @@
 " TELESCOPE
 "=============================================================================
 
+autocmd User TelescopePreviewerLoaded setlocal number
 command! -nargs=1 Livegrep lua require('telescope.builtin').live_grep({search_dirs={'<args>'}})
 
 nnoremap <leader>ff <cmd>Telescope find_files<cr>

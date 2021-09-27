@@ -67,7 +67,7 @@ require('gitsigns').setup {
     ['n <leader>ghb'] = '<cmd>lua require"gitsigns".blame_line(true)<CR>',
     ['n <leader>ghS'] = '<cmd>lua require"gitsigns".stage_buffer()<CR>',
     ['n <leader>ghU'] = '<cmd>lua require"gitsigns".reset_buffer_index()<CR>',
-    ['n <leader>gha'] = '<cmd>lua require"gitsigns".setloclist()<CR>:lopen<CR>',
+    ['n <leader>gha'] = '<cmd>lua require"gitsigns".setloclist()<CR>:Telescope loclist<CR>',
 
     -- Text objects
     ['o ih'] = ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>',
