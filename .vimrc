@@ -61,6 +61,11 @@ Plug 'https://github.com/NTBBloodbath/rest.nvim.git'
 Plug 'https://github.com/neovim/nvim-lspconfig'
 Plug 'ellisonleao/glow.nvim'
 
+" DEBUG
+Plug 'mfussenegger/nvim-dap'
+Plug 'Pocco81/DAPInstall.nvim'
+Plug 'rcarriga/nvim-dap-ui'
+
 " Initialize plugin system
 call plug#end()
 
