@@ -490,8 +490,8 @@ fun! s:fzf_root()
 endfun
 
 "nnoremap <silent> <space>f :exe 'Files ' . <SID>fzf_root()<CR>
-nnoremap <silent> <space>f :call fzf#run(fzf#vim#with_preview(fzf#wrap({'source': 'ag --hidden --ignore node_modules --ignore .git -g ""', 'dir': <SID>fzf_root()})))<CR>
-nnoremap <silent> <space><space> :call fzf#run(fzf#vim#with_preview(fzf#wrap({'source': 'ag --hidden --ignore node_modules --ignore .git -g ""'})))<CR>
+nnoremap <silent> <space>f :call fzf#run(fzf#vim#with_preview(fzf#wrap({'source': 'rg --column --line-number --no-heading --smart-case --files', 'dir': <SID>fzf_root()})))<CR>
+nnoremap <silent> <space><space> :call fzf#run(fzf#vim#with_preview(fzf#wrap({'source': 'rg --column --line-number --no-heading --smart-case --files'})))<CR>
 nnoremap <silent> <space>c :CocFzfList<CR>
 
 " ============================================================================
