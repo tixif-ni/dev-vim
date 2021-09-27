@@ -12,6 +12,8 @@ nnoremap <leader>fw <cmd>Telescope grep_string<cr>
 nnoremap <leader>ft <cmd>Telescope treesitter<cr>
 nnoremap <leader>fdf <cmd>Telescope lsp_document_diagnostics<cr>
 nnoremap <leader>fda <cmd>Telescope lsp_workspace_diagnostics<cr>
+nnoremap <leader>fma <cmd>Telescope vim_bookmarks all<cr>
+nnoremap <leader>fmf <cmd>Telescope vim_bookmarks current_file<cr>
 
 lua << EOF
 require'telescope'.setup {
@@ -26,6 +28,7 @@ require'telescope'.setup {
 }
 
 require('telescope').load_extension('fzf')
+require('telescope').load_extension('vim_bookmarks')
 EOF
 
 "=============================================================================
