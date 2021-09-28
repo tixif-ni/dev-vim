@@ -10,35 +10,37 @@ let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 
 augroup Format
     autocmd!
-    autocmd BufWritePost * FormatWrite
+    autocmd BufWritePost *.js,*.jsx,*.ts,*.py FormatWrite
 augroup END
 
 lua << EOF
 local node_formatters = {
-  function()
-    return {
-      exe = "prettier",
-      args = {"--stdin-filepath", vim.fn.fnameescape(vim.api.nvim_buf_get_name(0))},
-      stdin = true
-    }
-  end,
-  function()
-    return {
-      exe = "eslint",
-      args = {"--stdin-filename", vim.api.nvim_buf_get_name(0), "--fix", "--cache"},
-      stdin = false
-    }
-  end
 }
 
 require "formatter".setup {
   filetype = {
-    typescript = node_formatters,
-    javascript = node_formatters,
+    typescript = {
+      function()
+        return {
+          exe = "prettier",
+          args = {"--stdin-filepath", vim.fn.fnameescape(vim.api.nvim_buf_get_name(0))},
+          stdin = true
+        }
+      end,
+    },
+    javascript = {
+      function()
+        return {
+          exe = "prettier",
+          args = {"--stdin-filepath", vim.fn.fnameescape(vim.api.nvim_buf_get_name(0))},
+          stdin = true
+        }
+      end,
+    },
     python = {
       function()
         return {
-          exe = "black", -- this should be available on your $PATH
+          exe = "black",
           args = { '-' },
           stdin = true,
         }
