@@ -15,28 +15,20 @@ augroup END
 
 lua << EOF
 local node_formatters = {
+  function()
+    return {
+      exe = "prettier",
+      args = {"--stdin-filepath", vim.fn.fnameescape(vim.api.nvim_buf_get_name(0))},
+      stdin = true
+    }
+  end,
 }
 
 require "formatter".setup {
   filetype = {
-    typescript = {
-      function()
-        return {
-          exe = "prettier",
-          args = {"--stdin-filepath", vim.fn.fnameescape(vim.api.nvim_buf_get_name(0))},
-          stdin = true
-        }
-      end,
-    },
-    javascript = {
-      function()
-        return {
-          exe = "prettier",
-          args = {"--stdin-filepath", vim.fn.fnameescape(vim.api.nvim_buf_get_name(0))},
-          stdin = true
-        }
-      end,
-    },
+    typescript = node_formatters,
+    javascript = node_formatters,
+    javascriptreact = node_formatters,
     python = {
       function()
         return {
