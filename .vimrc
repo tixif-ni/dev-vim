@@ -40,6 +40,7 @@ Plug 'https://github.com/kyazdani42/nvim-tree.lua'
 " Language
 " Temp branch while https://github.com/glepnir/lspsaga.nvim/pull/207 gets
 " merged
+Plug 'editorconfig/editorconfig-vim'
 Plug 'jasonrhansen/lspsaga.nvim', {'branch': 'finder-preview-fixes'}
 Plug 'https://github.com/mattn/emmet-vim.git'
 Plug 'https://github.com/alfredodeza/pytest.vim.git'
@@ -60,8 +61,6 @@ Plug 'hrsh7th/nvim-cmp'
 Plug 'SirVer/ultisnips'
 Plug 'quangnguyen30192/cmp-nvim-ultisnips'
 Plug 'https://github.com/honza/vim-snippets.git'
-
-" For vsnip user.
 Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/vim-vsnip'
 
@@ -111,7 +110,6 @@ call plug#end()
 
 "Indents
 :set expandtab
-:set tabstop=4 shiftwidth=4 softtabstop=4
 :set autoindent
 :set smartindent
 :set showmatch
