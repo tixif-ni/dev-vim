@@ -46,6 +46,7 @@ Plug 'https://github.com/alfredodeza/pytest.vim.git'
 Plug 'mfussenegger/nvim-dap'
 Plug 'Pocco81/DAPInstall.nvim'
 Plug 'rcarriga/nvim-dap-ui'
+Plug 'https://github.com/lukas-reineke/format.nvim.git'
 
 " Auto complete
 Plug 'https://github.com/onsails/lspkind-nvim.git'

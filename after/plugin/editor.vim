@@ -1,4 +1,47 @@
 "=============================================================================
+" FORMAT
+"=============================================================================
+
+augroup Format
+    autocmd!
+    autocmd BufWritePost * FormatWrite
+augroup END
+
+lua << EOF
+require "format".setup {
+    ["*"] = {
+      {cmd = {"sed -i 's/[ \t]*$//'"}} -- remove trailing whitespace
+    },
+    vim = {
+      {
+        cmd = {"luafmt -w replace"},
+        start_pattern = "^lua << EOF$",
+        end_pattern = "^EOF$"
+      }
+    },
+    lua = {
+      {
+        cmd = {
+          function(file)
+            return string.format("luafmt -l %s -w replace %s", vim.bo.textwidth, file)
+          end
+        }
+      }
+    },
+    javascript = {
+      {cmd = {"prettier -w", "eslint --fix"}}
+    },
+    typescript = {
+      {cmd = {"prettier -w", "eslint --fix"}}
+    },
+    python = {
+      {cmd = {"black"}}
+    },
+}
+EOF
+
+
+"=============================================================================
 " LSP-CONFIG
 "=============================================================================
 
