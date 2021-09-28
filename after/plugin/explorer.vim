@@ -72,6 +72,8 @@ let g:nvim_tree_icons = {
     \ }
 
 lua <<EOF
+    require'nvim-tree'.setup {}
+
     local tree_cb = require'nvim-tree.config'.nvim_tree_callback
     -- default mappings
     vim.g.nvim_tree_bindings = {
