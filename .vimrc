@@ -45,6 +45,7 @@ Plug 'jasonrhansen/lspsaga.nvim', {'branch': 'finder-preview-fixes'}
 Plug 'https://github.com/mattn/emmet-vim.git'
 Plug 'https://github.com/alfredodeza/pytest.vim.git'
 Plug 'mfussenegger/nvim-dap'
+Plug 'mfussenegger/nvim-dap-python'
 Plug 'Pocco81/DAPInstall.nvim'
 Plug 'rcarriga/nvim-dap-ui'
 Plug 'https://github.com/lukas-reineke/format.nvim.git'
