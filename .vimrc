@@ -38,7 +38,9 @@ Plug 'https://github.com/kyazdani42/nvim-web-devicons'
 Plug 'https://github.com/kyazdani42/nvim-tree.lua'
 
 " Language
-Plug 'https://github.com/glepnir/lspsaga.nvim'
+" Temp branch while https://github.com/glepnir/lspsaga.nvim/pull/207 gets
+" merged
+Plug 'jasonrhansen/lspsaga.nvim', {'branch': 'finder-preview-fixes'}
 Plug 'https://github.com/mattn/emmet-vim.git'
 Plug 'https://github.com/alfredodeza/pytest.vim.git'
 Plug 'mfussenegger/nvim-dap'
