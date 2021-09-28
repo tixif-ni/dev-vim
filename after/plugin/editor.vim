@@ -14,35 +14,37 @@ augroup Format
 augroup END
 
 lua << EOF
-require "format".setup {
-    ["*"] = {
-      {cmd = {"sed -i 's/[ \t]*$//'"}} -- remove trailing whitespace
-    },
-    vim = {
-      {
-        cmd = {"luafmt -w replace"},
-        start_pattern = "^lua << EOF$",
-        end_pattern = "^EOF$"
-      }
-    },
-    lua = {
-      {
-        cmd = {
-          function(file)
-            return string.format("luafmt -l %s -w replace %s", vim.bo.textwidth, file)
-          end
-        }
-      }
-    },
-    javascript = {
-      {cmd = {"prettier -w", "eslint --fix"}}
-    },
-    typescript = {
-      {cmd = {"prettier -w", "eslint --fix"}}
-    },
+local node_formatters = {
+  function()
+    return {
+      exe = "prettier",
+      args = {"--stdin-filepath", vim.fn.fnameescape(vim.api.nvim_buf_get_name(0))},
+      stdin = true
+    }
+  end,
+  function()
+    return {
+      exe = "eslint",
+      args = {"--stdin-filename", vim.api.nvim_buf_get_name(0), "--fix", "--cache"},
+      stdin = false
+    }
+  end
+}
+
+require "formatter".setup {
+  filetype = {
+    typescript = node_formatters,
+    javascript = node_formatters,
     python = {
-      {cmd = {"black"}}
-    },
+      function()
+        return {
+          exe = "black", -- this should be available on your $PATH
+          args = { '-' },
+          stdin = true,
+        }
+      end
+    }
+  }
 }
 EOF
 

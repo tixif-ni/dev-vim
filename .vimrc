@@ -46,7 +46,7 @@ Plug 'mfussenegger/nvim-dap'
 Plug 'mfussenegger/nvim-dap-python'
 Plug 'Pocco81/DAPInstall.nvim'
 Plug 'rcarriga/nvim-dap-ui'
-Plug 'https://github.com/lukas-reineke/format.nvim.git'
+Plug 'mhartington/formatter.nvim'
 
 " Auto complete
 Plug 'https://github.com/onsails/lspkind-nvim.git'
