@@ -75,6 +75,7 @@ Plug 'https://github.com/andymass/vim-matchup.git'
 Plug 'ellisonleao/glow.nvim'
 Plug 'MattesGroeger/vim-bookmarks'
 Plug 'https://github.com/tom-anders/telescope-vim-bookmarks.nvim.git'
+Plug 'https://github.com/AckslD/nvim-neoclip.lua.git'
 
 " Initialize plugin system
 call plug#end()

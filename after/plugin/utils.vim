@@ -60,3 +60,25 @@ EOF
 
 let g:bookmark_save_per_working_dir = 1
 let g:bookmark_auto_save = 1
+
+"=============================================================================
+" NEOCLIP
+"=============================================================================
+
+lua << EOF
+require'neoclip'.setup{
+  history = 100,
+  keys = {
+    i = {
+      select = '<CR>',
+      paste = '<C-p>',
+      paste_behind = '<C-P>',
+    },
+    n = {
+      select = '<CR>',
+      paste = 'p',
+      paste_behind = 'P',
+    },
+  },
+}
+EOF
