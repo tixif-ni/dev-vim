@@ -15,6 +15,8 @@ nnoremap <leader>fda <cmd>Telescope lsp_workspace_diagnostics<cr>
 nnoremap <leader>fma <cmd>Telescope vim_bookmarks all<cr>
 nnoremap <leader>fmf <cmd>Telescope vim_bookmarks current_file<cr>
 nnoremap <leader>fc <cmd>TodoTelescope<cr>
+nnoremap <leader>fy <cmd>Telescope neoclip<cr>
+nnoremap <leader>fs <cmd>Telescope ultisnips<cr>
 
 lua << EOF
 local actions = require "telescope.actions"
@@ -86,6 +88,7 @@ require'telescope'.setup {
 require('telescope').load_extension('fzf')
 require('telescope').load_extension('vim_bookmarks')
 require('telescope').load_extension('neoclip')
+require('telescope').load_extension('ultisnips')
 EOF
 
 "=============================================================================

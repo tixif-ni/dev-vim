@@ -58,6 +58,7 @@ Plug 'ray-x/cmp-treesitter'
 Plug 'tzachar/cmp-tabnine', { 'do': './install.sh' }
 Plug 'hrsh7th/nvim-cmp'
 Plug 'SirVer/ultisnips'
+Plug 'https://github.com/fhill2/telescope-ultisnips.nvim.git'
 Plug 'quangnguyen30192/cmp-nvim-ultisnips'
 Plug 'https://github.com/honza/vim-snippets.git'
 Plug 'hrsh7th/cmp-vsnip'
