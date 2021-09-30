@@ -22,13 +22,6 @@ local node_formatters = {
       stdin = true
     }
   end,
-  function()
-    return {
-      exe = "eslint",
-      args = {"--stdin-filename", vim.api.nvim_buf_get_name(0), "--fix", "--cache"},
-      stdin = false
-    }
-  end,
 }
 
 require "formatter".setup {
