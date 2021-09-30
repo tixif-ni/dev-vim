@@ -17,6 +17,7 @@ Plug 'lewis6991/gitsigns.nvim'
 Plug 'https://github.com/junegunn/gv.vim.git'
 Plug 'https://github.com/rhysd/git-messenger.vim.git'
 Plug 'https://github.com/ruanyl/vim-gh-line'
+Plug 'sindrets/diffview.nvim'
 
 " Tmux
 Plug 'https://github.com/christoomey/vim-tmux-navigator.git'

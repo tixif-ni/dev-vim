@@ -6,12 +6,34 @@ autocmd VimEnter * if empty(expand('<amatch>'))|call FugitiveDetect(getcwd())|en
 :nnoremap <Leader>gf :!git fetch --all<CR>
 :nnoremap <Leader>gb :Git blame<CR>
 :nnoremap <Leader>gs :Git<CR>
-:nnoremap <Leader>gd :Gvdiffsplit!<CR>
 :nnoremap <Leader>gc :Git commit<CR>
 :nnoremap <Leader>gp :Git push<CR>
 :nnoremap <Leader>gr :Gread<CR>
 :nnoremap gdh :diffget //2<CR>
 :nnoremap gdl :diffget //3<CR>
+
+"=============================================================================
+" DIFFVIEW
+"=============================================================================
+
+:nnoremap <Leader>gdf :DiffviewFileHistory<CR>
+:nnoremap <Leader>gda :DiffviewOpen<CR>
+
+lua << EOF
+require'diffview'.setup {
+  key_bindings = {
+    view = {
+      ["gq"] = "<CMD>DiffviewClose<CR>",
+    },
+    file_panel = {
+      ["gq"] = "<CMD>DiffviewClose<CR>",
+    },
+    file_history_panel = {
+      ["gq"] = "<CMD>DiffviewClose<CR>",
+    }
+  }
+}
+EOF
 
 "=============================================================================
 " GH-LINE
@@ -67,7 +89,7 @@ require('gitsigns').setup {
     ['n <leader>ghb'] = '<cmd>lua require"gitsigns".blame_line(true)<CR>',
     ['n <leader>ghS'] = '<cmd>lua require"gitsigns".stage_buffer()<CR>',
     ['n <leader>ghU'] = '<cmd>lua require"gitsigns".reset_buffer_index()<CR>',
-    ['n <leader>gha'] = '<cmd>lua require"gitsigns".setloclist()<CR>:Telescope loclist<CR>',
+    ['n <leader>gha'] = '<cmd>lua require"gitsigns".setloclist()<CR>',
 
     -- Text objects
     ['o ih'] = ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>',
