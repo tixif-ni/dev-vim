@@ -62,7 +62,7 @@ function diffview_fugitive ()
 
     local git_dir = vim.fn.substitute(vim.fn.FugitiveGitDir(), '.git', '', '')
 
-    diffview.open(hash, "--", git_dir)
+    diffview.open(hash, "-C"..git_dir)
   end
 end
 EOF
