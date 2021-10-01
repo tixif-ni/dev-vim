@@ -12,9 +12,9 @@ Plug 'https://github.com/neovim/nvim-lspconfig'
 
 " Git
 Plug 'https://github.com/tpope/vim-fugitive.git'
+Plug 'https://github.com/tommcdo/vim-fugitive-blame-ext.git'
 Plug 'https://github.com/sodapopcan/vim-twiggy.git'
 Plug 'lewis6991/gitsigns.nvim'
-Plug 'https://github.com/junegunn/gv.vim.git'
 Plug 'https://github.com/rhysd/git-messenger.vim.git'
 Plug 'https://github.com/ruanyl/vim-gh-line'
 Plug 'sindrets/diffview.nvim'

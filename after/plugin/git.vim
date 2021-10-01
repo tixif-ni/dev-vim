@@ -8,6 +8,7 @@ autocmd VimEnter * if empty(expand('<amatch>'))|call FugitiveDetect(getcwd())|en
 :nnoremap <Leader>gs :Git<CR>
 :nnoremap <Leader>gc :Git commit<CR>
 :nnoremap <Leader>gr :Gread<CR>
+:nnoremap <Leader>gl :Git log<CR>
 :nnoremap gdh :diffget //2<CR>
 :nnoremap gdl :diffget //3<CR>
 
@@ -27,11 +28,15 @@ augroup end
 augroup git_diffview
   autocmd!
   autocmd Filetype git :nnoremap <buffer> <Leader>dd <cmd>lua diffview_fugitive()<CR>
+  autocmd Filetype fugitiveblame :nnoremap <buffer> <Leader>dd <cmd>lua diffview_fugitive()<CR>
 augroup end
 
 lua << EOF
 local diffview = require"diffview"
 diffview.setup {
+  file_panel = {
+    width = 50
+  },
   key_bindings = {
     view = {
       ["gq"] = "<CMD>DiffviewClose<CR>",
@@ -51,19 +56,34 @@ end
 
 function diffview_fugitive ()
   local line = vim.fn.getline(".")
-  local hash = trim(line:match "[commit|Merge:] ([a-f0-9 ]+)")
 
-  if hash ~= nil and hash ~= '' then
-    if string.find(hash, " ") then
-      hash = vim.fn.substitute(hash, " ", "..", "")
-    else
-      hash = hash.."^!"
-    end
-
-    local git_dir = vim.fn.substitute(vim.fn.FugitiveGitDir(), '.git', '', '')
-
-    diffview.open(hash, "-C"..git_dir)
+  local log_line = line:match "[commit|Merge:] ([a-f0-9 ]+)"
+  if log_line ~= nil then
+    log_line = trim(log_line)
   end
+
+  local blame_line = line:match "([a-f0-9]+)."
+  if blame_line ~= nil then
+    blame_line = trim(blame_line)
+  end
+
+  if log_line ~= nil and string.len(log_line) > 7 then
+    hash = log_line
+  elseif blame_line ~= nil and string.len(blame_line) > 7 then
+    hash = blame_line
+  else
+    return
+  end
+
+  if string.find(hash, " ") then
+    hash = vim.fn.substitute(hash, " ", "..", "")
+  else
+    hash = hash.."^!"
+  end
+
+  local git_dir = vim.fn.substitute(vim.fn.FugitiveGitDir(), '.git', '', '')
+
+  diffview.open(hash, "-C"..git_dir)
 end
 EOF
 
@@ -79,13 +99,6 @@ let g:gh_open_command = 'fn() { echo "$@" | pbcopy; }; fn '
 "=============================================================================
 
 :nnoremap <Leader>gt :Twiggy<CR>
-
-"=============================================================================
-" GV
-"=============================================================================
-
-:nnoremap <Leader>gl :GV<CR>
-:nnoremap <Leader>glf :GV!<CR>
 
 "=============================================================================
 " GITSIGNS
