@@ -78,6 +78,7 @@ Plug 'ellisonleao/glow.nvim'
 Plug 'MattesGroeger/vim-bookmarks'
 Plug 'https://github.com/tom-anders/telescope-vim-bookmarks.nvim.git'
 Plug 'https://github.com/AckslD/nvim-neoclip.lua.git'
+Plug 'sudormrfbin/cheatsheet.nvim'
 
 " Initialize plugin system
 call plug#end()
