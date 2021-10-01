@@ -131,5 +131,9 @@ let g:nvim_tree_icons = {
     \ }
 
 lua <<EOF
-require'nvim-tree'.setup() 
+require'nvim-tree'.setup {
+  view = {
+    auto_resize = false,
+  }
+}
 EOF
