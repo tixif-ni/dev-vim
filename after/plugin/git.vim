@@ -22,9 +22,16 @@ augroup end
 
 :nnoremap <Leader>gdf :DiffviewFileHistory<CR>
 :nnoremap <Leader>gda :DiffviewOpen<CR>
+:nnoremap <Leader>gdt <cmd>lua diffview_from_log()<CR>
+
+augroup git_diffview
+  autocmd!
+  autocmd Filetype git :nnoremap <buffer> <Leader>dd <cmd>lua diffview_fugitive()<CR>
+augroup end
 
 lua << EOF
-require'diffview'.setup {
+local diffview = require"diffview"
+diffview.setup {
   key_bindings = {
     view = {
       ["gq"] = "<CMD>DiffviewClose<CR>",
@@ -37,6 +44,27 @@ require'diffview'.setup {
     }
   }
 }
+
+function trim(s)
+   return (s:gsub("^%s*(.-)%s*$", "%1"))
+end
+
+function diffview_fugitive ()
+  local line = vim.fn.getline(".")
+  local hash = trim(line:match "[commit|Merge:] ([a-f0-9 ]+)")
+
+  if hash ~= nil and hash ~= '' then
+    if string.find(hash, " ") then
+      hash = vim.fn.substitute(hash, " ", "..", "")
+    else
+      hash = hash.."^!"
+    end
+
+    local git_dir = vim.fn.substitute(vim.fn.FugitiveGitDir(), '.git', '', '')
+
+    diffview.open(hash, "--", git_dir)
+  end
+end
 EOF
 
 "=============================================================================
