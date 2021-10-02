@@ -74,11 +74,12 @@ Plug 'https://github.com/Raimondi/delimitMate.git'
 Plug 'https://github.com/scrooloose/nerdcommenter.git'
 Plug 'folke/todo-comments.nvim'
 Plug 'https://github.com/andymass/vim-matchup.git'
-Plug 'ellisonleao/glow.nvim'
 Plug 'MattesGroeger/vim-bookmarks'
 Plug 'https://github.com/tom-anders/telescope-vim-bookmarks.nvim.git'
 Plug 'https://github.com/AckslD/nvim-neoclip.lua.git'
 Plug 'sudormrfbin/cheatsheet.nvim'
+" If you have nodejs and yarn
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npm install'  }
 
 " Initialize plugin system
 call plug#end()
