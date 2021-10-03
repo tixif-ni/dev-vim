@@ -1,8 +1,3 @@
-
-" required for airline so it shows on normal buffers
-set laststatus=2
-set ttimeoutlen=50
-
 "=============================================================================
 " DIMINACTIVE
 "=============================================================================
