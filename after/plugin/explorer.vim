@@ -6,7 +6,7 @@ autocmd User TelescopePreviewerLoaded setlocal number
 command! -nargs=1 Livegrep lua require('telescope.builtin').live_grep({search_dirs={'<args>'}})
 
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
-nnoremap <leader>fl <cmd>Telescope live_grep<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fw <cmd>Telescope grep_string<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>ft <cmd>Telescope treesitter<cr>
@@ -17,9 +17,6 @@ nnoremap <leader>fmf <cmd>Telescope vim_bookmarks current_file<cr>
 nnoremap <leader>fc <cmd>TodoTelescope<cr>
 nnoremap <leader>fy <cmd>Telescope neoclip<cr>
 nnoremap <leader>fs <cmd>Telescope ultisnips<cr>
-nnoremap <leader>fgf <cmd>lua git_files()<cr>
-nnoremap <leader>fgl <cmd>lua git_live_grep()<cr>
-nnoremap <leader>fgw <cmd>lua git_grep_string()<cr>
 
 lua << EOF
 local actions = require "telescope.actions"
@@ -59,34 +56,31 @@ require('telescope').load_extension('vim_bookmarks')
 require('telescope').load_extension('neoclip')
 require('telescope').load_extension('ultisnips')
 
-function git_files()
-  local opts = {}
-  local git_dir = vim.fn.substitute(vim.fn.FugitiveGitDir(), '.git', '', '')
-  if git_dir ~= '' then
-    opts.cwd = git_dir
-  end
+-- LOCAL EXTENSIONS
+require('telescope').load_extension('git_grep_string')
+require('telescope').load_extension('git_live_grep')
 
-  return require'telescope.builtin'.git_files(opts)
+local git_pickers = require'telescope.builtin.git'
+local git_utils = require'utils.git'
+
+require'telescope.builtin'.git_files = function(opts)
+  return git_pickers.files(git_utils.set_git_root(opts))
 end
 
-function git_grep_string()
-  local opts = {}
-  local git_dir = vim.fn.substitute(vim.fn.FugitiveGitDir(), '.git', '', '')
-  if git_dir ~= '' then
-    opts.cwd = git_dir
-  end
-
-  return require'telescope.builtin'.grep_string(opts)
+require'telescope.builtin'.git_commits = function(opts)
+  return git_pickers.commits(git_utils.set_git_root(opts))
 end
 
-function git_live_grep()
-  local opts = {}
-  local git_dir = vim.fn.substitute(vim.fn.FugitiveGitDir(), '.git', '', '')
-  if git_dir ~= '' then
-    opts.cwd = git_dir
-  end
+require'telescope.builtin'.git_bcommits = function(opts)
+  return git_pickers.bcommits(git_utils.set_git_root(opts))
+end
 
-  return require'telescope.builtin'.live_grep(opts)
+require'telescope.builtin'.git_branches = function(opts)
+  return git_pickers.branches(git_utils.set_git_root(opts))
+end
+
+require'telescope.builtin'.git_status = function(opts)
+  return git_pickers.status(git_utils.set_git_root(opts))
 end
 EOF
 
