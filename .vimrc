@@ -167,7 +167,6 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
 " Edit common files
 :nnoremap <leader>ev :sp $MYVIMRC<cr>
-:nnoremap <leader>sv :source $MYVIMRC<cr>
 :nnoremap <leader>ep :sp <C-R>=expand($VIRTUAL_ENV)."/bin/postactivate"<CR><CR>
 
 " toggle case

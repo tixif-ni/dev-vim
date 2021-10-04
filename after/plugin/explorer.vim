@@ -5,19 +5,11 @@
 autocmd User TelescopePreviewerLoaded setlocal number
 command! -nargs=1 Livegrep lua require('telescope.builtin').live_grep({search_dirs={'<args>'}})
 
-nnoremap <leader>fa <cmd>lua require('telescope.builtin').builtin({include_extensions = true})<cr>
+nnoremap <leader>s <cmd>lua require('telescope.builtin').builtin({include_extensions = true})<cr>
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fw <cmd>Telescope grep_string<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
-nnoremap <leader>ft <cmd>Telescope treesitter<cr>
-nnoremap <leader>fdf <cmd>Telescope lsp_document_diagnostics<cr>
-nnoremap <leader>fda <cmd>Telescope lsp_workspace_diagnostics<cr>
-nnoremap <leader>fma <cmd>Telescope vim_bookmarks all<cr>
-nnoremap <leader>fmf <cmd>Telescope vim_bookmarks current_file<cr>
-nnoremap <leader>fc <cmd>TodoTelescope<cr>
-nnoremap <leader>fy <cmd>Telescope neoclip<cr>
-nnoremap <leader>fs <cmd>Telescope ultisnips<cr>
 
 lua << EOF
 local actions = require "telescope.actions"
