@@ -13,6 +13,12 @@ nnoremap <leader>fb <cmd>Telescope buffers<cr>
 
 lua << EOF
 local actions = require "telescope.actions"
+local action_state = require "telescope.actions.state"
+local git_pickers = require'telescope.builtin.git'
+local internal_pickers = require'telescope.builtin.internal'
+
+local diffview = require"diffview"
+local git_utils = require'utils.git'
 
 require'telescope'.setup {
   defaults = {
@@ -32,15 +38,6 @@ require'telescope'.setup {
       override_file_sorter = true,
       case_mode = "smart_case",
     }
-  },
-  pickers = {
-    buffers = {
-        mappings = {
-          n = {
-            ["dd"] = actions.delete_buffer,
-          }
-        }
-    }
   }
 }
 
@@ -52,15 +49,38 @@ require('telescope').load_extension('ultisnips')
 -- LOCAL EXTENSIONS
 require('telescope').load_extension('git_local')
 
-local git_pickers = require'telescope.builtin.git'
-local git_utils = require'utils.git'
+require'telescope.builtin'.buffers = function(opts)
+  opts = opts or {}
+  opts.attach_mappings = function(_, map)
+    map('n', 'dd', actions.delete_buffer)
+
+    return true
+  end
+
+  return internal_pickers.buffers(opts)
+end
 
 require'telescope.builtin'.git_files = function(opts)
   return git_pickers.files(git_utils.set_git_root(opts))
 end
 
 require'telescope.builtin'.git_commits = function(opts)
-  return git_pickers.commits(git_utils.set_git_root(opts))
+  opts = git_utils.set_git_root(opts)
+
+  opts.attach_mappings = function(_, map)
+    map('n', 'dd', function(prompt_bufnr)
+      local cwd = action_state.get_current_picker(prompt_bufnr).cwd
+      local selection = action_state.get_selected_entry()
+
+      if selection ~= nil then
+        diffview.open(selection.value.."^!", "-C"..cwd)
+      end
+    end)
+
+    return true
+  end
+
+  return git_pickers.commits(opts)
 end
 
 require'telescope.builtin'.git_bcommits = function(opts)
