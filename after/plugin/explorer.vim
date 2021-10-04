@@ -5,6 +5,7 @@
 autocmd User TelescopePreviewerLoaded setlocal number
 command! -nargs=1 Livegrep lua require('telescope.builtin').live_grep({search_dirs={'<args>'}})
 
+nnoremap <leader>fa <cmd>lua require('telescope.builtin').builtin({include_extensions = true})<cr>
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fw <cmd>Telescope grep_string<cr>
@@ -57,8 +58,7 @@ require('telescope').load_extension('neoclip')
 require('telescope').load_extension('ultisnips')
 
 -- LOCAL EXTENSIONS
-require('telescope').load_extension('git_grep_string')
-require('telescope').load_extension('git_live_grep')
+require('telescope').load_extension('git_local')
 
 local git_pickers = require'telescope.builtin.git'
 local git_utils = require'utils.git'
