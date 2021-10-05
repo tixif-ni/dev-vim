@@ -25,8 +25,7 @@ Plug 'https://github.com/tmux-plugins/vim-tmux-focus-events'
 
 " Theme
 Plug 'https://github.com/kristijanhusak/vim-hybrid-material'
-Plug 'https://github.com/bling/vim-airline.git'
-Plug 'https://github.com/vim-airline/vim-airline-themes.git'
+Plug 'hoob3rt/lualine.nvim'
 Plug 'https://github.com/RRethy/vim-illuminate.git'
 Plug 'https://github.com/whatyouhide/vim-lengthmatters.git'
 Plug 'https://github.com/blueyed/vim-diminactive.git'
@@ -209,15 +208,3 @@ nmap cp :let @+ = expand('%').':'.line('.')<CR>
 " Misc
 noremap H ^
 noremap L g_
-
-"=============================================================================
-" AIRLINE
-"=============================================================================
-
-let g:airline_theme = "molokai"
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
-
-" required for airline so it shows on normal buffers
-set laststatus=2
-set ttimeoutlen=50
