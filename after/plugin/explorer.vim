@@ -5,11 +5,16 @@
 autocmd User TelescopePreviewerLoaded setlocal number
 command! -nargs=1 Livegrep lua require('telescope.builtin').live_grep({search_dirs={'<args>'}})
 
-nnoremap <leader>s <cmd>lua require('telescope.builtin').builtin({include_extensions = true})<cr>
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
-nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fl <cmd>Telescope live_grep<cr>
 nnoremap <leader>fw <cmd>Telescope grep_string<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fgf <cmd>Telescope git_files<cr>
+nnoremap <leader>fgl <cmd>Telescope git_local git_live_grep<cr>
+nnoremap <leader>fgw <cmd>Telescope git_local git_grep_string<cr>
+nnoremap <leader>fgc <cmd>Telescope git_commits<cr>
+nnoremap <leader>fma <cmd>Telescope vim_bookmarks all<cr>
+nnoremap <leader>fmf <cmd>Telescope vim_bookmarks current_file<cr>
 
 lua << EOF
 local actions = require "telescope.actions"
@@ -105,7 +110,7 @@ nnoremap <leader>tf :NvimTreeFindFile<CR>
 nnoremap <leader>tr :NvimTreeRefresh<CR>
 
 let g:nvim_tree_side = 'left'
-let g:nvim_tree_width = 30
+let g:nvim_tree_auto_resize = 1
 let g:nvim_tree_indent_markers = 1
 let g:nvim_tree_hide_dotfiles = 1
 let g:nvim_tree_lsp_diagnostics = 1
@@ -170,9 +175,5 @@ let g:nvim_tree_icons = {
     \ }
 
 lua <<EOF
-require'nvim-tree'.setup {
-  view = {
-    width = 35,
-  }
-}
+require'nvim-tree'.setup()
 EOF
