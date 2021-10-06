@@ -15,6 +15,8 @@ nnoremap <leader>fgw <cmd>Telescope git_local git_grep_string<cr>
 nnoremap <leader>fgc <cmd>Telescope git_commits<cr>
 nnoremap <leader>fma <cmd>Telescope vim_bookmarks all<cr>
 nnoremap <leader>fmf <cmd>Telescope vim_bookmarks current_file<cr>
+nnoremap <leader>fdf <cmd>Telescope lsp_document_diagnostics<cr>
+nnoremap <leader>fda <cmd>Telescope lsp_workspace_diagnostics<cr>
 
 lua << EOF
 local actions = require "telescope.actions"
