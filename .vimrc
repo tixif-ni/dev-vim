@@ -79,6 +79,7 @@ Plug 'https://github.com/AckslD/nvim-neoclip.lua.git'
 Plug 'sudormrfbin/cheatsheet.nvim'
 " If you have nodejs and yarn
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npm install'  }
+Plug 'https://github.com/dhruvasagar/vim-table-mode'
 
 " Initialize plugin system
 call plug#end()

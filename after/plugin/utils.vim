@@ -93,3 +93,10 @@ require'cheatsheet'.setup{
   bundled_plugin_cheatsheets = false
 }
 EOF
+
+"=============================================================================
+" TABLEMODE
+"=============================================================================
+
+let g:table_mode_corner='|'
+let g:table_mode_disable_mappings = 1
