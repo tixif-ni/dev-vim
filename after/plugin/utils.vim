@@ -98,5 +98,5 @@ EOF
 " TABLEMODE
 "=============================================================================
 
+" MD compatibility
 let g:table_mode_corner='|'
-let g:table_mode_disable_mappings = 1

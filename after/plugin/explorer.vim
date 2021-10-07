@@ -107,9 +107,9 @@ EOF
 " TREE
 "=============================================================================
 
-nnoremap <leader>tt :NvimTreeToggle<CR>
-nnoremap <leader>tf :NvimTreeFindFile<CR>
-nnoremap <leader>tr :NvimTreeRefresh<CR>
+nnoremap <leader>nt :NvimTreeToggle<CR>
+nnoremap <leader>nf :NvimTreeFindFile<CR>
+nnoremap <leader>nr :NvimTreeRefresh<CR>
 
 let g:nvim_tree_side = 'left'
 let g:nvim_tree_auto_resize = 1
