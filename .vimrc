@@ -38,7 +38,7 @@ Plug 'https://github.com/kyazdani42/nvim-web-devicons'
 Plug 'https://github.com/kyazdani42/nvim-tree.lua'
 
 " Language
-Plug 'tami5/lspsaga.nvim'
+Plug 'tami5/lspsaga.nvim', { 'commit': '276822b'}
 Plug 'editorconfig/editorconfig-vim'
 Plug 'https://github.com/mattn/emmet-vim.git'
 Plug 'https://github.com/alfredodeza/pytest.vim.git'
