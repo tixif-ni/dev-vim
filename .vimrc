@@ -33,11 +33,11 @@ Plug 'https://github.com/blueyed/vim-diminactive.git'
 " Explorer
 Plug 'https://github.com/nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
-Plug 'https://github.com/nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'https://github.com/kyazdani42/nvim-web-devicons'
 Plug 'https://github.com/kyazdani42/nvim-tree.lua'
 
 " Language
+Plug 'sheerun/vim-polyglot'
 Plug 'tami5/lspsaga.nvim', { 'branch': 'nvim51'}
 Plug 'editorconfig/editorconfig-vim'
 Plug 'https://github.com/mattn/emmet-vim.git'
@@ -54,7 +54,6 @@ Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-calc'
-Plug 'ray-x/cmp-treesitter'
 Plug 'tzachar/cmp-tabnine', { 'do': './install.sh' }
 Plug 'hrsh7th/nvim-cmp'
 Plug 'SirVer/ultisnips'
