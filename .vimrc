@@ -208,3 +208,4 @@ nmap cp :let @+ = expand('%').':'.line('.')<CR>
 " Misc
 noremap H ^
 noremap L g_
+noremap <Leader><Space> :nohl<CR>
