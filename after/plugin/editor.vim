@@ -42,6 +42,36 @@ require "formatter".setup {
 }
 EOF
 
+"=============================================================================
+" TREESITTER
+"=============================================================================
+set nofoldenable
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
+set foldminlines=50
+set foldnestmax=2
+
+lua <<EOF
+local parser_configs = require("nvim-treesitter.parsers").get_parser_configs()
+
+parser_configs.http = {
+  install_info = {
+    url = "https://github.com/NTBBloodbath/tree-sitter-http",
+    files = { "src/parser.c" },
+    branch = "main",
+  },
+}
+
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "maintained",
+  highlight = {
+    enable = true,
+    additional_vim_regex_highlighting = false,
+  },
+}
+EOF
+
+
 
 "=============================================================================
 " LSP-CONFIG

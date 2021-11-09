@@ -1,3 +1,10 @@
+let g:polyglot_disabled = [
+      \'javascript.plugin',
+      \'typescript.plugin',
+      \'python.plugin',
+      \'json.plugin',
+      \]
+
 " Specify a directory for plugins
 " - For Neovim: ~/.local/share/nvim/plugged
 " - Avoid using standard Vim directory names like 'plugin'
@@ -37,6 +44,7 @@ Plug 'https://github.com/kyazdani42/nvim-web-devicons'
 Plug 'https://github.com/kyazdani42/nvim-tree.lua'
 
 " Language
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'sheerun/vim-polyglot'
 Plug 'tami5/lspsaga.nvim', { 'branch': 'nvim51'}
 Plug 'editorconfig/editorconfig-vim'
