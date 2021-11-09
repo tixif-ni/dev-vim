@@ -177,4 +177,8 @@ require('lspconfig').tsserver.setup {
 require('lspconfig').pyright.setup {
   capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities()),
 }
+
+require('lspconfig').omnisharp.setup {
+  cmd = { '/usr/local/share/omnisharp/run', "--languageserver", "--hostPID", tostring(vim.fn.getpid())},
+}
 EOF
