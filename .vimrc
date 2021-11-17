@@ -55,6 +55,7 @@ Plug 'mfussenegger/nvim-dap-python'
 Plug 'Pocco81/DAPInstall.nvim'
 Plug 'rcarriga/nvim-dap-ui'
 Plug 'mhartington/formatter.nvim'
+Plug 'sheerun/vim-polyglot'
 
 " Auto complete
 Plug 'https://github.com/onsails/lspkind-nvim.git'
@@ -87,6 +88,7 @@ Plug 'sudormrfbin/cheatsheet.nvim'
 " If you have nodejs and yarn
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npm install'  }
 Plug 'https://github.com/dhruvasagar/vim-table-mode'
+Plug 'jremmen/vim-ripgrep'
 
 " Initialize plugin system
 call plug#end()
@@ -154,7 +156,7 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
 :set termguicolors
 :set background=dark
-:colorscheme hybrid_material
+:colorscheme hybrid_reverse
 
 " REMAPS
 " Leader

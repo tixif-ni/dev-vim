@@ -77,13 +77,46 @@ EOF
 " LSP-CONFIG
 "=============================================================================
 
+nnoremap gi <cmd>lua vim.lsp.buf.implementation()<cr>
+
 " Disable text object diagnostic to avoid overbloating UI
 lua << EOF
   vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     vim.lsp.diagnostic.on_publish_diagnostics, {
         virtual_text = false
     }
-)
+  )
+EOF
+
+"=============================================================================
+" TREESITTER
+"=============================================================================
+set nofoldenable
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
+set foldminlines=50
+set foldnestmax=2
+
+lua << EOF
+local parser_configs = require("nvim-treesitter.parsers").get_parser_configs()
+parser_configs.http = {
+  install_info = {
+    url = "https://github.com/NTBBloodbath/tree-sitter-http",
+    files = { "src/parser.c" },
+    branch = "main",
+  },
+}
+
+require("nvim-treesitter.configs").setup {
+  highlight = {
+    enable = true,
+  },
+  indent = {
+    enable = false,
+  },
+  ensure_installed = "all",
+  ignore_install = { "haskell" },
+}
 EOF
 
 "=============================================================================
