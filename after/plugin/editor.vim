@@ -10,7 +10,7 @@ let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 
 augroup Format
     autocmd!
-    autocmd BufWritePost *.js,*.jsx,*.ts,*.py FormatWrite
+    autocmd BufWritePost *.js,*.jsx,*.tsx,*.ts,*.py FormatWrite
 augroup END
 
 lua << EOF
@@ -29,6 +29,7 @@ require "formatter".setup {
     typescript = node_formatters,
     javascript = node_formatters,
     javascriptreact = node_formatters,
+    typescriptreact = node_formatters,
     python = {
       function()
         return {
@@ -85,7 +86,6 @@ require("nvim-treesitter.configs").setup {
     enable = false,
   },
   ensure_installed = "maintained",
-  ignore_install = { "haskell" },
 }
 EOF
 "=============================================================================
@@ -214,3 +214,17 @@ require('lspconfig').omnisharp.setup {
   cmd = { '/usr/local/share/omnisharp/run', "--languageserver", "--hostPID", tostring(vim.fn.getpid())},
 }
 EOF
+
+"=============================================================================
+" FLUTTER-TOOLS
+"=============================================================================
+"
+lua <<EOF
+  require("flutter-tools").setup {} -- use defaults
+EOF
+
+"=============================================================================
+" DOGE
+"=============================================================================
+"
+let g:doge_doc_standard_typescript='tsdoc'
