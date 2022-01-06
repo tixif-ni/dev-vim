@@ -25,6 +25,9 @@ nnoremap <leader>fy <cmd>Telescope neoclip<cr>
 nnoremap <leader>fs <cmd>Telescope ultisnips<cr>
 nnoremap <leader>fq <cmd>Telescope quickfix<cr>
 
+nnoremap <leader>fh <cmd>Telescope search_history<cr>
+nnoremap <leader>fch <cmd>Telescope command_history<cr>
+
 lua << EOF
 local actions = require "telescope.actions"
 local action_state = require "telescope.actions.state"
@@ -194,4 +197,5 @@ let g:nvim_tree_icons = {
 
 lua <<EOF
 require'nvim-tree'.setup()
+require'nvim-tree.lib'.toggle_ignored()
 EOF

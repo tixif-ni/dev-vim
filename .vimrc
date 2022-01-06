@@ -89,6 +89,8 @@ Plug 'sudormrfbin/cheatsheet.nvim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npm install'  }
 Plug 'https://github.com/dhruvasagar/vim-table-mode'
 Plug 'jremmen/vim-ripgrep'
+Plug 'akinsho/flutter-tools.nvim'
+" Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
 
 " Initialize plugin system
 call plug#end()
