@@ -7,6 +7,9 @@ command! -nargs=1 Livegrep lua require('telescope.builtin').live_grep({search_di
 
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fl <cmd>Telescope live_grep<cr>
+nnoremap <leader>fp <cmd>Telescope find_project_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fw <cmd>Telescope grep_string<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fgf <cmd>Telescope git_files<cr>
@@ -17,6 +20,13 @@ nnoremap <leader>fma <cmd>Telescope vim_bookmarks all<cr>
 nnoremap <leader>fmf <cmd>Telescope vim_bookmarks current_file<cr>
 nnoremap <leader>fdf <cmd>Telescope lsp_document_diagnostics<cr>
 nnoremap <leader>fda <cmd>Telescope lsp_workspace_diagnostics<cr>
+nnoremap <leader>fc <cmd>TodoTelescope<cr>
+nnoremap <leader>fy <cmd>Telescope neoclip<cr>
+nnoremap <leader>fs <cmd>Telescope ultisnips<cr>
+nnoremap <leader>fq <cmd>Telescope quickfix<cr>
+
+nnoremap <leader>fh <cmd>Telescope search_history<cr>
+nnoremap <leader>fch <cmd>Telescope command_history<cr>
 
 lua << EOF
 local actions = require "telescope.actions"
@@ -26,6 +36,15 @@ local internal_pickers = require'telescope.builtin.internal'
 
 local diffview = require"diffview"
 local git_utils = require'utils.git'
+
+require('telescope.builtin').find_project_files = function(opts)
+  path = vim.fn.finddir(".git", vim.fn.expand('%:p:h')..';')
+  root = vim.fn.fnamemodify(vim.fn.substitute(path, ".git", "", ""), ":p:h")
+
+  opts.cwd = root
+
+  require'telescope.builtin'.find_files(opts)
+end
 
 require'telescope'.setup {
   defaults = {
@@ -178,4 +197,5 @@ let g:nvim_tree_icons = {
 
 lua <<EOF
 require'nvim-tree'.setup()
+require'nvim-tree.lib'.toggle_ignored()
 EOF

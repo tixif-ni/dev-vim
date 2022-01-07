@@ -10,7 +10,7 @@ let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 
 augroup Format
     autocmd!
-    autocmd BufWritePost *.js,*.jsx,*.ts,*.py FormatWrite
+    autocmd BufWritePost *.js,*.jsx,*.tsx,*.ts,*.py FormatWrite
 augroup END
 
 lua << EOF
@@ -29,6 +29,7 @@ require "formatter".setup {
     typescript = node_formatters,
     javascript = node_formatters,
     javascriptreact = node_formatters,
+    typescriptreact = node_formatters,
     python = {
       function()
         return {
@@ -43,6 +44,21 @@ require "formatter".setup {
 EOF
 
 "=============================================================================
+" LSP-CONFIG
+"=============================================================================
+
+nnoremap gi <cmd>lua vim.lsp.buf.implementation()<cr>
+
+" Disable text object diagnostic to avoid overbloating UI
+lua << EOF
+  vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+    vim.lsp.diagnostic.on_publish_diagnostics, {
+        virtual_text = false
+    }
+  )
+EOF
+
+"=============================================================================
 " TREESITTER
 "=============================================================================
 set nofoldenable
@@ -51,9 +67,8 @@ set foldexpr=nvim_treesitter#foldexpr()
 set foldminlines=50
 set foldnestmax=2
 
-lua <<EOF
+lua << EOF
 local parser_configs = require("nvim-treesitter.parsers").get_parser_configs()
-
 parser_configs.http = {
   install_info = {
     url = "https://github.com/NTBBloodbath/tree-sitter-http",
@@ -62,30 +77,17 @@ parser_configs.http = {
   },
 }
 
-require'nvim-treesitter.configs'.setup {
-  ensure_installed = "maintained",
+require("nvim-treesitter.configs").setup {
   highlight = {
     enable = true,
     additional_vim_regex_highlighting = false,
   },
+  indent = {
+    enable = false,
+  },
+  ensure_installed = "maintained",
 }
 EOF
-
-
-
-"=============================================================================
-" LSP-CONFIG
-"=============================================================================
-
-" Disable text object diagnostic to avoid overbloating UI
-lua << EOF
-  vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-    vim.lsp.diagnostic.on_publish_diagnostics, {
-        virtual_text = false
-    }
-)
-EOF
-
 "=============================================================================
 " LSP-SAGA
 "=============================================================================
@@ -212,3 +214,17 @@ require('lspconfig').omnisharp.setup {
   cmd = { '/usr/local/share/omnisharp/run', "--languageserver", "--hostPID", tostring(vim.fn.getpid())},
 }
 EOF
+
+"=============================================================================
+" FLUTTER-TOOLS
+"=============================================================================
+"
+lua <<EOF
+  require("flutter-tools").setup {} -- use defaults
+EOF
+
+"=============================================================================
+" DOGE
+"=============================================================================
+"
+let g:doge_doc_standard_typescript='tsdoc'
