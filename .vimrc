@@ -46,7 +46,7 @@ Plug 'https://github.com/kyazdani42/nvim-tree.lua'
 " Language
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'sheerun/vim-polyglot'
-Plug 'tami5/lspsaga.nvim', { 'branch': 'nvim51'}
+Plug 'tami5/lspsaga.nvim', { 'branch': 'nvim6.0'}
 Plug 'editorconfig/editorconfig-vim'
 Plug 'https://github.com/mattn/emmet-vim.git'
 Plug 'https://github.com/alfredodeza/pytest.vim.git'

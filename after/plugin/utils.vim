@@ -69,16 +69,18 @@ lua << EOF
 require'neoclip'.setup{
   history = 100,
   keys = {
-    i = {
-      select = '<CR>',
-      paste = '<C-p>',
-      paste_behind = '<C-P>',
-    },
-    n = {
-      select = '<CR>',
-      paste = 'p',
-      paste_behind = 'P',
-    },
+    telescope = {
+      i = {
+        select = '<CR>',
+        paste = '<C-p>',
+        paste_behind = '<C-P>',
+      },
+      n = {
+        select = '<CR>',
+        paste = 'p',
+        paste_behind = 'P',
+      },
+    }
   },
 }
 EOF
