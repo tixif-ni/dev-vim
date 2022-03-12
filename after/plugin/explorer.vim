@@ -111,71 +111,38 @@ nnoremap <leader>nt :NvimTreeToggle<CR>
 nnoremap <leader>nf :NvimTreeFindFile<CR>
 nnoremap <leader>nr :NvimTreeRefresh<CR>
 
-let g:nvim_tree_side = 'left'
-let g:nvim_tree_auto_resize = 1
 let g:nvim_tree_indent_markers = 1
-let g:nvim_tree_hide_dotfiles = 1
-let g:nvim_tree_lsp_diagnostics = 1
-let g:nvim_tree_window_picker_exclude = {
-    \   'filetype': [
-    \     'notify',
-    \     'packer',
-    \     'qf'
-    \   ],
-    \   'buftype': [
-    \     'terminal'
-    \   ]
-    \ }
-let g:nvim_tree_ignore = [
-            \'.git',
-            \'.cache',
-            \'__pycache__',
-            \'.pyc',
-            \'.pyo',
-            \'bower_components',
-            \'DS_Store',
-            \]
-let g:nvim_tree_special_files = {
-            \'README.md': 1,
-            \'Makefile': 1,
-            \'MAKEFILE': 1
-            \}
 let g:nvim_tree_show_icons = {
     \ 'git': 1,
     \ 'folders': 1,
     \ 'files': 1,
     \ 'folder_arrows': 1,
     \ }
-let g:nvim_tree_icons = {
-    \ 'default': '',
-    \ 'symlink': '',
-    \ 'git': {
-    \   'unstaged': "✗",
-    \   'staged': "✓",
-    \   'unmerged': "",
-    \   'renamed': "➜",
-    \   'untracked': "★",
-    \   'deleted': "",
-    \   'ignored': "◌"
-    \   },
-    \ 'folder': {
-    \   'arrow_open': "",
-    \   'arrow_closed': "",
-    \   'default': "",
-    \   'open': "",
-    \   'empty': "",
-    \   'empty_open': "",
-    \   'symlink': "",
-    \   'symlink_open': "",
-    \   },
-    \   'lsp': {
-    \     'hint': "",
-    \     'info': "",
-    \     'warning': "",
-    \     'error': "",
-    \   }
-    \ }
 
 lua <<EOF
-require'nvim-tree'.setup()
+require'nvim-tree'.setup {
+    actions = {
+        open_file = {
+            resize_window = false
+        }
+    },
+    filters = {
+        dotfiles = true,
+        custom = {
+            ".git",
+            ".cache",
+            ".pyc",
+            ".pyo",
+            "__pycache__",
+            "bower_components",
+            "DS_Store"
+        }
+    },
+    diagnostics = {
+        enable = true
+    },
+    git = {
+        ignore = false
+    }
+}
 EOF
