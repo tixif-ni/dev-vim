@@ -18,8 +18,8 @@ nnoremap <leader>fgw <cmd>Telescope git_local git_grep_string<cr>
 nnoremap <leader>fgc <cmd>Telescope git_commits<cr>
 nnoremap <leader>fma <cmd>Telescope vim_bookmarks all<cr>
 nnoremap <leader>fmf <cmd>Telescope vim_bookmarks current_file<cr>
-nnoremap <leader>fdf <cmd>Telescope lsp_document_diagnostics<cr>
-nnoremap <leader>fda <cmd>Telescope lsp_workspace_diagnostics<cr>
+nnoremap <leader>fdf <cmd>Telescope diagnostics bufnr=0<cr>
+nnoremap <leader>fda <cmd>Telescope diagnostics<cr>
 nnoremap <leader>fc <cmd>TodoTelescope<cr>
 nnoremap <leader>fy <cmd>Telescope neoclip<cr>
 nnoremap <leader>fs <cmd>Telescope ultisnips<cr>
@@ -130,72 +130,38 @@ nnoremap <leader>nt :NvimTreeToggle<CR>
 nnoremap <leader>nf :NvimTreeFindFile<CR>
 nnoremap <leader>nr :NvimTreeRefresh<CR>
 
-let g:nvim_tree_side = 'left'
-let g:nvim_tree_auto_resize = 1
 let g:nvim_tree_indent_markers = 1
-let g:nvim_tree_hide_dotfiles = 1
-let g:nvim_tree_lsp_diagnostics = 1
-let g:nvim_tree_window_picker_exclude = {
-    \   'filetype': [
-    \     'notify',
-    \     'packer',
-    \     'qf'
-    \   ],
-    \   'buftype': [
-    \     'terminal'
-    \   ]
-    \ }
-let g:nvim_tree_ignore = [
-            \'.git',
-            \'.cache',
-            \'__pycache__',
-            \'.pyc',
-            \'.pyo',
-            \'bower_components',
-            \'DS_Store',
-            \]
-let g:nvim_tree_special_files = {
-            \'README.md': 1,
-            \'Makefile': 1,
-            \'MAKEFILE': 1
-            \}
 let g:nvim_tree_show_icons = {
     \ 'git': 1,
     \ 'folders': 1,
     \ 'files': 1,
     \ 'folder_arrows': 1,
     \ }
-let g:nvim_tree_icons = {
-    \ 'default': '',
-    \ 'symlink': '',
-    \ 'git': {
-    \   'unstaged': "✗",
-    \   'staged': "✓",
-    \   'unmerged': "",
-    \   'renamed': "➜",
-    \   'untracked': "★",
-    \   'deleted': "",
-    \   'ignored': "◌"
-    \   },
-    \ 'folder': {
-    \   'arrow_open': "",
-    \   'arrow_closed': "",
-    \   'default': "",
-    \   'open': "",
-    \   'empty': "",
-    \   'empty_open': "",
-    \   'symlink': "",
-    \   'symlink_open': "",
-    \   },
-    \   'lsp': {
-    \     'hint': "",
-    \     'info': "",
-    \     'warning': "",
-    \     'error': "",
-    \   }
-    \ }
 
 lua <<EOF
-require'nvim-tree'.setup()
-require'nvim-tree.lib'.toggle_ignored()
+require'nvim-tree'.setup {
+    actions = {
+        open_file = {
+            resize_window = false
+        }
+    },
+    diagnostics = {
+        enable = true
+    },
+    git = {
+        ignore = false
+    },
+    filters = {
+        dotfiles = true,
+        custom = {
+            "__pycache__",
+            "bower_components",
+            "DS_Store",
+            ".git",
+            ".cache",
+            ".pyc",
+            ".pyo"
+        }
+    }
+}
 EOF

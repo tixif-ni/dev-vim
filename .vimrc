@@ -45,8 +45,7 @@ Plug 'https://github.com/kyazdani42/nvim-tree.lua'
 
 " Language
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'sheerun/vim-polyglot'
-Plug 'tami5/lspsaga.nvim', { 'branch': 'nvim51'}
+Plug 'tami5/lspsaga.nvim', { 'branch': 'nvim6.0'}
 Plug 'editorconfig/editorconfig-vim'
 Plug 'https://github.com/mattn/emmet-vim.git'
 Plug 'https://github.com/alfredodeza/pytest.vim.git'
@@ -55,7 +54,6 @@ Plug 'mfussenegger/nvim-dap-python'
 Plug 'Pocco81/DAPInstall.nvim'
 Plug 'rcarriga/nvim-dap-ui'
 Plug 'mhartington/formatter.nvim'
-Plug 'sheerun/vim-polyglot'
 
 " Auto complete
 Plug 'https://github.com/onsails/lspkind-nvim.git'
@@ -85,12 +83,16 @@ Plug 'MattesGroeger/vim-bookmarks'
 Plug 'https://github.com/tom-anders/telescope-vim-bookmarks.nvim.git'
 Plug 'https://github.com/AckslD/nvim-neoclip.lua.git'
 Plug 'sudormrfbin/cheatsheet.nvim'
+Plug 'https://github.com/pseewald/vim-anyfold.git'
 " If you have nodejs and yarn
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npm install'  }
 Plug 'https://github.com/dhruvasagar/vim-table-mode'
 Plug 'jremmen/vim-ripgrep'
 Plug 'akinsho/flutter-tools.nvim'
-" Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
+Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
+
+" Plug 'https://github.com/arcticicestudio/nord-vim.git'
+Plug 'https://github.com/jcypret/nord-vim-midnight.git'
 
 " Initialize plugin system
 call plug#end()
