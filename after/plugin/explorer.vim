@@ -111,7 +111,6 @@ nnoremap <leader>nt :NvimTreeToggle<CR>
 nnoremap <leader>nf :NvimTreeFindFile<CR>
 nnoremap <leader>nr :NvimTreeRefresh<CR>
 
-let g:nvim_tree_indent_markers = 1
 let g:nvim_tree_show_icons = {
     \ 'git': 1,
     \ 'folders': 1,
@@ -143,6 +142,11 @@ require'nvim-tree'.setup {
     },
     git = {
         ignore = false
+    },
+    renderer = {
+        indent_markers = {
+          enable = true
+        }
     }
 }
 EOF
