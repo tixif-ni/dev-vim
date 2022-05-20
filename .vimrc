@@ -54,6 +54,7 @@ Plug 'mfussenegger/nvim-dap-python'
 Plug 'Pocco81/DAPInstall.nvim'
 Plug 'rcarriga/nvim-dap-ui'
 Plug 'mhartington/formatter.nvim'
+Plug 'https://github.com/Hoffs/omnisharp-extended-lsp.nvim.git'
 
 " Auto complete
 Plug 'https://github.com/onsails/lspkind-nvim.git'

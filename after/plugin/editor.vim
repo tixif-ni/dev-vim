@@ -234,3 +234,23 @@ let g:doge_doc_standard_typescript='tsdoc'
 "=============================================================================
 "
 set foldlevel=99
+
+"=============================================================================
+" OMNISHARP LSP
+"=============================================================================
+"
+lua <<EOF
+local pid = vim.fn.getpid()
+local omnisharp_bin = "/Users/joseblanco/.local/omnisharp/run"
+
+local config = {
+  handlers = {
+    ["textDocument/definition"] = require('omnisharp_extended').handler,
+  },
+  cmd = { omnisharp_bin, '--languageserver' , '--hostPID', tostring(pid) },
+  -- rest of your settings
+}
+
+require('omnisharp_extended').telescope_lsp_definitions()
+require'lspconfig'.omnisharp.setup(config)
+EOF
