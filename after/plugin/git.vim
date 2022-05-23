@@ -34,9 +34,6 @@ augroup end
 lua << EOF
 local diffview = require"diffview"
 diffview.setup {
-  file_panel = {
-    width = 50
-  },
   key_bindings = {
     view = {
       ["gq"] = "<CMD>DiffviewClose<CR>",
