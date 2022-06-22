@@ -8,35 +8,36 @@ let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 " FORMAT
 "=============================================================================
 
-augroup Format
+augroup FormatAutogroup
     autocmd!
-    autocmd BufWritePost *.js,*.jsx,*.ts,*.py FormatWrite
+    autocmd BufWritePost *.js,*.jsx,*.ts,*.json,*.py,*.lua,*.toml,*.yaml FormatWrite
 augroup END
 
 lua << EOF
-local node_formatters = {
-  function()
-    return {
-      exe = "prettier",
-      args = {"--stdin-filepath", vim.fn.fnameescape(vim.api.nvim_buf_get_name(0))},
-      stdin = true
-    }
-  end,
-}
-
 require "formatter".setup {
   filetype = {
-    typescript = node_formatters,
-    javascript = node_formatters,
-    javascriptreact = node_formatters,
+    typescript = {
+      require('formatter.filetypes.typescript').prettier,
+    },
+    javascript = {
+      require('formatter.filetypes.javascript').prettier,
+    },
+    javascriptreact = {
+      require('formatter.filetypes.javascriptreact').prettier,
+    },
     python = {
-      function()
-        return {
-          exe = "black",
-          args = { '-' },
-          stdin = true,
-        }
-      end
+      require('formatter.filetypes.python').black,
+      require('formatter.filetypes.python').isort,
+    },
+    lua = {
+      require('formatter.filetypes.lua').stylua,
+    },
+    json = {
+      require('formatter.filetypes.json').prettier,
+    },
+    toml = require('formatter.filetypes.toml'),
+    yaml = {
+      require('formatter.filetypes.yaml').prettier,
     }
   }
 }

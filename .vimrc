@@ -14,7 +14,7 @@ call plug#begin('~/.vim/plugged')
 " Core
 Plug 'nvim-lua/popup.nvim'
 Plug 'https://github.com/nvim-lua/plenary.nvim'
-Plug 'https://github.com/NTBBloodbath/rest.nvim.git'
+Plug 'https://github.com/NTBBloodbath/rest.nvim.git', { 'commit': 'e5f68db73276c4d4d255f75a77bbe6eff7a476ef' }
 Plug 'https://github.com/neovim/nvim-lspconfig'
 
 " Git
