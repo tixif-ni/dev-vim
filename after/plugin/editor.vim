@@ -10,7 +10,7 @@ let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 
 augroup Format
     autocmd!
-    autocmd BufWritePost *.js,*.jsx,*.tsx,*.ts,*.py FormatWrite
+    autocmd BufWritePost *.js,*.jsx,*.tsx,*.ts,*.py,*.json,*.dart FormatWrite
 augroup END
 
 lua << EOF
@@ -24,12 +24,52 @@ local node_formatters = {
   end,
 }
 
+local json_formatter = {
+  function()
+    return {
+      exe = "prettier",
+      args = {"--stdin-filepath", vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)), "--double-quote"},
+      stdin = true
+    }
+  end
+}
+
+local dart_formatter = {
+    function()
+      return {
+        exe = "~/projects/taxfyle-mobile/flutter/bin/dart",
+        args = {"format"},
+        stdin = true
+      }
+    end
+}
+
 require "formatter".setup {
   filetype = {
     typescript = node_formatters,
     javascript = node_formatters,
     javascriptreact = node_formatters,
     typescriptreact = node_formatters,
+    dart = dart_formatter,
+    lua = {
+      -- Pick from defaults:
+      require('formatter.filetypes.lua').stylua,
+
+      -- ,or define your own:
+      function()
+        return {
+          exe = "stylua",
+          args = {
+            "--search-parent-directories",
+            "--stdin-filepath",
+            util.escape_path(util.get_current_buffer_file_path()),
+            "--",
+            "-",
+          },
+          stdin = true,
+        }
+      end
+    },
     python = {
       function()
         return {
@@ -38,7 +78,8 @@ require "formatter".setup {
           stdin = true,
         }
       end
-    }
+    },
+    json = json_formatter,
   }
 }
 EOF
@@ -85,7 +126,8 @@ require("nvim-treesitter.configs").setup {
   indent = {
     enable = false,
   },
-  ensure_installed = "maintained",
+  ignore_install = { "phpdoc" },
+  ensure_installed = "all",
 }
 EOF
 "=============================================================================
@@ -104,6 +146,9 @@ nnoremap <silent>K :Lspsaga hover_doc<CR>
 nnoremap <silent><C-f> <cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>
 nnoremap <silent><C-b> <cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>
 nnoremap <silent><leader>cd :Lspsaga show_line_diagnostics<CR>
+
+nnoremap <silent>gdj :Lspsaga diagnostic_jump_next<CR>
+nnoremap <silent>gdk :Lspsaga diagnostic_jump_prev<CR>
 
 lua << EOF
  require("lspsaga").init_lsp_saga {
@@ -210,9 +255,9 @@ require('lspconfig').pyright.setup {
   capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities()),
 }
 
-require('lspconfig').omnisharp.setup {
-  cmd = { '/usr/local/share/omnisharp/run', "--languageserver", "--hostPID", tostring(vim.fn.getpid())},
-}
+-- require('lspconfig').omnisharp.setup {
+  -- cmd = { '/usr/local/share/omnisharp/run', "--languageserver", "--hostPID", tostring(vim.fn.getpid())},
+-- }
 EOF
 
 "=============================================================================
@@ -239,16 +284,31 @@ set foldlevel=99
 " OMNISHARP LSP
 "=============================================================================
 "
+
 lua <<EOF
+-- vim.lsp.set_log_level("debug")
+
 local pid = vim.fn.getpid()
-local omnisharp_bin = "/Users/joseblanco/.local/omnisharp/run"
+-- We need to export he variable DOTNET_ROOT=/usr/local/share/dotnet
+local omnisharp_bin = "/Users/jose.blanco/.local/omnisharp/OmniSharp"
+-- local util = require('lspconfig').util
 
 local config = {
-  handlers = {
-    ["textDocument/definition"] = require('omnisharp_extended').handler,
-  },
+  -- capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+  -- on_attach = function(_, bufnr)
+    -- vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+  -- end,
+  -- handlers = {
+    -- ["textDocument/definition"] = require('omnisharp_extended').handler,
+  -- },
   cmd = { omnisharp_bin, '--languageserver' , '--hostPID', tostring(pid) },
   -- rest of your settings
+  -- root_dir = function(file, _)
+    -- if file:sub(-#".csx") == ".csx" then
+      -- return util.path.dirname(file)
+    -- end
+    -- return util.root_pattern("*.sln")(file) or util.root_pattern("*.csproj")(file)
+  -- end,
 }
 
 require('omnisharp_extended').telescope_lsp_definitions()

@@ -28,6 +28,8 @@ nnoremap <leader>fq <cmd>Telescope quickfix<cr>
 nnoremap <leader>fh <cmd>Telescope search_history<cr>
 nnoremap <leader>fch <cmd>Telescope command_history<cr>
 
+nnoremap <leader>fmc <cmd>Telescope flutter commands<cr>
+
 lua << EOF
 local actions = require "telescope.actions"
 local action_state = require "telescope.actions.state"
@@ -69,6 +71,7 @@ require'telescope'.setup {
 
 require('telescope').load_extension('fzf')
 require('telescope').load_extension('vim_bookmarks')
+require("telescope").load_extension("flutter")
 require('telescope').load_extension('neoclip')
 require('telescope').load_extension('ultisnips')
 

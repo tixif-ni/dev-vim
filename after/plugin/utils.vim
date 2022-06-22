@@ -20,7 +20,7 @@ nmap <leader>rp <Plug>RestNvimPreview
 
 lua << EOF
 require"rest-nvim".setup {
-  result_split_horizontal = true,
+  result_split_horizontal = false,
   skip_ssl_verification = true,
 }
 EOF

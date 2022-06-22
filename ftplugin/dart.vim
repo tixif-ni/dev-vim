@@ -1,3 +1,8 @@
+set softtabstop=2
+set sw=2
+set ts=2
+
+
 augroup fl_dart
   autocmd!
   autocmd Syntax dart highlight default link dartFlutterClasses     Type

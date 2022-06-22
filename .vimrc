@@ -55,6 +55,7 @@ Plug 'Pocco81/DAPInstall.nvim'
 Plug 'rcarriga/nvim-dap-ui'
 Plug 'mhartington/formatter.nvim'
 Plug 'https://github.com/Hoffs/omnisharp-extended-lsp.nvim.git'
+Plug 'https://github.com/dart-lang/dart-vim-plugin.git'
 
 " Auto complete
 Plug 'https://github.com/onsails/lspkind-nvim.git'
