@@ -27,7 +27,6 @@ require "formatter".setup {
     },
     python = {
       require('formatter.filetypes.python').black,
-      require('formatter.filetypes.python').isort,
     },
     lua = {
       require('formatter.filetypes.lua').stylua,
