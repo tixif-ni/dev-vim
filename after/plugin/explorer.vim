@@ -128,8 +128,8 @@ require'nvim-tree'.setup {
     filters = {
         dotfiles = true,
         custom = {
-            ".git",
-            ".cache",
+            "^.git$",
+            "^.cache$",
             ".pyc",
             ".pyo",
             "__pycache__",
