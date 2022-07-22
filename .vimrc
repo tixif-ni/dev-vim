@@ -70,6 +70,7 @@ Plug 'quangnguyen30192/cmp-nvim-ultisnips'
 Plug 'https://github.com/honza/vim-snippets.git'
 Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/vim-vsnip'
+Plug 'github/copilot.vim'
 
 " Misc
 Plug 'https://github.com/Lokaltog/vim-easymotion.git'
