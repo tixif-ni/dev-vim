@@ -12,6 +12,8 @@ nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fgf <cmd>Telescope git_files<cr>
 nnoremap <leader>fgl <cmd>Telescope git_local git_live_grep<cr>
 nnoremap <leader>fgw <cmd>Telescope git_local git_grep_string<cr>
+nnoremap <leader>fdl <cmd>Telescope directory_local directory_live_grep<cr>
+nnoremap <leader>fdw <cmd>Telescope directory_local directory_grep_string<cr>
 nnoremap <leader>fgc <cmd>Telescope git_commits<cr>
 nnoremap <leader>fma <cmd>Telescope vim_bookmarks all<cr>
 nnoremap <leader>fmf <cmd>Telescope vim_bookmarks current_file<cr>
