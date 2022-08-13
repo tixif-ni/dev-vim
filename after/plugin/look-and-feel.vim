@@ -37,4 +37,4 @@ hi illuminatedWord cterm=underline gui=underline
 " LENGTHMATTERS
 "=============================================================================
 
-let g:lengthmatters_start_at_column = 81
+let g:lengthmatters_start_at_column = 88
