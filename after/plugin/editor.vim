@@ -163,11 +163,11 @@ EOF
 " LSP-CMP
 "=============================================================================
 lua <<EOF
---require("cmp_tabnine.config"):setup {
-  --max_lines = 1000,
-  --max_num_results = 20,
-  --sort = true,
---}
+require("cmp_tabnine.config"):setup {
+  max_lines = 1000,
+  max_num_results = 20,
+  sort = true,
+}
 
 local source_mapping = {
   buffer = "[Buffer]",
