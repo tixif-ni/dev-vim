@@ -154,10 +154,10 @@ EOF
 "=============================================================================
 " COPILOT
 "=============================================================================
-lua << EOF
-  vim.g.copilot_no_tab_map = true
-  vim.api.nvim_set_keymap("i", "<C-J>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
-EOF
+"lua << EOF
+  "vim.g.copilot_no_tab_map = true
+  "vim.api.nvim_set_keymap("i", "<C-J>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
+"EOF
 
 "=============================================================================
 " LSP-CMP
@@ -172,7 +172,7 @@ lua <<EOF
 local source_mapping = {
   buffer = "[Buffer]",
   nvim_lsp = "[LSP]",
-  --cmp_tabnine = "[TN]",
+  cmp_tabnine = "[TN]",
   path = "[Path]",
   ultisnips = "[Snippets]"
 }
@@ -204,7 +204,7 @@ cmp.setup {
     { name = 'path' },
     { name = 'calc' },
     { name = 'ultisnips' },
-    --{ name = 'cmp_tabnine' },
+    { name = 'cmp_tabnine' },
     { name = 'treesitter' },
   }
 }
