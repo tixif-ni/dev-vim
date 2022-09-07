@@ -23,8 +23,8 @@ nnoremap <leader>fda <cmd>Telescope lsp_workspace_diagnostics<cr>
 lua << EOF
 local actions = require "telescope.actions"
 local action_state = require "telescope.actions.state"
-local git_pickers = require'telescope.builtin.git'
-local internal_pickers = require'telescope.builtin.internal'
+local git_pickers = require'telescope.builtin.__git'
+local internal_pickers = require'telescope.builtin.__internal'
 
 local diffview = require"diffview"
 local git_utils = require'utils.git'

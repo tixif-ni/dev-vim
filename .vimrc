@@ -38,7 +38,7 @@ Plug 'https://github.com/whatyouhide/vim-lengthmatters.git'
 Plug 'https://github.com/blueyed/vim-diminactive.git'
 
 " Explorer
-Plug 'https://github.com/nvim-telescope/telescope.nvim'
+Plug 'https://github.com/nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'https://github.com/kyazdani42/nvim-web-devicons'
 Plug 'https://github.com/kyazdani42/nvim-tree.lua'
