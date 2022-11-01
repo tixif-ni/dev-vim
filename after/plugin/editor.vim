@@ -10,10 +10,12 @@ let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 
 augroup FormatAutogroup
     autocmd!
-    autocmd BufWritePost *.js,*.jsx,*.ts,*.json,*.py,*.lua,*.toml,*.yaml FormatWrite
+    autocmd BufWritePost *.js,*.jsx,*.ts,*.json,*.py,*.lua,*.toml,*.yaml,*.md FormatWrite
 augroup END
 
 lua << EOF
+local util = require "formatter.util"
+
 require "formatter".setup {
   filetype = {
     typescript = {
@@ -37,6 +39,9 @@ require "formatter".setup {
     toml = require('formatter.filetypes.toml'),
     yaml = {
       require('formatter.filetypes.yaml').prettier,
+    },
+    markdown = {
+      require('formatter.filetypes.markdown').prettier,
     }
   }
 }
