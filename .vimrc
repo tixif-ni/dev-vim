@@ -78,7 +78,7 @@ Plug 'https://github.com/tpope/vim-unimpaired.git'
 Plug 'https://github.com/terryma/vim-multiple-cursors.git'
 Plug 'https://github.com/Raimondi/delimitMate.git'
 Plug 'https://github.com/scrooloose/nerdcommenter.git'
-Plug 'folke/todo-comments.nvim'
+Plug 'folke/todo-comments.nvim', { 'branch': 'neovim-pre-0.8.0' }
 Plug 'https://github.com/andymass/vim-matchup.git'
 Plug 'MattesGroeger/vim-bookmarks'
 Plug 'https://github.com/tom-anders/telescope-vim-bookmarks.nvim.git'
