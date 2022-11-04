@@ -114,7 +114,7 @@ lua << EOF
     warn_sign = '',
     hint_sign = '',
     infor_sign = ' ',
-    dianostic_header_icon = '   ',
+    diagnostic_header_icon = '   ',
     code_action_icon = ' ',
   }
 EOF
@@ -215,11 +215,11 @@ cmp.setup {
 }
 
 require('lspconfig').tsserver.setup {
-  capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+  capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities()),
 }
 
 require('lspconfig').pyright.setup {
-  capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+  capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities()),
 }
 
 require('lspconfig').omnisharp.setup {

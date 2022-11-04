@@ -113,12 +113,6 @@ nnoremap <leader>nt :NvimTreeToggle<CR>
 nnoremap <leader>nf :NvimTreeFindFile<CR>
 nnoremap <leader>nr :NvimTreeRefresh<CR>
 
-let g:nvim_tree_show_icons = {
-    \ 'git': 1,
-    \ 'folders': 1,
-    \ 'files': 1,
-    \ 'folder_arrows': 1,
-    \ }
 
 lua <<EOF
 require'nvim-tree'.setup {
