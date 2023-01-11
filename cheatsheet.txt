@@ -1,0 +1,10 @@
+## Personal
+Nvim Lua guide | https://github.com/nanotee/nvim-lua-guide
+Get current buffer filetype | :set filetype?
+Diff against immediate parent | git diff <hash>^!
+Diff start current windows | :windo difft
+Diff end current windows | :windo diffo
+Open new buffer | :e new
+Sort lines | :sort
+Remove split | :hide
+Disable auto command | :noa <...>
