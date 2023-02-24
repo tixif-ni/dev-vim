@@ -157,14 +157,6 @@ EOF
 
 
 "=============================================================================
-" COPILOT
-"=============================================================================
-"lua << EOF
-  "vim.g.copilot_no_tab_map = true
-  "vim.api.nvim_set_keymap("i", "<C-J>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
-"EOF
-
-"=============================================================================
 " LSP-CMP
 "=============================================================================
 lua <<EOF
@@ -219,6 +211,10 @@ require('lspconfig').tsserver.setup {
 }
 
 require('lspconfig').pyright.setup {
+  capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities()),
+}
+
+require('lspconfig').ruff_lsp.setup {
   capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities()),
 }
 
