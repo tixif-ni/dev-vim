@@ -96,6 +96,12 @@ Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
 " Plug 'https://github.com/arcticicestudio/nord-vim.git'
 Plug 'https://github.com/jcypret/nord-vim-midnight.git'
 
+Plug 'kamykn/spelunker.vim'
+Plug 'kamykn/popup-menu.nvim'
+
+" Copilot
+Plug 'https://github.com/github/copilot.vim.git'
+
 " Initialize plugin system
 call plug#end()
 
@@ -109,7 +115,8 @@ call plug#end()
 :set more
 
 " Performance boosters
-:set nocursorline
+:set cursorline cul
+:set cursorcolumn cuc
 :set lazyredraw
 :set re=1
 :set noshowcmd

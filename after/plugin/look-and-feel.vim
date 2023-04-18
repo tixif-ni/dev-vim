@@ -31,3 +31,25 @@ let g:diminactive_enable_focus = 1
 "=============================================================================
 
 hi illuminatedWord cterm=underline gui=underline 
+
+"=============================================================================
+" SPELUNKER 
+"=============================================================================
+
+" Option to disable word checking.
+" Disable URI checking. (default: 0)
+let g:spelunker_disable_uri_checking = 1
+
+" Disable email-like words checking. (default: 0)
+let g:spelunker_disable_email_checking = 1
+
+"=============================================================================
+" COPILOT
+"=============================================================================
+
+lua << EOF
+  vim.g.copilot_no_tab_map = true
+  vim.api.nvim_set_keymap(
+    "i", "<C-J>", 'copilot#Accept("<CR>")', { silent = true, expr = true }
+  )
+EOF
