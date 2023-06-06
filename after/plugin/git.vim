@@ -20,10 +20,7 @@ augroup end
 "=============================================================================
 " DIFFVIEW
 "=============================================================================
-
-:nnoremap <Leader>gdf :DiffviewFileHistory<CR>
-:nnoremap <Leader>gda :DiffviewOpen<CR>
-:nnoremap <Leader>gdt <cmd>lua diffview_from_log()<CR>
+:nnoremap <Leader>gdf :DiffviewFileHistory %<CR>
 
 augroup git_diffview
   autocmd!
