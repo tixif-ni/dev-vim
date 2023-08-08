@@ -25,6 +25,7 @@ augroup end
 augroup git_diffview
   autocmd!
   autocmd Filetype git :nnoremap <buffer> <Leader>dd <cmd>lua diffview_fugitive()<CR>
+  autocmd Filetype git :nnoremap <buffer> <Leader>dh <cmd>lua diffview_fugitive("..HEAD")<CR>
   autocmd Filetype fugitiveblame :nnoremap <buffer> <Leader>dd <cmd>lua diffview_fugitive()<CR>
 augroup end
 
@@ -48,7 +49,7 @@ function trim(s)
    return (s:gsub("^%s*(.-)%s*$", "%1"))
 end
 
-function diffview_fugitive ()
+function diffview_fugitive (rev)
   local line = vim.fn.getline(".")
 
   local log_line = line:match "[commit|Merge:] ([a-f0-9 ]+)"
@@ -63,7 +64,7 @@ function diffview_fugitive ()
 
   if log_line ~= nil and string.len(log_line) > 7 then
     hash = log_line
-  elseif blame_line ~= nil and string.len(blame_line) > 7 then
+  elseif blame_line ~= nil and string.len(blame_line) >= 7 then
     hash = blame_line
   else
     return
@@ -71,6 +72,8 @@ function diffview_fugitive ()
 
   if string.find(hash, " ") then
     hash = vim.fn.substitute(hash, " ", "..", "")
+  elseif rev ~= nil then
+    hash = hash..rev
   else
     hash = hash.."^!"
   end
