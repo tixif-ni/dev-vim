@@ -161,7 +161,6 @@ require'nvim-tree'.setup {
             "bower_components",
             "DS_Store",
             ".git",
-            ".cache",
             ".pyc",
             ".pyo"
         }

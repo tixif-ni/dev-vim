@@ -21,7 +21,7 @@ Plug 'https://github.com/neovim/nvim-lspconfig'
 Plug 'https://github.com/tpope/vim-fugitive.git'
 Plug 'https://github.com/tommcdo/vim-fugitive-blame-ext.git'
 Plug 'https://github.com/sodapopcan/vim-twiggy.git'
-Plug 'lewis6991/gitsigns.nvim'
+Plug 'https://github.com/lewis6991/gitsigns.nvim'
 Plug 'https://github.com/rhysd/git-messenger.vim.git'
 Plug 'https://github.com/ruanyl/vim-gh-line'
 Plug 'sindrets/diffview.nvim'
@@ -45,7 +45,7 @@ Plug 'https://github.com/kyazdani42/nvim-tree.lua'
 
 " Language
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'tami5/lspsaga.nvim', { 'branch': 'nvim6.0'}
+Plug 'tami5/lspsaga.nvim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'https://github.com/mattn/emmet-vim.git'
 Plug 'https://github.com/alfredodeza/pytest.vim.git'
