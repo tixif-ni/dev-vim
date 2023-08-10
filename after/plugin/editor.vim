@@ -10,7 +10,7 @@ let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 
 augroup Format
     autocmd!
-    autocmd BufWritePost *.js,*.jsx,*.tsx,*.ts,*.py,*.json,*.dart FormatWrite
+    autocmd BufWritePost *.js,*.jsx,*.tsx,*.ts,*.py,*.json,*.dart,*.html FormatWrite
 augroup END
 
 lua << EOF
@@ -39,6 +39,16 @@ local dart_formatter = {
       return {
         exe = "~/projects/taxfyle-mobile/flutter/bin/dart",
         args = {"format"},
+        stdin = true
+      }
+    end
+}
+
+local htmldjango_formatter = {
+    function()
+      return {
+        exe = "djlint",
+        args = {"--reformat", "--preserve-blank-lines", "-"},
         stdin = true
       }
     end
@@ -80,6 +90,7 @@ require "formatter".setup {
       end
     },
     json = json_formatter,
+    htmldjango = htmldjango_formatter,
   }
 }
 EOF
