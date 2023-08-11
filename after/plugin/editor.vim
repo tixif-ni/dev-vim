@@ -10,7 +10,7 @@ let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 
 augroup FormatAutogroup
     autocmd!
-    autocmd BufWritePost *.js,*.jsx,*.ts,*.json,*.py,*.lua,*.toml,*.yaml,*.md FormatWrite
+    autocmd BufWritePost *.js,*.jsx,*.ts,*.json,*.py,*.lua,*.toml,*.yaml,*.md,*.html FormatWrite
 augroup END
 
 lua << EOF
@@ -42,6 +42,24 @@ require "formatter".setup {
     },
     markdown = {
       require('formatter.filetypes.markdown').prettier,
+    },
+    htmldjango = {
+      function ()
+        local djlintrc = vim.fn.findfile(".djlintrc", util.get_current_buffer_file_path() .. ";")
+
+        return {
+          exe = "djlint",
+          args = {
+            "-",
+            "--reformat",
+            "--profile",
+            "django",
+            "--configuration",
+            djlintrc
+          },
+          stdin = true
+        }
+      end
     }
   }
 }
