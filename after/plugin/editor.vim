@@ -10,7 +10,7 @@ let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 
 augroup FormatAutogroup
     autocmd!
-    autocmd BufWritePost *.js,*.jsx,*.ts,*.json,*.py,*.lua,*.toml,*.yaml,*.md,*.html FormatWrite
+    autocmd BufWritePost *.js,*.jsx,*.ts,*.json,*.py,*.lua,*.toml,*.yaml,*.md,*.html,*.tf FormatWrite
 augroup END
 
 lua << EOF
@@ -56,6 +56,18 @@ require "formatter".setup {
             "django",
             "--configuration",
             djlintrc
+          },
+          stdin = true
+        }
+      end
+    },
+    terraform = {
+      function ()
+        return {
+          exe = "terraform",
+          args = {
+            "fmt",
+            "-",
           },
           stdin = true
         }
@@ -236,7 +248,7 @@ require('lspconfig').ruff_lsp.setup {
   capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities()),
 }
 
-require('lspconfig').omnisharp.setup {
-  cmd = { '/usr/local/share/omnisharp/run', "--languageserver", "--hostPID", tostring(vim.fn.getpid())},
+require('lspconfig').terraformls.setup{
+  capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities()),
 }
 EOF
