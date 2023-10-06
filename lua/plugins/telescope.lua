@@ -1,26 +1,23 @@
-"=============================================================================
-" TELESCOPE
-"=============================================================================
+vim.cmd([[
+  autocmd User TelescopePreviewerLoaded setlocal number
+  command! -nargs=1 Livegrep lua require('telescope.builtin').live_grep({search_dirs={'<args>'}})
 
-autocmd User TelescopePreviewerLoaded setlocal number
-command! -nargs=1 Livegrep lua require('telescope.builtin').live_grep({search_dirs={'<args>'}})
+  nnoremap <leader>ff <cmd>Telescope find_files<cr>
+  nnoremap <leader>fl <cmd>Telescope live_grep<cr>
+  nnoremap <leader>fw <cmd>Telescope grep_string<cr>
+  nnoremap <leader>fb <cmd>Telescope buffers<cr>
+  nnoremap <leader>fgf <cmd>Telescope git_files<cr>
+  nnoremap <leader>fgl <cmd>Telescope git_local git_live_grep<cr>
+  nnoremap <leader>fgw <cmd>Telescope git_local git_grep_string<cr>
+  nnoremap <leader>fdl <cmd>Telescope directory_local directory_live_grep<cr>
+  nnoremap <leader>fdw <cmd>Telescope directory_local directory_grep_string<cr>
+  nnoremap <leader>fgc <cmd>Telescope git_commits<cr>
+  nnoremap <leader>fma <cmd>Telescope vim_bookmarks all<cr>
+  nnoremap <leader>fmf <cmd>Telescope vim_bookmarks current_file<cr>
+  nnoremap <leader>fdf <cmd>Telescope lsp_document_diagnostics<cr>
+  nnoremap <leader>fda <cmd>Telescope lsp_workspace_diagnostics<cr>
+]])
 
-nnoremap <leader>ff <cmd>Telescope find_files<cr>
-nnoremap <leader>fl <cmd>Telescope live_grep<cr>
-nnoremap <leader>fw <cmd>Telescope grep_string<cr>
-nnoremap <leader>fb <cmd>Telescope buffers<cr>
-nnoremap <leader>fgf <cmd>Telescope git_files<cr>
-nnoremap <leader>fgl <cmd>Telescope git_local git_live_grep<cr>
-nnoremap <leader>fgw <cmd>Telescope git_local git_grep_string<cr>
-nnoremap <leader>fdl <cmd>Telescope directory_local directory_live_grep<cr>
-nnoremap <leader>fdw <cmd>Telescope directory_local directory_grep_string<cr>
-nnoremap <leader>fgc <cmd>Telescope git_commits<cr>
-nnoremap <leader>fma <cmd>Telescope vim_bookmarks all<cr>
-nnoremap <leader>fmf <cmd>Telescope vim_bookmarks current_file<cr>
-nnoremap <leader>fdf <cmd>Telescope lsp_document_diagnostics<cr>
-nnoremap <leader>fda <cmd>Telescope lsp_workspace_diagnostics<cr>
-
-lua << EOF
 local actions = require "telescope.actions"
 local action_state = require "telescope.actions.state"
 local git_pickers = require'telescope.builtin.__git'
@@ -103,46 +100,3 @@ end
 require'telescope.builtin'.git_status = function(opts)
   return git_pickers.status(git_utils.set_git_root(opts))
 end
-EOF
-
-"=============================================================================
-" TREE
-"=============================================================================
-
-nnoremap <leader>nt :NvimTreeToggle<CR>
-nnoremap <leader>nf :NvimTreeFindFile<CR>
-nnoremap <leader>nr :NvimTreeRefresh<CR>
-
-
-lua <<EOF
-require'nvim-tree'.setup {
-    actions = {
-        open_file = {
-            resize_window = false
-        }
-    },
-    filters = {
-        dotfiles = true,
-        custom = {
-            "^.git$",
-            "^.cache$",
-            ".pyc",
-            ".pyo",
-            "__pycache__",
-            "bower_components",
-            "DS_Store"
-        }
-    },
-    diagnostics = {
-        enable = true
-    },
-    git = {
-        ignore = false
-    },
-    renderer = {
-        indent_markers = {
-          enable = true
-        }
-    }
-}
-EOF

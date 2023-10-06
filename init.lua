@@ -1,0 +1,17 @@
+require('plugins')
+require('settings')
+require('mappings')
+
+-- Plugin setup
+require('plugins/diffview')
+require('plugins/fugitive')
+require('plugins/gh-line')
+require('plugins/git-signs')
+require('plugins/twiggy')
+require('plugins/format')
+require('plugins/treesitter')
+require('plugins/lsp')
+require('plugins/telescope')
+require('plugins/tree')
+require('plugins/misc')
+require('plugins/debug')
