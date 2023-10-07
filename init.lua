@@ -1,17 +1,18 @@
-require('plugins')
-require('settings')
-require('mappings')
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
--- Plugin setup
-require('plugins/diffview')
-require('plugins/fugitive')
-require('plugins/gh-line')
-require('plugins/git-signs')
-require('plugins/twiggy')
-require('plugins/format')
-require('plugins/treesitter')
-require('plugins/lsp')
-require('plugins/telescope')
-require('plugins/tree')
-require('plugins/misc')
-require('plugins/debug')
+if not vim.loop.fs_stat(lazypath) then
+	vim.fn.system({
+		"git",
+		"clone",
+		"--filter=blob:none",
+		"https://github.com/folke/lazy.nvim.git",
+		"--branch=stable", -- latest stable release
+		lazypath,
+	})
+end
+
+vim.opt.rtp:prepend(lazypath)
+
+require("mappings")
+require("lazy").setup("plugins")
+require("settings")

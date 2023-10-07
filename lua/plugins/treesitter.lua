@@ -1,25 +1,20 @@
-vim.cmd([[
-  set nofoldenable
-  set foldmethod=expr
-  set foldexpr=nvim_treesitter#foldexpr()
-  set foldminlines=50
-  set foldnestmax=2
-]])
-
-local parser_configs = require("nvim-treesitter.parsers").get_parser_configs()
-
-parser_configs.http = {
-  install_info = {
-    url = "https://github.com/NTBBloodbath/tree-sitter-http",
-    files = { "src/parser.c" },
-    branch = "main",
-  },
-}
-
-require'nvim-treesitter.configs'.setup {
-  ensure_installed = "all",
-  ignore_install = { "phpdoc" },
-  highlight = {
-    enable = true
-  },
+return {
+	{
+		"nvim-treesitter/nvim-treesitter",
+		build = ":TSUpdate",
+		opts = {
+			ensure_installed = "all",
+			ignore_install = { "phpdoc" },
+			highlight = {
+				enable = true,
+			},
+		},
+		init = function()
+			vim.opt.foldenable = false
+			vim.opt.foldmethod = "expr"
+			vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+			vim.opt.foldminlines = 50
+			vim.opt.foldnestmax = 2
+		end,
+	},
 }

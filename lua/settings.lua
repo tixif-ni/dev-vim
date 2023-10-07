@@ -5,8 +5,8 @@ vim.opt.ignorecase = true
 vim.opt.number = true
 vim.opt.more = true
 
-vim.cmd('set guioptions-=m')
-vim.cmd('set guioptions-=T')
+vim.cmd("set guioptions-=m")
+vim.cmd("set guioptions-=T")
 
 -- Performance boosters
 vim.opt.cursorline = true
@@ -22,7 +22,7 @@ vim.cmd([[
 ]])
 
 -- Stop vim's crazy formatting when pasting with the mouse
-vim.opt.pastetoggle = '<F5>'
+vim.opt.pastetoggle = "<F5>"
 
 -- Reload file if modified
 vim.opt.autoread = true
@@ -46,19 +46,18 @@ vim.opt.swapfile = false
 vim.opt.writebackup = false
 
 -- I like to see hidden spaces, tabs, etc
-vim.opt.listchars= 'eol:$,tab:>-,trail:-'
+vim.opt.listchars = "eol:$,tab:>-,trail:-"
 
 -- Hide preview when auto completing
-vim.cmd('set completeopt-=preview')
+vim.cmd("set completeopt-=preview")
 
--- Colorscheme 
+-- Colorscheme
 vim.g.enable_bold_font = 1
 vim.env.NVIM_TUI_ENABLE_TRUE_COLOR = 1
 
 vim.opt.termguicolors = true
-vim.opt.background = 'dark'
-vim.cmd('colorscheme hybrid_material')
-
+vim.opt.background = "dark"
+vim.cmd("colorscheme hybrid_material")
 
 vim.cmd([[
   let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
