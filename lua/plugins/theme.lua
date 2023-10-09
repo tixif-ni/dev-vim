@@ -1,7 +1,22 @@
 return {
-	"kristijanhusak/vim-hybrid-material",
 	{
-		"hoob3rt/lualine.nvim",
+		"kristijanhusak/vim-hybrid-material",
+		lazy = false, -- make sure we load this during startup
+		priority = 1000, -- make sure to load this before all the other start plugins
+		config = function()
+			vim.g.enable_bold_font = 1
+			vim.env.NVIM_TUI_ENABLE_TRUE_COLOR = 1
+
+			vim.opt.termguicolors = true
+			vim.opt.background = "dark"
+			vim.cmd("colorscheme hybrid_material")
+		end,
+	},
+	{
+		"nvim-lualine/lualine.nvim",
+		dependencies = {
+			"nvim-tree/nvim-web-devicons",
+		},
 		opts = {
 
 			options = {
@@ -19,24 +34,12 @@ return {
 			extensions = { "nvim-tree", "quickfix", "fugitive" },
 		},
 	},
-	{
-		"https://github.com/RRethy/vim-illuminate.git",
-		init = function()
-			vim.cmd([[
-                hi illuminatedWord cterm=underline gui=underline 
-            ]])
-		end,
-	},
+	"https://github.com/RRethy/vim-illuminate.git",
 	{
 		"https://github.com/whatyouhide/vim-lengthmatters.git",
-		init = function()
+		config = function()
 			vim.g.lengthmatters_start_at_column = 88
 		end,
 	},
-	{
-		"https://github.com/blueyed/vim-diminactive.git",
-		init = function()
-			vim.g.diminactive_enable_focus = 1
-		end,
-	},
+	{ "sunjon/shade.nvim", opts = {} },
 }

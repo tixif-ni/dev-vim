@@ -1,4 +1,49 @@
 return {
+	"preservim/nerdcommenter",
+	{
+		"folke/todo-comments.nvim",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+		},
+		opts = {
+			keywords = {
+				FIX = {
+					icon = " ",
+					color = "error",
+					alt = { "FIXME", "BUG", "FIXIT", "ISSUE" },
+				},
+				TODO = { icon = " ", color = "info" },
+				HACK = { icon = " ", color = "warning" },
+				WARN = { icon = " ", color = "warning", alt = { "WARNING", "XXX" } },
+				PERF = { icon = " ", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
+				NOTE = { icon = " ", color = "hint", alt = { "INFO" } },
+			},
+		},
+		init = function()
+			vim.cmd([[
+              command! TodoCurrent execute 'TodoQuickFix cwd='.expand("%:p")
+            ]])
+		end,
+	},
+	"https://github.com/mattn/emmet-vim.git",
+	{
+		"nvim-treesitter/nvim-treesitter",
+		build = ":TSUpdate",
+		opts = {
+			ensure_installed = "all",
+			ignore_install = { "phpdoc" },
+			highlight = {
+				enable = true,
+			},
+		},
+		init = function()
+			vim.opt.foldenable = false
+			vim.opt.foldmethod = "expr"
+			vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+			vim.opt.foldminlines = 50
+			vim.opt.foldnestmax = 2
+		end,
+	},
 	{
 		"mhartington/formatter.nvim",
 		opts = function()
@@ -67,11 +112,11 @@ return {
 		end,
 		init = function()
 			vim.cmd([[
-                          augroup FormatAutogroup
-                              autocmd!
-                              autocmd BufWritePost *.js,*.jsx,*.ts,*.json,*.py,*.lua,*.toml,*.yaml,*.md,*.html,*.tf FormatWrite
-                          augroup END
-                        ]])
+              augroup FormatAutogroup
+                  autocmd!
+                  autocmd BufWritePost *.js,*.jsx,*.ts,*.json,*.py,*.lua,*.toml,*.yaml,*.md,*.html,*.tf FormatWrite
+              augroup END
+            ]])
 		end,
 	},
 }

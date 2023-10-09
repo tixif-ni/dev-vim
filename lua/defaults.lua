@@ -51,14 +51,10 @@ vim.opt.listchars = "eol:$,tab:>-,trail:-"
 -- Hide preview when auto completing
 vim.cmd("set completeopt-=preview")
 
--- Colorscheme
-vim.g.enable_bold_font = 1
-vim.env.NVIM_TUI_ENABLE_TRUE_COLOR = 1
-
-vim.opt.termguicolors = true
-vim.opt.background = "dark"
-vim.cmd("colorscheme hybrid_material")
-
-vim.cmd([[
-  let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
-]])
+-- Define custom file types
+-- https://neovim.io/doc/user/lua.html#vim.filetype
+vim.filetype.add({
+	extension = {
+		http = "http", -- These were being interpreted as .conf files
+	},
+})
