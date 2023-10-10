@@ -1,16 +1,15 @@
 return {
 	{
-		"https://github.com/Lokaltog/vim-easymotion.git",
+		"https://github.com/ggandor/leap.nvim.git",
+		dependencies = {
+			"https://github.com/tpope/vim-repeat.git",
+		},
 		init = function()
-			vim.cmd([[
-              :map / <Plug>(easymotion-sn)
-              :omap / <Plug>(easymotion-tn)
-            ]])
+			require("leap").add_default_mappings()
 		end,
 	},
 	"https://github.com/tpope/vim-surround.git",
-	"https://github.com/tpope/vim-unimpaired.git",
-	"https://github.com/terryma/vim-multiple-cursors.git",
+	"mg979/vim-visual-multi",
 	"https://github.com/Raimondi/delimitMate.git",
 	{
 		"https://github.com/andymass/vim-matchup.git",

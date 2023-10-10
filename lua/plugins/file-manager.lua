@@ -40,13 +40,14 @@ return {
 			{ "<leader>nr", ":NvimTreeRefresh<CR>", desc = "Refreshes tree items", mode = "n" },
 		},
 	},
+	{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 	{
 		"nvim-telescope/telescope.nvim",
 		tag = "0.1.3",
 		dependencies = {
 			"nvim-lua/popup.nvim",
 			"nvim-lua/plenary.nvim",
-			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+			"nvim-telescope/telescope-fzf-native.nvim",
 			"https://github.com/tom-anders/telescope-vim-bookmarks.nvim.git",
 		},
 		opts = function()

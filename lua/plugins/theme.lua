@@ -41,5 +41,17 @@ return {
 			vim.g.lengthmatters_start_at_column = 88
 		end,
 	},
-	{ "sunjon/shade.nvim", opts = {} },
+	{
+		"https://github.com/levouh/tint.nvim.git",
+		opts = {
+			window_ignore_function = function(winid)
+				local bufid = vim.api.nvim_win_get_buf(winid)
+				local filetype = vim.api.nvim_buf_get_option(bufid, "filetype")
+				local floating = vim.api.nvim_win_get_config(winid).relative ~= ""
+
+				-- Do not tint under these conditions
+				return filetype == "NvimTree" or floating
+			end,
+		},
+	},
 }

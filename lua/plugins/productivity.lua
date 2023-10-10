@@ -10,6 +10,7 @@ return {
 			vim.g.mkdp_auto_close = 1
 			vim.g.mkdp_refresh_slow = 1
 		end,
+		ft = "markdown",
 	},
 	{
 		"rest-nvim/rest.nvim",
@@ -33,13 +34,10 @@ return {
 			bundled_cheatsheets = false,
 			bundled_plugin_cheatsheets = false,
 		},
+		cmd = "Cheatsheet",
 	},
-	"MattesGroeger/vim-bookmarks",
 	{
-		"https://github.com/tom-anders/telescope-vim-bookmarks.nvim.git",
-		depends = {
-			"nvim-telescope/telescope.nvim",
-		},
+		"MattesGroeger/vim-bookmarks",
 		init = function()
 			vim.g.bookmark_save_per_working_dir = 1
 			vim.g.bookmark_auto_save = 1
