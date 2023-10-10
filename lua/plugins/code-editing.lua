@@ -95,12 +95,23 @@ return {
 			}
 		end,
 		init = function()
-			vim.cmd([[
-              augroup FormatAutogroup
-                  autocmd!
-                  autocmd BufWritePost *.js,*.jsx,*.ts,*.json,*.py,*.lua,*.toml,*.yaml,*.md,*.html,*.tf FormatWrite
-              augroup END
-            ]])
+			vim.api.nvim_create_autocmd("BufWritePost", {
+				pattern = {
+					"*.js",
+					"*.jsx",
+					"*.ts",
+					"*.json",
+					"*.py",
+					"*.lua",
+					"*.toml",
+					"*.yaml",
+					"*.md",
+					"*.html",
+					"*.tf ",
+				},
+				group = vim.api.nvim_create_augroup("FormatAutogroup", {}),
+				command = "FormatWrite",
+			})
 		end,
 	},
 }
