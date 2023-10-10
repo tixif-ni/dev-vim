@@ -94,8 +94,13 @@ return {
 				},
 			}
 		end,
-		keys = {
-			{ "<localleader>w", ":FormatWrite<CR>", mode = "n" },
-		},
+		init = function()
+			vim.cmd([[
+              augroup FormatAutogroup
+                  autocmd!
+                  autocmd BufWritePost *.js,*.jsx,*.ts,*.json,*.py,*.lua,*.toml,*.yaml,*.md,*.html,*.tf FormatWrite
+              augroup END
+            ]])
+		end,
 	},
 }

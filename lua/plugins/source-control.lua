@@ -114,6 +114,7 @@ return {
 		keys = {
 			{ "<leader>gdf", ":DiffviewFileHistory %<CR>", mode = "n" },
 			{ "dd", ":DiffviewLine<CR>", mode = "n", ft = { "git", "fugitiveblame" } },
+			{ "dh", ":DiffviewLine ..HEAD<CR>", mode = "n", ft = { "git", "fugitiveblame" } },
 		},
 		init = function()
 			vim.api.nvim_create_user_command("DiffviewLine", function(opts)
