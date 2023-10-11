@@ -42,7 +42,7 @@ return {
 					"dirbuf",
 					"dirvish",
 					"fugitive",
-					"neo-tree",
+					"NvimTree",
 				},
 			})
 		end,
@@ -62,7 +62,7 @@ return {
 				local floating = vim.api.nvim_win_get_config(winid).relative ~= ""
 
 				-- Do not tint under these conditions
-				return filetype == "neo-tree" or floating
+				return filetype == "NvimTree" or floating
 			end,
 		},
 	},

@@ -15,55 +15,47 @@ end
 
 return {
 	{
-		"nvim-neo-tree/neo-tree.nvim",
+		"nvim-tree/nvim-tree.lua",
 		dependencies = {
-			"nvim-lua/plenary.nvim",
 			"nvim-tree/nvim-web-devicons",
-			"MunifTanjim/nui.nvim",
-			{
-				"s1n7ax/nvim-window-picker",
-				opts = {
-					filter_rules = {
-						include_current_win = false,
-						autoselect_one = true,
-						-- filter using buffer options
-						bo = {
-							-- if the file type is one of following, the window will be ignored
-							filetype = { "neo-tree", "neo-tree-popup", "notify" },
-							-- if the buffer type is one of following, the window will be ignored
-							buftype = { "terminal", "quickfix" },
-						},
-					},
-				},
-			},
 		},
 		opts = {
-			window = {
-				mappings = {
-					["S"] = "split_with_window_picker",
-					["s"] = "vsplit_with_window_picker",
+			actions = {
+				open_file = {
+					resize_window = false,
 				},
 			},
-			filesystem = {
-				use_libuv_file_watcher = true,
-				filtered_items = {
-					never_show = {
-						".git",
-						".cache",
-						".pyc",
-						".pyo",
-						".vscode",
-						"__pycache__",
-						"bower_components",
-						".DS_Store",
-					},
+			filters = {
+				dotfiles = true,
+				custom = {
+					"^.git$",
+					"^.cache$",
+					".pyc",
+					".pyo",
+					"__pycache__",
+					"bower_components",
+					"DS_Store",
+				},
+			},
+			diagnostics = {
+				enable = true,
+			},
+			renderer = {
+				indent_markers = {
+					enable = true,
+				},
+			},
+			filesystem_watchers = {
+				ignore_dirs = {
+					"node_modules",
+					".venv",
 				},
 			},
 		},
-		-- TODO: fugitive integration to open in tree from git status
 		keys = {
-			{ "<leader>nt", ":Neotree filesystem toggle<CR>", desc = "Toggles tree display", mode = "n" },
-			{ "<leader>nf", ":Neotree filesystem reveal<CR>", desc = "Finds file in tree", mode = "n" },
+			{ "<leader>nt", ":NvimTreeToggle<CR>", desc = "Toggles tree display", mode = "n" },
+			{ "<leader>nf", ":NvimTreeFindFile<CR>", desc = "Finds file in tree", mode = "n" },
+			{ "<leader>nr", ":NvimTreeRefresh<CR>", desc = "Refreshes tree items", mode = "n" },
 		},
 	},
 	{
@@ -75,6 +67,8 @@ return {
 			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 			"https://github.com/tom-anders/telescope-vim-bookmarks.nvim.git",
 			"nvim-telescope/telescope-ui-select.nvim",
+			"lpoto/telescope-docker.nvim",
+			"smilovanovic/telescope-search-dir-picker.nvim",
 		},
 		opts = function()
 			return {
@@ -116,12 +110,15 @@ return {
 					["ui-select"] = {
 						require("telescope.themes").get_dropdown({}),
 					},
+					docker = {
+						theme = "ivy",
+					},
 				},
 			}
 		end,
 		keys = {
 			{ "<leader>ff", ":Telescope find_files<CR>" },
-			{ "<leader>fl", ":Telescope live_grep<CR>" },
+			{ "<leader>fl", ":Telescope search_dir_picker<CR>" },
 			{ "<leader>fw", ":Telescope grep_string<CR>" },
 			{ "<leader>fb", ":Telescope buffers<CR>" },
 			{ "<leader>fgf", ":Telescope git_files<CR>" },
@@ -153,16 +150,16 @@ return {
 					})
 				end,
 			},
-			{ "<leader>fgc", "<cmd>Telescope git_commits<cr>" },
-			{ "<leader>fma", "<cmd>Telescope vim_bookmarks all<cr>" },
-			{ "<leader>fmf", "<cmd>Telescope vim_bookmarks current_file<cr>" },
-			{ "<leader>fdf", "<cmd>Telescope lsp_document_diagnostics<cr>" },
-			{ "<leader>fda", "<cmd>Telescope lsp_workspace_diagnostics<cr>" },
+			{ "<leader>fgc", ":Telescope git_commits<CR>" },
+			{ "<leader>fma", ":Telescope vim_bookmarks all<CR>" },
+			{ "<leader>fmf", ":Telescope vim_bookmarks current_file<CR>" },
 		},
 		init = function()
 			require("telescope").load_extension("fzf")
 			require("telescope").load_extension("vim_bookmarks")
 			require("telescope").load_extension("ui-select")
+			require("telescope").load_extension("docker")
+			require("telescope").load_extension("search_dir_picker")
 
 			-- Git pickers
 			-- Setup multiple folder awareness
