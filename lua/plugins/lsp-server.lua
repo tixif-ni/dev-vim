@@ -33,7 +33,7 @@ return {
 					vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
 					vim.keymap.set("n", "gr", ":Lspsaga lsp_finder<CR>", opts)
 					vim.keymap.set("n", "K", ":Lspsaga hover_doc<CR>", opts)
-					vim.keymap.set("n", "<C-k>", ":Lspsaga signature_help<CR>", opts)
+					--vim.keymap.set("n", "<C-k>", ":Lspsaga signature_help<CR>", opts)
 					vim.keymap.set("n", "<leader>ca", ":Lspsaga code_action<CR>", opts)
 					vim.keymap.set("v", "<leader>ca", ":<C-U>Lspsaga range_code_action<CR>", opts)
 					vim.keymap.set("n", "<leader>cr", ":Lspsaga rename<CR>", opts)
