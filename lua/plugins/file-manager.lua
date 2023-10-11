@@ -1,3 +1,18 @@
+local utils = require("utils.git")
+
+local set_git_root = function(opts)
+	opts = opts or {}
+	if opts.cwd == nil or opts.cwd == "" then
+		opts.cwd = utils.get_git_root()
+	end
+
+	if opts.cwd == nil or opts.cwd == "" then
+		error("Not a git repository")
+	end
+
+	return opts
+end
+
 return {
 	{
 		"nvim-tree/nvim-tree.lua",
@@ -11,7 +26,6 @@ return {
 				},
 			},
 			filters = {
-				dotfiles = true,
 				custom = {
 					"^.git$",
 					"^.cache$",
@@ -25,12 +39,15 @@ return {
 			diagnostics = {
 				enable = true,
 			},
-			git = {
-				ignore = false,
-			},
 			renderer = {
 				indent_markers = {
 					enable = true,
+				},
+			},
+			filesystem_watchers = {
+				ignore_dirs = {
+					"node_modules",
+					".venv",
 				},
 			},
 		},
@@ -40,50 +57,78 @@ return {
 			{ "<leader>nr", ":NvimTreeRefresh<CR>", desc = "Refreshes tree items", mode = "n" },
 		},
 	},
-	{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 	{
 		"nvim-telescope/telescope.nvim",
 		tag = "0.1.3",
 		dependencies = {
 			"nvim-lua/popup.nvim",
 			"nvim-lua/plenary.nvim",
-			"nvim-telescope/telescope-fzf-native.nvim",
+			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 			"https://github.com/tom-anders/telescope-vim-bookmarks.nvim.git",
 		},
-		opts = function()
-			local actions = require("telescope.actions")
-
-			return {
-				defaults = {
+		opts = {
+			defaults = {
+				mappings = {
+					i = {
+						["<C-n>"] = false,
+						["<C-p>"] = false,
+						["<C-j>"] = "move_selection_next",
+						["<C-k>"] = "move_selection_previous",
+					},
+				},
+			},
+			pickers = {
+				buffers = {
 					mappings = {
-						i = {
-							["<C-n>"] = false,
-							["<C-p>"] = false,
-							["<C-j>"] = actions.move_selection_next,
-							["<C-k>"] = actions.move_selection_previous,
+						n = {
+							["dd"] = "delete_buffer",
 						},
 					},
 				},
-				extensions = {
-					fzf = {
-						fuzzy = true,
-						override_generic_sorter = true,
-						override_file_sorter = true,
-						case_mode = "smart_case",
-					},
+			},
+			extensions = {
+				fzf = {
+					fuzzy = true,
+					override_generic_sorter = true,
+					override_file_sorter = true,
+					case_mode = "smart_case",
 				},
-			}
-		end,
+			},
+		},
 		keys = {
-			{ "<leader>ff", "<cmd>Telescope find_files<cr>" },
-			{ "<leader>fl", "<cmd>Telescope live_grep<cr>" },
-			{ "<leader>fw", "<cmd>Telescope grep_string<cr>" },
-			{ "<leader>fb", "<cmd>Telescope buffers<cr>" },
-			{ "<leader>fgf", "<cmd>Telescope git_files<cr>" },
-			{ "<leader>fgl", "<cmd>Telescope git_local git_live_grep<cr>" },
-			{ "<leader>fgw", "<cmd>Telescope git_local git_grep_string<cr>" },
-			{ "<leader>fdl", "<cmd>Telescope directory_local directory_live_grep<cr>" },
-			{ "<leader>fdw", "<cmd>Telescope directory_local directory_grep_string<cr>" },
+			{ "<leader>ff", ":Telescope find_files<CR>" },
+			{ "<leader>fl", ":Telescope live_grep<CR>" },
+			{ "<leader>fw", ":Telescope grep_string<CR>" },
+			{ "<leader>fb", ":Telescope buffers<CR>" },
+			{ "<leader>fgf", ":Telescope git_files<CR>" },
+			{
+				"<leader>fgl",
+				function()
+					return require("telescope.builtin").live_grep(set_git_root())
+				end,
+			},
+			{
+				"<leader>fgw",
+				function()
+					return require("telescope.builtin").grep_string(set_git_root())
+				end,
+			},
+			{
+				"<leader>fdl",
+				function()
+					return require("telescope.builtin").live_grep({
+						cwd = vim.fn.expand("%:p:h"),
+					})
+				end,
+			},
+			{
+				"<leader>fdw",
+				function()
+					return require("telescope.builtin").grep_string({
+						cwd = vim.fn.expand("%:p:h"),
+					})
+				end,
+			},
 			{ "<leader>fgc", "<cmd>Telescope git_commits<cr>" },
 			{ "<leader>fma", "<cmd>Telescope vim_bookmarks all<cr>" },
 			{ "<leader>fmf", "<cmd>Telescope vim_bookmarks current_file<cr>" },
@@ -91,70 +136,32 @@ return {
 			{ "<leader>fda", "<cmd>Telescope lsp_workspace_diagnostics<cr>" },
 		},
 		init = function()
-			local actions = require("telescope.actions")
-			local action_state = require("telescope.actions.state")
-			local git_pickers = require("telescope.builtin.__git")
-			local internal_pickers = require("telescope.builtin.__internal")
-			local diffview = require("diffview")
-			local git_utils = require("utils.git")
-
 			require("telescope").load_extension("fzf")
 			require("telescope").load_extension("vim_bookmarks")
-			require("telescope").load_extension("neoclip")
 
-			-- LOCAL EXTENSIONS
-			require("telescope").load_extension("git_local")
-
-			require("telescope.builtin").buffers = function(opts)
-				opts = opts or {}
-				opts.attach_mappings = function(_, map)
-					map("n", "dd", actions.delete_buffer)
-
-					return true
-				end
-
-				return internal_pickers.buffers(opts)
-			end
+			-- Git pickers
+			-- Setup multiple folder awareness
+			local git_pickers = require("telescope.builtin.__git")
 
 			require("telescope.builtin").git_files = function(opts)
-				return git_pickers.files(git_utils.set_git_root(opts))
+				return git_pickers.files(set_git_root(opts))
 			end
 
 			require("telescope.builtin").git_commits = function(opts)
-				opts = git_utils.set_git_root(opts)
-
-				opts.attach_mappings = function(_, map)
-					map("n", "dd", function(prompt_bufnr)
-						local cwd = action_state.get_current_picker(prompt_bufnr).cwd
-						local selection = action_state.get_selected_entry()
-
-						if selection ~= nil then
-							diffview.open(selection.value .. "^!", "-C" .. cwd)
-						end
-					end)
-
-					return true
-				end
-
-				return git_pickers.commits(opts)
+				return git_pickers.commits(set_git_root(opts))
 			end
 
 			require("telescope.builtin").git_bcommits = function(opts)
-				return git_pickers.bcommits(git_utils.set_git_root(opts))
+				return git_pickers.bcommits(set_git_root(opts))
 			end
 
 			require("telescope.builtin").git_branches = function(opts)
-				return git_pickers.branches(git_utils.set_git_root(opts))
+				return git_pickers.branches(set_git_root(opts))
 			end
 
 			require("telescope.builtin").git_status = function(opts)
-				return git_pickers.status(git_utils.set_git_root(opts))
+				return git_pickers.status(set_git_root(opts))
 			end
-
-			vim.cmd([[
-              autocmd User TelescopePreviewerLoaded setlocal number
-              command! -nargs=1 Livegrep lua require('telescope.builtin').live_grep({search_dirs={'<args>'}})
-            ]])
 		end,
 	},
 }

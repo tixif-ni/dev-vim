@@ -7,19 +7,6 @@ G.get_git_root = function()
 	return vim.fn.substitute(git_dir, ".git", "", "")
 end
 
-G.set_git_root = function(opts)
-	opts = opts or {}
-	if opts.cwd == nil or opts.cwd == "" then
-		opts.cwd = G.get_git_root()
-	end
-
-	if opts.cwd == nil or opts.cwd == "" then
-		error("Not a git repository")
-	end
-
-	return opts
-end
-
 G.get_line_hash_range = function(rev)
 	local text_util = require("utils.text")
 	local line = vim.fn.getline(".")
