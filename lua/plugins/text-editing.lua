@@ -1,13 +1,4 @@
 return {
-	{
-		"https://github.com/ggandor/leap.nvim.git",
-		dependencies = {
-			"https://github.com/tpope/vim-repeat.git",
-		},
-		init = function()
-			require("leap").add_default_mappings()
-		end,
-	},
 	"https://github.com/tpope/vim-surround.git",
 	"mg979/vim-visual-multi",
 	"https://github.com/Raimondi/delimitMate.git",
@@ -49,5 +40,10 @@ return {
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 		},
+	},
+	{
+		"folke/flash.nvim",
+		event = "VeryLazy",
+		opts = {},
 	},
 }
