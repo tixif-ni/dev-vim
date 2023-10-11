@@ -35,15 +35,17 @@ return {
 		end,
 	},
 	{
+		"https://github.com/easymotion/vim-easymotion.git",
+		keys = {
+			{ "/", "<Plug>(easymotion-sn)", mode = "n" },
+			{ "/", "<Plug>(easymotion-tn)", mode = "o" },
+		},
+	},
+	{
 		-- TODO: Maybe... needs more testing/configs
 		"nvim-pack/nvim-spectre",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 		},
-	},
-	{
-		"folke/flash.nvim",
-		event = "VeryLazy",
-		opts = {},
 	},
 }
