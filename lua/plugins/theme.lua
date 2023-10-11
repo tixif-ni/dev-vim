@@ -50,7 +50,7 @@ return {
 				local floating = vim.api.nvim_win_get_config(winid).relative ~= ""
 
 				-- Do not tint under these conditions
-				return filetype == "NvimTree" or floating
+				return filetype == "neo-tree" or floating
 			end,
 		},
 	},

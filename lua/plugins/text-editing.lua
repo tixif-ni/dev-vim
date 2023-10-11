@@ -43,4 +43,11 @@ return {
 			vim.g.table_mode_corner = "|"
 		end,
 	},
+	{
+		-- TODO: Maybe... needs more testing/configs
+		"nvim-pack/nvim-spectre",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+		},
+	},
 }

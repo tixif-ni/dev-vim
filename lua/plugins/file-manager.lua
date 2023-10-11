@@ -15,46 +15,55 @@ end
 
 return {
 	{
-		"nvim-tree/nvim-tree.lua",
+		"nvim-neo-tree/neo-tree.nvim",
 		dependencies = {
+			"nvim-lua/plenary.nvim",
 			"nvim-tree/nvim-web-devicons",
+			"MunifTanjim/nui.nvim",
+			{
+				"s1n7ax/nvim-window-picker",
+				opts = {
+					filter_rules = {
+						include_current_win = false,
+						autoselect_one = true,
+						-- filter using buffer options
+						bo = {
+							-- if the file type is one of following, the window will be ignored
+							filetype = { "neo-tree", "neo-tree-popup", "notify" },
+							-- if the buffer type is one of following, the window will be ignored
+							buftype = { "terminal", "quickfix" },
+						},
+					},
+				},
+			},
 		},
 		opts = {
-			actions = {
-				open_file = {
-					resize_window = false,
+			window = {
+				mappings = {
+					["S"] = "split_with_window_picker",
+					["s"] = "vsplit_with_window_picker",
 				},
 			},
-			filters = {
-				custom = {
-					"^.git$",
-					"^.cache$",
-					".pyc",
-					".pyo",
-					"__pycache__",
-					"bower_components",
-					"DS_Store",
-				},
-			},
-			diagnostics = {
-				enable = true,
-			},
-			renderer = {
-				indent_markers = {
-					enable = true,
-				},
-			},
-			filesystem_watchers = {
-				ignore_dirs = {
-					"node_modules",
-					".venv",
+			filesystem = {
+				use_libuv_file_watcher = true,
+				filtered_items = {
+					never_show = {
+						".git",
+						".cache",
+						".pyc",
+						".pyo",
+						".vscode",
+						"__pycache__",
+						"bower_components",
+						".DS_Store",
+					},
 				},
 			},
 		},
+		-- TODO: fugitive integration to open in tree from git status
 		keys = {
-			{ "<leader>nt", ":NvimTreeToggle<CR>", desc = "Toggles tree display", mode = "n" },
-			{ "<leader>nf", ":NvimTreeFindFile<CR>", desc = "Finds file in tree", mode = "n" },
-			{ "<leader>nr", ":NvimTreeRefresh<CR>", desc = "Refreshes tree items", mode = "n" },
+			{ "<leader>nt", ":Neotree filesystem toggle<CR>", desc = "Toggles tree display", mode = "n" },
+			{ "<leader>nf", ":Neotree filesystem reveal<CR>", desc = "Finds file in tree", mode = "n" },
 		},
 	},
 	{
