@@ -74,36 +74,42 @@ return {
 			"nvim-lua/plenary.nvim",
 			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 			"https://github.com/tom-anders/telescope-vim-bookmarks.nvim.git",
+			"nvim-telescope/telescope-ui-select.nvim",
 		},
-		opts = {
-			defaults = {
-				mappings = {
-					i = {
-						["<C-n>"] = false,
-						["<C-p>"] = false,
-						["<C-j>"] = "move_selection_next",
-						["<C-k>"] = "move_selection_previous",
-					},
-				},
-			},
-			pickers = {
-				buffers = {
+		opts = function()
+			return {
+				defaults = {
 					mappings = {
-						n = {
-							["dd"] = "delete_buffer",
+						i = {
+							["<C-n>"] = false,
+							["<C-p>"] = false,
+							["<C-j>"] = "move_selection_next",
+							["<C-k>"] = "move_selection_previous",
 						},
 					},
 				},
-			},
-			extensions = {
-				fzf = {
-					fuzzy = true,
-					override_generic_sorter = true,
-					override_file_sorter = true,
-					case_mode = "smart_case",
+				pickers = {
+					buffers = {
+						mappings = {
+							n = {
+								["dd"] = "delete_buffer",
+							},
+						},
+					},
 				},
-			},
-		},
+				extensions = {
+					fzf = {
+						fuzzy = true,
+						override_generic_sorter = true,
+						override_file_sorter = true,
+						case_mode = "smart_case",
+					},
+					["ui-select"] = {
+						require("telescope.themes").get_dropdown({}),
+					},
+				},
+			}
+		end,
 		keys = {
 			{ "<leader>ff", ":Telescope find_files<CR>" },
 			{ "<leader>fl", ":Telescope live_grep<CR>" },
@@ -147,6 +153,7 @@ return {
 		init = function()
 			require("telescope").load_extension("fzf")
 			require("telescope").load_extension("vim_bookmarks")
+			require("telescope").load_extension("ui-select")
 
 			-- Git pickers
 			-- Setup multiple folder awareness

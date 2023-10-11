@@ -2,24 +2,11 @@ return {
 	{
 		"neovim/nvim-lspconfig",
 		dependencies = {
-			{
-				"kkharji/lspsaga.nvim",
-				opts = {
-					error_sign = "",
-					warn_sign = "",
-					hint_sign = "",
-					infor_sign = " ",
-					diagnostic_header_icon = "   ",
-					code_action_icon = " ",
-				},
-			},
+			"nvim-telescope/telescope.nvim",
 		},
 		init = function()
 			-- Disable text object diagnostic next to each line to avoid overbloating UI
-			vim.lsp.handlers["textDocument/publishDiagnostics"] =
-				vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-					virtual_text = false,
-				})
+			vim.diagnostic.config({ virtual_text = false })
 
 			-- Use LspAttach autocommand to only map the following keys
 			-- after the language server attaches to the current buffer
@@ -29,17 +16,21 @@ return {
 					-- Buffer local mappings.
 					-- See `:help vim.lsp.*` for documentation on any of the below functions
 					local opts = { buffer = ev.buf }
-					vim.keymap.set("n", "gD", ":Lspsaga preview_definition<CR>", opts)
-					vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-					vim.keymap.set("n", "gr", ":Lspsaga lsp_finder<CR>", opts)
-					vim.keymap.set("n", "K", ":Lspsaga hover_doc<CR>", opts)
-					--vim.keymap.set("n", "<C-k>", ":Lspsaga signature_help<CR>", opts)
-					vim.keymap.set("n", "<leader>ca", ":Lspsaga code_action<CR>", opts)
-					vim.keymap.set("v", "<leader>ca", ":<C-U>Lspsaga range_code_action<CR>", opts)
-					vim.keymap.set("n", "<leader>cr", ":Lspsaga rename<CR>", opts)
-					vim.keymap.set("n", "<leader>cd", ":Lspsaga show_line_diagnostics<CR>", opts)
+					vim.keymap.set("n", "gd", ":Telescope lsp_definitions<CR>", opts)
+					vim.keymap.set("n", "gi", ":Telescope lsp_implementations<CR>", opts)
+					vim.keymap.set("n", "gr", ":Telescope lsp_references<CR>", opts)
+					vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+					vim.keymap.set("n", "<leader>cd", ":Telescope diagnostics bufnr=0<CR>", opts)
+					vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
+					vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, opts)
 				end,
 			})
+
+			local diagnostic_icons = { Error = "", Warn = "", Hint = "", Info = " " }
+			for severity, icon in pairs(diagnostic_icons) do
+				local hl = "DiagnosticSign" .. severity
+				vim.fn.sign_define(hl, { text = icon, texthl = hl })
+			end
 		end,
 	},
 	{
