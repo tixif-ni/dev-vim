@@ -8,13 +8,21 @@ return {
 		},
 		opts = function()
 			return {
+				components = {
+					"DESC",
+					"CMD",
+					"KEYS",
+				},
+				sorty_by = {
+					"DESC",
+					"KEYS",
+				},
 				integration = {
 					lazy = {
 						enable = true,
 					},
 					telescope = {
 						enable = true,
-						theme = require("telescope.themes").commander,
 					},
 				},
 			}
@@ -22,8 +30,5 @@ return {
 		keys = {
 			{ "<leader>fc", ":Telescope commander<CR>", mode = "n" },
 		},
-		init = function()
-			require("telescope").load_extension("commander")
-		end,
 	},
 }

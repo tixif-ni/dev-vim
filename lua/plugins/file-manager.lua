@@ -53,9 +53,8 @@ return {
 			},
 		},
 		keys = {
-			{ "<leader>nt", ":NvimTreeToggle<CR>", desc = "Toggles tree display", mode = "n" },
-			{ "<leader>nf", ":NvimTreeFindFile<CR>", desc = "Finds file in tree", mode = "n" },
-			{ "<leader>nr", ":NvimTreeRefresh<CR>", desc = "Refreshes tree items", mode = "n" },
+			{ "<leader>nt", ":NvimTreeToggle<CR>", desc = "[Tree] Toggle tree", mode = "n", noremap = true },
+			{ "<leader>nf", ":NvimTreeFindFile<CR>", desc = "[Tree] Find file", mode = "n", noremap = true },
 		},
 	},
 	{ "stevearc/dressing.nvim", opts = {} },
@@ -66,9 +65,7 @@ return {
 			"nvim-lua/popup.nvim",
 			"nvim-lua/plenary.nvim",
 			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-			"https://github.com/tom-anders/telescope-vim-bookmarks.nvim.git",
 			"smilovanovic/telescope-search-dir-picker.nvim",
-			"lpoto/telescope-docker.nvim",
 		},
 		opts = function()
 			return {
@@ -99,6 +96,12 @@ return {
 					lsp_implementations = {
 						show_line = false,
 					},
+					git_branches = {
+						theme = "ivy",
+					},
+					git_status = {
+						theme = "ivy",
+					},
 				},
 				extensions = {
 					fzf = {
@@ -107,87 +110,69 @@ return {
 						override_file_sorter = true,
 						case_mode = "smart_case",
 					},
-					docker = {
-						theme = "ivy",
-					},
 				},
 			}
 		end,
 		keys = {
-			{ "<leader>ff", ":Telescope find_files<CR>" },
-			{ "<leader>fl", ":Telescope search_dir_picker<CR>" },
-			{ "<leader>fw", ":Telescope grep_string<CR>" },
-			{ "<leader>fb", ":Telescope buffers<CR>" },
-			{ "<leader>fgf", ":Telescope git_files<CR>" },
+			{ "<leader>ff", ":Telescope find_files<CR>", desc = "[File] Find file", mode = "n", noremap = true },
+			{ "<leader>fl", ":Telescope search_dir_picker<CR>", desc = "[File] Find text", mode = "n", noremap = true },
+			{ "<leader>fw", ":Telescope grep_string<CR>", desc = "[File] Find word", mode = "n", noremap = true },
+			{ "<leader>fb", ":Telescope buffers<CR>", desc = "[File] Find buffer", mode = "n", noremap = true },
+			{
+				"<leader>fgf",
+				function()
+					require("telescope.builtin").git_files(set_git_root())
+				end,
+				desc = "[Git] Find file",
+				mode = "n",
+				noremap = true,
+			},
 			{
 				"<leader>fgl",
 				function()
-					return require("telescope.builtin").live_grep(set_git_root())
+					require("telescope.builtin").live_grep(set_git_root())
 				end,
+				desc = "[Git] Find text",
+				mode = "n",
+				noremap = true,
 			},
 			{
 				"<leader>fgw",
 				function()
-					return require("telescope.builtin").grep_string(set_git_root())
+					require("telescope.builtin").grep_string(set_git_root())
 				end,
+				desc = "[Git] Find word",
+				mode = "n",
+				noremap = true,
 			},
 			{
-				"<leader>fdl",
+				"<leader>fgc",
 				function()
-					return require("telescope.builtin").live_grep({
-						cwd = vim.fn.expand("%:p:h"),
-					})
+					require("telescope.builtin").git_commits(set_git_root())
 				end,
+				desc = "[Git] Find log",
+				mode = "n",
+				noremap = true,
 			},
 			{
-				"<leader>fdw",
+				"<leader>fgb",
 				function()
-					return require("telescope.builtin").grep_string({
-						cwd = vim.fn.expand("%:p:h"),
-					})
+					require("telescope.builtin").git_branches(set_git_root())
 				end,
+				desc = "[Git] Find branch",
+				mode = "n",
+				noremap = true,
 			},
-			{ "<leader>fma", ":Telescope vim_bookmarks all<CR>" },
-			{ "<leader>fmf", ":Telescope vim_bookmarks current_file<CR>" },
 		},
 		commander = {
 			{
-				cat = "Files",
-				desc = "Find files",
-				cmd = ":Telescope find_files<CR>",
-				keys = { "n", "<leader>ff" },
-			},
-			{
-				cat = "Git",
-				desc = "Find files",
-				cmd = function()
-					require("telescope.builtin").git_files(set_git_root())
-				end,
-			},
-			{
-				cat = "Git",
-				desc = "Find commits",
-				cmd = function()
-					require("telescope.builtin").git_commits(set_git_root())
-				end,
-			},
-			{
-				cat = "Git",
-				desc = "Find buffer commits",
+				desc = "[Git] Buffer commits",
 				cmd = function()
 					require("telescope.builtin").git_bcommits(set_git_root())
 				end,
 			},
 			{
-				cat = "Git",
-				desc = "Find branches",
-				cmd = function()
-					require("telescope.builtin").git_branches(set_git_root())
-				end,
-			},
-			{
-				cat = "Git",
-				desc = "Show status",
+				desc = "[Git] Display status",
 				cmd = function()
 					require("telescope.builtin").git_status(set_git_root())
 				end,
@@ -195,8 +180,6 @@ return {
 		},
 		init = function()
 			require("telescope").load_extension("fzf")
-			require("telescope").load_extension("vim_bookmarks")
-			require("telescope").load_extension("docker")
 			require("telescope").load_extension("search_dir_picker")
 		end,
 	},

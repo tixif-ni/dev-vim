@@ -37,8 +37,8 @@ return {
 	{
 		"https://github.com/easymotion/vim-easymotion.git",
 		keys = {
-			{ "/", "<Plug>(easymotion-sn)", mode = "n" },
-			{ "/", "<Plug>(easymotion-tn)", mode = "o" },
+			{ "/", "<Plug>(easymotion-sn)", mode = "n", desc = "[Text] Search", noremap = true },
+			{ "/", "<Plug>(easymotion-tn)", mode = "o", desc = "[Text] Search", noremap = true },
 		},
 	},
 	{

@@ -16,12 +16,6 @@ return {
 		},
 	},
 	{
-		"https://github.com/sodapopcan/vim-twiggy.git",
-		keys = {
-			{ "<leader>gt", ":Twiggy<CR>", mode = "n" },
-		},
-	},
-	{
 		"lewis6991/gitsigns.nvim",
 		opts = {
 			numhl = true,
@@ -87,7 +81,7 @@ return {
 	{
 		"ruanyl/vim-gh-line",
 		keys = {
-			{ "<leader>gy", "<Plug>(gh-line)", mode = "n" },
+			{ "<leader>gy", "<Plug>(gh-line)", desc = "[Git] Github url", mode = "n" },
 		},
 		init = function()
 			vim.g.gh_open_command = 'fn() { echo "$@" | pbcopy; }; fn '
@@ -112,9 +106,23 @@ return {
 			},
 		},
 		keys = {
-			{ "<leader>gdf", ":DiffviewFileHistory %<CR>", mode = "n" },
-			{ "dd", ":DiffviewLine<CR>", mode = "n", ft = { "git", "fugitiveblame" } },
-			{ "dh", ":DiffviewLine ..HEAD<CR>", mode = "n", ft = { "git", "fugitiveblame" } },
+			{ "<leader>gdf", ":DiffviewFileHistory %<CR>", mode = "n", desc = "[Git] Diff file", noremap = true },
+			{
+				"dd",
+				":DiffviewLine<CR>",
+				mode = "n",
+				desc = "[Git] Diff line",
+				ft = { "git", "fugitiveblame" },
+				noremap = true,
+			},
+			{
+				"dh",
+				":DiffviewLine ..HEAD<CR>",
+				mode = "n",
+				desc = "[Git] Diff line..head",
+				ft = { "git", "fugitiveblame" },
+				noremap = true,
+			},
 		},
 		init = function()
 			vim.api.nvim_create_user_command("DiffviewLine", function(opts)

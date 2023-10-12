@@ -25,7 +25,14 @@ return {
 			},
 		},
 		keys = {
-			{ "<localleader>rr", "<Plug>RestNvim<CR>", mode = "n", ft = "http" },
+			{
+				"<localleader>rr",
+				"<Plug>RestNvim<CR>",
+				desc = "[Util] Execute request",
+				mode = "n",
+				ft = "http",
+				noremap = true,
+			},
 		},
 	},
 	{
@@ -41,6 +48,48 @@ return {
 		init = function()
 			vim.g.bookmark_save_per_working_dir = 1
 			vim.g.bookmark_auto_save = 1
+		end,
+	},
+	{
+		"https://github.com/tom-anders/telescope-vim-bookmarks.nvim.git",
+		dependencies = {
+			"nvim-telescope/telescope.nvim",
+		},
+		commander = {
+			{
+				cat = "Bookmark",
+				desc = "Find bookmark",
+				cmd = ":Telescope vim_bookmarks all<CR>",
+			},
+			{
+				cat = "Bookmark",
+				desc = "Find file bookmark",
+				cmd = ":Telescope vim_bookmarks current_file<CR>",
+			},
+		},
+		init = function()
+			require("telescope").load_extension("vim_bookmarks")
+		end,
+	},
+	{
+		"lpoto/telescope-docker.nvim",
+		dependencies = {
+			"nvim-telescope/telescope.nvim",
+		},
+		commander = {
+			{
+				cat = "Docker",
+				desc = "Find container",
+				cmd = ":Telescope docker<CR>",
+			},
+			{
+				cat = "Bookmark",
+				desc = "Find file bookmark",
+				cmd = ":Telescope vim_bookmarks current_file<CR>",
+			},
+		},
+		init = function()
+			require("telescope").load_extension("docker")
 		end,
 	},
 }
