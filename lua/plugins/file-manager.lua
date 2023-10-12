@@ -58,6 +58,7 @@ return {
 			{ "<leader>nr", ":NvimTreeRefresh<CR>", desc = "Refreshes tree items", mode = "n" },
 		},
 	},
+	{ "stevearc/dressing.nvim", opts = {} },
 	{
 		"nvim-telescope/telescope.nvim",
 		tag = "0.1.3",
@@ -66,9 +67,8 @@ return {
 			"nvim-lua/plenary.nvim",
 			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 			"https://github.com/tom-anders/telescope-vim-bookmarks.nvim.git",
-			"nvim-telescope/telescope-ui-select.nvim",
-			"lpoto/telescope-docker.nvim",
 			"smilovanovic/telescope-search-dir-picker.nvim",
+			"lpoto/telescope-docker.nvim",
 		},
 		opts = function()
 			return {
@@ -106,9 +106,6 @@ return {
 						override_generic_sorter = true,
 						override_file_sorter = true,
 						case_mode = "smart_case",
-					},
-					["ui-select"] = {
-						require("telescope.themes").get_dropdown({}),
 					},
 					docker = {
 						theme = "ivy",
@@ -157,7 +154,6 @@ return {
 		init = function()
 			require("telescope").load_extension("fzf")
 			require("telescope").load_extension("vim_bookmarks")
-			require("telescope").load_extension("ui-select")
 			require("telescope").load_extension("docker")
 			require("telescope").load_extension("search_dir_picker")
 
