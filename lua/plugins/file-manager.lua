@@ -147,39 +147,57 @@ return {
 					})
 				end,
 			},
-			{ "<leader>fgc", ":Telescope git_commits<CR>" },
 			{ "<leader>fma", ":Telescope vim_bookmarks all<CR>" },
 			{ "<leader>fmf", ":Telescope vim_bookmarks current_file<CR>" },
+		},
+		commander = {
+			{
+				cat = "Files",
+				desc = "Find files",
+				cmd = ":Telescope find_files<CR>",
+				keys = { "n", "<leader>ff" },
+			},
+			{
+				cat = "Git",
+				desc = "Find files",
+				cmd = function()
+					require("telescope.builtin").git_files(set_git_root())
+				end,
+			},
+			{
+				cat = "Git",
+				desc = "Find commits",
+				cmd = function()
+					require("telescope.builtin").git_commits(set_git_root())
+				end,
+			},
+			{
+				cat = "Git",
+				desc = "Find buffer commits",
+				cmd = function()
+					require("telescope.builtin").git_bcommits(set_git_root())
+				end,
+			},
+			{
+				cat = "Git",
+				desc = "Find branches",
+				cmd = function()
+					require("telescope.builtin").git_branches(set_git_root())
+				end,
+			},
+			{
+				cat = "Git",
+				desc = "Show status",
+				cmd = function()
+					require("telescope.builtin").git_status(set_git_root())
+				end,
+			},
 		},
 		init = function()
 			require("telescope").load_extension("fzf")
 			require("telescope").load_extension("vim_bookmarks")
 			require("telescope").load_extension("docker")
 			require("telescope").load_extension("search_dir_picker")
-
-			-- Git pickers
-			-- Setup multiple folder awareness
-			local git_pickers = require("telescope.builtin.__git")
-
-			require("telescope.builtin").git_files = function(opts)
-				return git_pickers.files(set_git_root(opts))
-			end
-
-			require("telescope.builtin").git_commits = function(opts)
-				return git_pickers.commits(set_git_root(opts))
-			end
-
-			require("telescope.builtin").git_bcommits = function(opts)
-				return git_pickers.bcommits(set_git_root(opts))
-			end
-
-			require("telescope.builtin").git_branches = function(opts)
-				return git_pickers.branches(set_git_root(opts))
-			end
-
-			require("telescope.builtin").git_status = function(opts)
-				return git_pickers.status(set_git_root(opts))
-			end
 		end,
 	},
 }
