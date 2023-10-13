@@ -5,3 +5,4 @@ autoload
 .netrwhist
 init.vim
 sessions
+.vim-bookmarks

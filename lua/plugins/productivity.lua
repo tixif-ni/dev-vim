@@ -35,29 +35,42 @@ return {
 	},
 	{
 		"MattesGroeger/vim-bookmarks",
-		init = function()
-			vim.g.bookmark_save_per_working_dir = 1
-			vim.g.bookmark_auto_save = 1
-		end,
-	},
-	{
-		"https://github.com/tom-anders/telescope-vim-bookmarks.nvim.git",
+		lazy = false,
 		dependencies = {
 			"nvim-telescope/telescope.nvim",
+			"https://github.com/tom-anders/telescope-vim-bookmarks.nvim.git",
+		},
+		keys = {
+			{ "mm", "<Plug>BookmarkToggle", desc = "[Bookmark] Toggle", mode = "n" },
+			{ "mi", "<Plug>BookmarkAnnotate", desc = "[Bookmark] Save", mode = "n" },
 		},
 		commander = {
 			{
 				cat = "Bookmark",
-				desc = "Find bookmark",
-				cmd = ":Telescope vim_bookmarks all<CR>",
+				desc = "[Bookmark] Find mark",
+				cmd = ":Telescope vim_bookmarks all theme=ivy<CR>",
 			},
 			{
 				cat = "Bookmark",
-				desc = "Find file bookmark",
-				cmd = ":Telescope vim_bookmarks current_file<CR>",
+				desc = "[Bookmark] Find file mark",
+				cmd = ":Telescope vim_bookmarks current_file theme=ivy<CR>",
+			},
+			{
+				cat = "Bookmark",
+				desc = "[Bookmark] Clear mark",
+				cmd = ":BookmarkClearAll<CR>",
+			},
+			{
+				cat = "Bookmark",
+				desc = "[Bookmark] Clear file mark",
+				cmd = ":BookmarkClear<CR>",
 			},
 		},
 		init = function()
+			vim.g.bookmark_no_default_key_mappings = 1
+			vim.g.bookmark_save_per_working_dir = 1
+			vim.g.bookmark_auto_save = 1
+
 			require("telescope").load_extension("vim_bookmarks")
 		end,
 	},
@@ -69,13 +82,8 @@ return {
 		commander = {
 			{
 				cat = "Docker",
-				desc = "Find container",
-				cmd = ":Telescope docker<CR>",
-			},
-			{
-				cat = "Bookmark",
-				desc = "Find file bookmark",
-				cmd = ":Telescope vim_bookmarks current_file<CR>",
+				desc = "[Docker] Find container",
+				cmd = ":Telescope docker theme=ivy<CR>",
 			},
 		},
 		init = function()
