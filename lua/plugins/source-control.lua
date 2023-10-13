@@ -76,7 +76,7 @@ return {
 			end,
 		},
 	},
-	"https://github.com/rhysd/git-messenger.vim.git",
+	{ "https://github.com/rhysd/git-messenger.vim.git", cmd = { "GitMessenger" } },
 	{
 		"ruanyl/vim-gh-line",
 		keys = {
