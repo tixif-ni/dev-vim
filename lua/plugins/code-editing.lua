@@ -27,6 +27,7 @@ return {
 	},
 	{
 		"mhartington/formatter.nvim",
+		cmd = { "FormatWrite" },
 		opts = function()
 			return {
 				filetype = {
