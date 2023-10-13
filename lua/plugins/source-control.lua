@@ -3,6 +3,7 @@ return {
 		"https://github.com/tpope/vim-fugitive.git",
 		dependencies = {
 			"https://github.com/tommcdo/vim-fugitive-blame-ext.git",
+			"sindrets/diffview.nvim",
 		},
 		keys = {
 			{ "<leader>gf", ":!git fetch --all<CR>", desc = "Fetches all changes", mode = "n" },
@@ -89,9 +90,6 @@ return {
 	},
 	{
 		"sindrets/diffview.nvim",
-		dependencies = {
-			"https://github.com/tpope/vim-fugitive.git",
-		},
 		opts = {
 			keymaps = {
 				view = {
