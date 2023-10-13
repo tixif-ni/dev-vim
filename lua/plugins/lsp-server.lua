@@ -27,7 +27,7 @@ return {
 				end,
 			})
 
-			local diagnostic_icons = { Error = "", Warn = "", Hint = "💡", Info = " " }
+			local diagnostic_icons = { Error = "", Warn = "", Hint = "", Info = " " }
 			for severity, icon in pairs(diagnostic_icons) do
 				local hl = "DiagnosticSign" .. severity
 				vim.fn.sign_define(hl, { text = icon, texthl = hl })
@@ -158,6 +158,9 @@ return {
 		"kosayoda/nvim-lightbulb",
 		opts = {
 			autocmd = { enabled = true },
+			sign = {
+				text = "",
+			},
 		},
 	},
 	{
