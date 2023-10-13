@@ -57,7 +57,6 @@ return {
 			{ "<leader>nf", ":NvimTreeFindFile<CR>", desc = "[Tree] Find file", mode = "n", noremap = true },
 		},
 	},
-	{ "stevearc/dressing.nvim", opts = {} },
 	{
 		"nvim-telescope/telescope.nvim",
 		tag = "0.1.3",
@@ -86,15 +85,19 @@ return {
 								["dd"] = "delete_buffer",
 							},
 						},
+						theme = "ivy",
 					},
 					lsp_references = {
 						show_line = false,
+						theme = "ivy",
 					},
 					lsp_definitions = {
 						show_line = false,
+						theme = "ivy",
 					},
 					lsp_implementations = {
 						show_line = false,
+						theme = "ivy",
 					},
 					git_branches = {
 						theme = "ivy",
