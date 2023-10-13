@@ -70,6 +70,7 @@ return {
 			vim.g.bookmark_no_default_key_mappings = 1
 			vim.g.bookmark_save_per_working_dir = 1
 			vim.g.bookmark_auto_save = 1
+			vim.g.bookmark_display_annotation = 1
 
 			require("telescope").load_extension("vim_bookmarks")
 		end,
