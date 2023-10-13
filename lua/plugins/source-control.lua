@@ -6,14 +6,12 @@ return {
 			"sindrets/diffview.nvim",
 		},
 		keys = {
-			{ "<leader>gf", ":!git fetch --all<CR>", desc = "Fetches all changes", mode = "n" },
-			{ "<leader>gb", ":Git blame<CR>", desc = "Annotates with blame", mode = "n" },
-			{ "<leader>gs", ":Git<CR>", desc = "Displays status", mode = "n" },
-			{ "<leader>gc", ":Git commit<CR>", desc = "Commits changes", mode = "n" },
-			{ "<leader>gr", ":Gread<CR>", desc = "Checks out", mode = "n" },
-			{ "<leader>gl", ":Git log<CR>", desc = "Logs", mode = "n" },
-			{ "<leader>gp", ":Git push<CR>", desc = "Pushes changes", mode = "n", ft = "fugitive" },
-			{ "<leader>gP", ":Git push --force<CR>", desc = "Force pushes changes", mode = "n", ft = "fugitive" },
+			{ "<leader>gb", ":Git blame<CR>", desc = "[Git] Annotate file", mode = "n" },
+			{ "<leader>gs", ":Git<CR>", desc = "[Git] Display status", mode = "n" },
+			{ "<leader>gr", ":Gread<CR>", desc = "[Git] Checkout file", mode = "n" },
+			{ "<leader>gl", ":Git log<CR>", desc = "[Git] Find log", mode = "n" },
+			{ "<leader>gp", ":Git push<CR>", desc = "[Git] Push changes", mode = "n", ft = "fugitive" },
+			{ "<leader>gP", ":Git push --force<CR>", desc = "[Git] Push forced changes", mode = "n", ft = "fugitive" },
 		},
 	},
 	{
@@ -103,6 +101,7 @@ return {
 				},
 			},
 		},
+		cmd = { "DiffviewOpen" },
 		keys = {
 			{ "<leader>gdf", ":DiffviewFileHistory %<CR>", mode = "n", desc = "[Git] Diff file", noremap = true },
 			{
