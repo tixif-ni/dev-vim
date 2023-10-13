@@ -27,7 +27,7 @@ return {
 				end,
 			})
 
-			local diagnostic_icons = { Error = "", Warn = "", Hint = "", Info = " " }
+			local diagnostic_icons = { Error = "✗", Warn = "", Hint = "", Info = " " }
 			for severity, icon in pairs(diagnostic_icons) do
 				local hl = "DiagnosticSign" .. severity
 				vim.fn.sign_define(hl, { text = icon, texthl = hl })
@@ -157,9 +157,20 @@ return {
 	{
 		"kosayoda/nvim-lightbulb",
 		opts = {
+			-- Set a higher priority so it replaces current sign on hover if any
+			-- https://neovim.io/doc/user/diagnostic.html#diagnostic-signs
+			priority = 11,
 			autocmd = { enabled = true },
 			sign = {
 				text = "",
+			},
+			ignore = {
+				ft = {
+					"fugitive",
+					"fugitiveblame",
+					"DiffviewFiles",
+					"NvimTree",
+				},
 			},
 		},
 	},
