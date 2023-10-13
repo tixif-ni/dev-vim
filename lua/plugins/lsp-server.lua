@@ -27,7 +27,7 @@ return {
 				end,
 			})
 
-			local diagnostic_icons = { Error = "", Warn = "", Hint = "", Info = " " }
+			local diagnostic_icons = { Error = "", Warn = "", Hint = "💡", Info = " " }
 			for severity, icon in pairs(diagnostic_icons) do
 				local hl = "DiagnosticSign" .. severity
 				vim.fn.sign_define(hl, { text = icon, texthl = hl })
@@ -155,7 +155,17 @@ return {
 		opts = {},
 	},
 	{
+		"kosayoda/nvim-lightbulb",
+		opts = {
+			autocmd = { enabled = true },
+		},
+	},
+	{
 		"nvimtools/none-ls.nvim",
+		dependencies = {
+			"kosayoda/nvim-lightbulb",
+			"rest-nvim/rest.nvim",
+		},
 		opts = function()
 			local null_ls = require("null-ls")
 
@@ -171,6 +181,38 @@ return {
 					null_ls.builtins.hover.printenv,
 				},
 			}
+		end,
+		init = function()
+			local null_ls = require("null-ls")
+			local utils = require("utils.text")
+
+			local http_action_source = {
+				method = null_ls.methods.CODE_ACTION,
+				filetypes = { "http" },
+				generator = {
+					fn = function(params)
+						local actions = {}
+						local line = params.content[params.row]
+
+						if
+							utils.startswith(line, "GET")
+							or utils.startswith(line, "POST")
+							or utils.startswith(line, "PUT")
+							or utils.startswith(line, "PATCH")
+							or utils.startswith(line, "DELETE")
+						then
+							table.insert(actions, {
+								title = "Execute HTTP request",
+								action = require("rest-nvim").run,
+							})
+						end
+
+						return actions
+					end,
+				},
+			}
+
+			null_ls.register(http_action_source)
 		end,
 	},
 }

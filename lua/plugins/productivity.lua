@@ -24,16 +24,6 @@ return {
 				show_curl_command = false,
 			},
 		},
-		keys = {
-			{
-				"<localleader>rr",
-				"<Plug>RestNvim<CR>",
-				desc = "[Util] Execute request",
-				mode = "n",
-				ft = "http",
-				noremap = true,
-			},
-		},
 	},
 	{
 		"sudormrfbin/cheatsheet.nvim",
