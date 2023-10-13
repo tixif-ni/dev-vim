@@ -154,4 +154,23 @@ return {
 		event = "VeryLazy",
 		opts = {},
 	},
+	{
+		"nvimtools/none-ls.nvim",
+		opts = function()
+			local null_ls = require("null-ls")
+
+			return {
+				sources = {
+					null_ls.builtins.code_actions.gitsigns.with({
+						config = {
+							filter_actions = function(title)
+								return title:lower():match("blame") == nil
+							end,
+						},
+					}),
+					null_ls.builtins.hover.printenv,
+				},
+			}
+		end,
+	},
 }
