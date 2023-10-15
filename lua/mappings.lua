@@ -58,4 +58,3 @@ vim.keymap.set("n", "H", "^", { noremap = true })
 -- Move to end of line
 vim.keymap.set("n", "L", "g_", { noremap = true })
 -- Remove highlights
-vim.keymap.set("n", "<Leader><Space>", ":nohl<CR>", { noremap = true })

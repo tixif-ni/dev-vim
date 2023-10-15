@@ -7,5 +7,6 @@ Get filetype | :echo &ft
 Diff against immediate parent | git diff <hash>^!
 
 ## Misc
+Clear search hightlight | :noh
 Disable auto command | :noa <...>
 Sort lines | :sort

@@ -6,9 +6,6 @@ return {
             { "https://git.sr.ht/~whynothugo/lsp_lines.nvim", opts = {} },
         },
         init = function()
-            -- Disable text object diagnostic next to each line to avoid overbloating UI
-            vim.diagnostic.config({ virtual_text = false, virtual_lines = false })
-
             -- Use LspAttach autocommand to only map the following keys
             -- after the language server attaches to the current buffer
             vim.api.nvim_create_autocmd("LspAttach", {
@@ -22,25 +19,10 @@ return {
                     vim.keymap.set("n", "gt", ":Telescope lsp_type_definitions<CR>", opts)
                     vim.keymap.set("n", "gr", ":Telescope lsp_references<CR>", opts)
                     vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-                    vim.keymap.set("n", "<leader>cd", function()
-                        local virtual_lines = vim.diagnostic.config().virtual_lines
-
-                        if type(virtual_lines) == "table" then
-                            vim.diagnostic.config({ virtual_lines = false })
-                        else
-                            vim.diagnostic.config({ virtual_lines = { only_current_line = true } })
-                        end
-                    end, opts)
                     vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
                     vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, opts)
                 end,
             })
-
-            local diagnostic_icons = { Error = "✗", Warn = "", Hint = "", Info = " " }
-            for severity, icon in pairs(diagnostic_icons) do
-                local hl = "DiagnosticSign" .. severity
-                vim.fn.sign_define(hl, { text = icon, texthl = hl })
-            end
         end,
     },
     {
