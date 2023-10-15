@@ -218,7 +218,36 @@ return {
                         },
                     }),
                     null_ls.builtins.hover.printenv,
+                    null_ls.builtins.formatting.prettier.with({
+                        extra_filetypes = { "toml" },
+                    }),
+                    null_ls.builtins.formatting.stylua,
+                    null_ls.builtins.diagnostics.djlint,
+                    null_ls.builtins.formatting.djlint,
+                    null_ls.builtins.formatting.black,
+                    null_ls.builtins.formatting.terraform_fmt,
                 },
+
+                on_attach = function(client, bufnr)
+                    local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+
+                    if client.supports_method("textDocument/formatting") then
+                        vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+                        vim.api.nvim_create_autocmd("BufWritePre", {
+                            group = augroup,
+                            buffer = bufnr,
+                            callback = function()
+                                vim.lsp.buf.format({
+                                    async = false,
+                                    filter = function(buffer_client)
+                                        -- Run only these formatters
+                                        return buffer_client.name == "null-ls"
+                                    end,
+                                })
+                            end,
+                        })
+                    end
+                end,
             }
         end,
     },

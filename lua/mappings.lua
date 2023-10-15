@@ -5,16 +5,6 @@ vim.g.maplocalleader = "\\"
 
 vim.keymap.set("i", "jj", "<Esc>")
 
--- Disable arrows
-vim.keymap.set("i", "<Up>", "<nop>", { noremap = true })
-vim.keymap.set("i", "<Down>", "<nop>", { noremap = true })
-vim.keymap.set("i", "<Left>", "<nop>", { noremap = true })
-vim.keymap.set("i", "<Right>", "<nop>", { noremap = true })
-vim.keymap.set("n", "<Up>", "<nop>", { noremap = true })
-vim.keymap.set("n", "<Down>", "<nop>", { noremap = true })
-vim.keymap.set("n", "<Left>", "<nop>", { noremap = true })
-vim.keymap.set("n", "<Right>", "<nop>", { noremap = true })
-
 -- Edit common files
 vim.keymap.set("n", "<leader>ez", ":sp $HOME/.zshrc<cr>", { noremap = true })
 -- TODO: do this for package.json, pyproject.toml by finding parent
