@@ -54,7 +54,7 @@ vim.cmd("set completeopt-=preview")
 -- Define custom file types
 -- https://neovim.io/doc/user/lua.html#vim.filetype
 vim.filetype.add({
-	extension = {
-		http = "http", -- These were being interpreted as .conf files
-	},
+    extension = {
+        http = "http", -- These were being interpreted as .conf files
+    },
 })
