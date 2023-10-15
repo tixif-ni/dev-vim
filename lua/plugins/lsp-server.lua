@@ -143,16 +143,10 @@ return {
         end,
         init = function()
             local capabilities = require("cmp_nvim_lsp").default_capabilities()
-            local lsp_servers = {
-                [1] = "tsserver",
-                [2] = "pyright",
-                [3] = "ruff_lsp",
-                [4] = "terraformls",
-                [5] = "lua_ls",
-            }
+            local lsp_servers = { "tsserver", "pyright", "ruff_lsp", "terraformls", "lua_ls" }
 
-            for _, server in ipairs(lsp_servers) do
-                require("lspconfig")[server].setup({
+            for i = 1, #lsp_servers do
+                require("lspconfig")[lsp_servers[i]].setup({
                     capabilities = capabilities,
                 })
             end

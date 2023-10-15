@@ -27,7 +27,37 @@ return {
         },
         init = function()
             local null_ls = require("null-ls")
-            local utils = require("utils.text")
+            local verbs = { "GET", "POST", "PUT", "PATCH", "DELETE" }
+
+            local http_diagnostic_source = {
+                method = null_ls.methods.DIAGNOSTICS,
+                filetypes = { "http" },
+                generator = {
+                    fn = function(params)
+                        local diagnostics = {}
+
+                        for i, line in ipairs(params.content) do
+                            for j = 1, #verbs do
+                                local col, end_col = line:find(verbs[j], 1, true)
+                                if col == 1 then
+                                    table.insert(diagnostics, {
+                                        row = i,
+                                        col = 1,
+                                        end_col = end_col + 1,
+                                        source = "http",
+                                        message = "This http request can be executed.",
+                                        severity = vim.diagnostic.severity.HINT,
+                                    })
+
+                                    break
+                                end
+                            end
+                        end
+
+                        return diagnostics
+                    end,
+                },
+            }
 
             local http_action_source = {
                 method = null_ls.methods.CODE_ACTION,
@@ -35,19 +65,18 @@ return {
                 generator = {
                     fn = function(params)
                         local actions = {}
-                        local line = params.content[params.row]
 
-                        if
-                            utils.startswith(line, "GET")
-                            or utils.startswith(line, "POST")
-                            or utils.startswith(line, "PUT")
-                            or utils.startswith(line, "PATCH")
-                            or utils.startswith(line, "DELETE")
-                        then
-                            table.insert(actions, {
-                                title = "Execute HTTP request",
-                                action = require("rest-nvim").run,
-                            })
+                        for _, diagnostic in ipairs(vim.diagnostic.get(params.bufnr, { lnum = params.row - 1 })) do
+                            if
+                                diagnostic.source == "http"
+                                and params.col >= diagnostic.col
+                                and params.col < diagnostic.end_col
+                            then
+                                table.insert(actions, {
+                                    title = "Execute HTTP request",
+                                    action = require("rest-nvim").run,
+                                })
+                            end
                         end
 
                         return actions
@@ -55,6 +84,7 @@ return {
                 },
             }
 
+            null_ls.register(http_diagnostic_source)
             null_ls.register(http_action_source)
         end,
     },
