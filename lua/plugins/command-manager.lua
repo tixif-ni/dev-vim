@@ -28,7 +28,7 @@ return {
             }
         end,
         keys = {
-            { "<leader>fc", ":Telescope commander<CR>", mode = "n" },
+            { "fc", ":Telescope commander<CR>", mode = "n" },
         },
     },
 }

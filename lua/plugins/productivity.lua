@@ -16,6 +16,7 @@ return {
         "rest-nvim/rest.nvim",
         dependencies = {
             "nvim-lua/plenary.nvim",
+            "nvimtools/none-ls.nvim",
         },
         opts = {
             result_split_horizontal = true,
@@ -24,6 +25,38 @@ return {
                 show_curl_command = false,
             },
         },
+        init = function()
+            local null_ls = require("null-ls")
+            local utils = require("utils.text")
+
+            local http_action_source = {
+                method = null_ls.methods.CODE_ACTION,
+                filetypes = { "http" },
+                generator = {
+                    fn = function(params)
+                        local actions = {}
+                        local line = params.content[params.row]
+
+                        if
+                            utils.startswith(line, "GET")
+                            or utils.startswith(line, "POST")
+                            or utils.startswith(line, "PUT")
+                            or utils.startswith(line, "PATCH")
+                            or utils.startswith(line, "DELETE")
+                        then
+                            table.insert(actions, {
+                                title = "Execute HTTP request",
+                                action = require("rest-nvim").run,
+                            })
+                        end
+
+                        return actions
+                    end,
+                },
+            }
+
+            null_ls.register(http_action_source)
+        end,
     },
     {
         "sudormrfbin/cheatsheet.nvim",
@@ -70,7 +103,6 @@ return {
             vim.g.bookmark_no_default_key_mappings = 1
             vim.g.bookmark_save_per_working_dir = 1
             vim.g.bookmark_auto_save = 1
-            vim.g.bookmark_display_annotation = 1
 
             require("telescope").load_extension("vim_bookmarks")
         end,
