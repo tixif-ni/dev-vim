@@ -4,6 +4,7 @@ return {
         dependencies = {
             "nvim-tree/nvim-web-devicons",
             "nvim-telescope/telescope.nvim",
+            "nvim-pack/nvim-spectre",
         },
         opts = {
             actions = {
@@ -44,7 +45,7 @@ return {
                     return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
                 end
 
-                local function wrap_telescope_context(f)
+                local function wrap_cwd_context(f)
                     return function(node, ...)
                         node = node or require("nvim-tree.lib").get_node_at_cursor()
                         local cwd = node.type == "directory" and node.absolute_path or node.parent.absolute_path
@@ -106,7 +107,7 @@ return {
                 vim.keymap.set("n", "r", api.fs.rename, opts("Rename"))
                 vim.keymap.set("n", "R", api.tree.reload, opts("Refresh"))
                 vim.keymap.set("n", "s", api.node.run.system, opts("Run System"))
-                vim.keymap.set("n", "S", api.tree.search_node, opts("Search"))
+                --vim.keymap.set("n", "S", api.tree.search_node, opts("Search"))
                 vim.keymap.set("n", "u", api.fs.rename_full, opts("Rename: Full Path"))
                 vim.keymap.set("n", "U", api.tree.toggle_custom_filter, opts("Toggle Filter: Hidden"))
                 vim.keymap.set("n", "W", api.tree.collapse_all, opts("Collapse"))
@@ -121,7 +122,7 @@ return {
                 vim.keymap.set(
                     "n",
                     "ff",
-                    wrap_telescope_context(function(cwd)
+                    wrap_cwd_context(function(cwd)
                         require("telescope.builtin").find_files({ cwd = cwd })
                     end),
                     opts("Find file")
@@ -129,10 +130,20 @@ return {
                 vim.keymap.set(
                     "n",
                     "fl",
-                    wrap_telescope_context(function(cwd)
+                    wrap_cwd_context(function(cwd)
                         require("telescope.builtin").live_grep({ cwd = cwd })
                     end),
                     opts("Find text")
+                )
+
+                vim.keymap.set(
+                    "n",
+                    "S",
+                    wrap_cwd_context(function(cwd)
+                        api.tree.close()
+                        require("spectre").open_visual({ cwd = cwd })
+                    end),
+                    opts("Search & Replace")
                 )
             end,
         },
