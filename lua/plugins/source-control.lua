@@ -14,7 +14,7 @@ return {
             { "<leader>gp", ":Git push<CR>", desc = "[Git] Push changes", mode = "n", ft = "fugitive" },
             { "<leader>gP", ":Git push --force<CR>", desc = "[Git] Push forced changes", mode = "n", ft = "fugitive" },
             {
-                "<leader>gb",
+                "<leader>gt",
                 function()
                     require("telescope.builtin").git_branches({
                         cwd = vim.fn.substitute(vim.fn.FugitiveGitDir(), ".git", "", ""),
