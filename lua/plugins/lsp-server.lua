@@ -1,3 +1,5 @@
+local constants = require("constants")
+
 return {
     {
         "neovim/nvim-lspconfig",
@@ -149,12 +151,7 @@ return {
                 text = "",
             },
             ignore = {
-                ft = {
-                    "fugitive",
-                    "fugitiveblame",
-                    "DiffviewFiles",
-                    "NvimTree",
-                },
+                ft = constants.ignored_buffer_types,
             },
         },
     },

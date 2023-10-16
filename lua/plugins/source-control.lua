@@ -169,16 +169,12 @@ return {
         commander = {
             {
                 desc = "[Git] Diff branch",
-                cmd = ":DiffviewFileHistory<CR>"
+                cmd = ":DiffviewFileHistory<CR>",
             },
         },
         init = function()
             vim.api.nvim_create_user_command("DiffviewLine", function(opts)
                 local git_utils = require("utils.git")
-
-                -- We use fugitive here cause this is working on those fugitive
-                -- specific buffers which won't allow us to get the git dir path using
-                -- file finders
                 local git_dir = vim.fn.substitute(vim.fn.FugitiveGitDir(), ".git", "", "")
                 local hash_range = git_utils.get_line_hash_range(opts.args)
 

@@ -1,3 +1,5 @@
+local constants = require("constants")
+
 return {
     --{
     --"kristijanhusak/vim-hybrid-material",
@@ -48,12 +50,7 @@ return {
         "https://github.com/RRethy/vim-illuminate.git",
         config = function()
             require("illuminate").configure({
-                filetypes_denylist = {
-                    "dirbuf",
-                    "dirvish",
-                    "fugitive",
-                    "NvimTree",
-                },
+                filetypes_denylist = constants.ignored_buffer_types,
             })
         end,
     },
