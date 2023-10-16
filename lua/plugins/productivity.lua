@@ -103,25 +103,18 @@ return {
         keys = {
             { "mm", "<Plug>BookmarkToggle", desc = "[Bookmark] Toggle", mode = "n" },
             { "mi", "<Plug>BookmarkAnnotate", desc = "[Bookmark] Save", mode = "n" },
+            { "fm", ":Telescope vim_bookmarks all theme=ivy<CR>", desc = "[Bookmark] Find mark", mode = "n" },
         },
         commander = {
             {
-                cat = "Bookmark",
-                desc = "[Bookmark] Find mark",
-                cmd = ":Telescope vim_bookmarks all theme=ivy<CR>",
-            },
-            {
-                cat = "Bookmark",
                 desc = "[Bookmark] Find file mark",
                 cmd = ":Telescope vim_bookmarks current_file theme=ivy<CR>",
             },
             {
-                cat = "Bookmark",
                 desc = "[Bookmark] Clear mark",
                 cmd = ":BookmarkClearAll<CR>",
             },
             {
-                cat = "Bookmark",
                 desc = "[Bookmark] Clear file mark",
                 cmd = ":BookmarkClear<CR>",
             },

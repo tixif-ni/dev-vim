@@ -58,3 +58,13 @@ vim.filetype.add({
         http = "http", -- These were being interpreted as .conf files
     },
 })
+
+-- Diagnostics
+--
+-- Disable text object diagnostic next to each line to avoid overbloating UI
+vim.diagnostic.config({ virtual_text = false })
+-- Setup icons
+for severity, icon in pairs({ Error = "✗", Warn = "", Hint = "", Info = " " }) do
+    local hl = "DiagnosticSign" .. severity
+    vim.fn.sign_define(hl, { text = icon, texthl = hl })
+end

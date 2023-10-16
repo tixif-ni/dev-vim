@@ -42,4 +42,15 @@ return {
             },
         },
     },
+    {
+        "https://github.com/radyz/diagnostic-window.nvim.git",
+        dependencies = { "MunifTanjim/nui.nvim" },
+        keys = {
+            {
+                "<space>",
+                ":DiagWindowShow<CR>",
+                mode = "n",
+            },
+        },
+    },
 }
