@@ -1,12 +1,5 @@
 local G = {}
 
-G.get_git_root = function()
-    local current_path = vim.fn.expand("%:p")
-    local git_dir = vim.fn.finddir(".git", current_path .. ";")
-
-    return vim.fn.substitute(git_dir, ".git", "", "")
-end
-
 G.get_line_hash_range = function(rev)
     local text_util = require("utils.text")
     local line = vim.fn.getline(".")

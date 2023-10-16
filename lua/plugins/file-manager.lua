@@ -1,18 +1,3 @@
-local utils = require("utils.git")
-
-local set_git_root = function(opts)
-    opts = opts or {}
-    if opts.cwd == nil or opts.cwd == "" then
-        opts.cwd = utils.get_git_root()
-    end
-
-    if opts.cwd == nil or opts.cwd == "" then
-        error("Not a git repository")
-    end
-
-    return opts
-end
-
 return {
     {
         "nvim-tree/nvim-tree.lua",
@@ -219,65 +204,6 @@ return {
             { "fl", ":Telescope live_grep<CR>", desc = "[File] Find text", mode = "n", noremap = true },
             { "fw", ":Telescope grep_string<CR>", desc = "[File] Find word", mode = "n", noremap = true },
             { "fb", ":Telescope buffers<CR>", desc = "[File] Find buffer", mode = "n", noremap = true },
-            {
-                "fgf",
-                function()
-                    require("telescope.builtin").git_files(set_git_root())
-                end,
-                desc = "[Git] Find file",
-                mode = "n",
-                noremap = true,
-            },
-            {
-                "fgl",
-                function()
-                    require("telescope.builtin").live_grep(set_git_root())
-                end,
-                desc = "[Git] Find text",
-                mode = "n",
-                noremap = true,
-            },
-            {
-                "fgw",
-                function()
-                    require("telescope.builtin").grep_string(set_git_root())
-                end,
-                desc = "[Git] Find word",
-                mode = "n",
-                noremap = true,
-            },
-            {
-                "fgc",
-                function()
-                    require("telescope.builtin").git_commits(set_git_root())
-                end,
-                desc = "[Git] Find log",
-                mode = "n",
-                noremap = true,
-            },
-            {
-                "fgb",
-                function()
-                    require("telescope.builtin").git_branches(set_git_root())
-                end,
-                desc = "[Git] Find branch",
-                mode = "n",
-                noremap = true,
-            },
-        },
-        commander = {
-            {
-                desc = "[Git] Buffer commits",
-                cmd = function()
-                    require("telescope.builtin").git_bcommits(set_git_root())
-                end,
-            },
-            {
-                desc = "[Git] Display status",
-                cmd = function()
-                    require("telescope.builtin").git_status(set_git_root())
-                end,
-            },
         },
         init = function()
             require("telescope").load_extension("fzf")

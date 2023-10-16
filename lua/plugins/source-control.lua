@@ -4,6 +4,7 @@ return {
         dependencies = {
             "https://github.com/tommcdo/vim-fugitive-blame-ext.git",
             "sindrets/diffview.nvim",
+            "nvim-telescope/telescope.nvim",
         },
         keys = {
             { "<leader>gb", ":Git blame<CR>", desc = "[Git] Annotate file", mode = "n" },
@@ -12,6 +13,50 @@ return {
             { "<leader>gl", ":Git log<CR>", desc = "[Git] Find log", mode = "n" },
             { "<leader>gp", ":Git push<CR>", desc = "[Git] Push changes", mode = "n", ft = "fugitive" },
             { "<leader>gP", ":Git push --force<CR>", desc = "[Git] Push forced changes", mode = "n", ft = "fugitive" },
+            {
+                "<leader>gb",
+                function()
+                    require("telescope.builtin").git_branches({
+                        cwd = vim.fn.substitute(vim.fn.FugitiveGitDir(), ".git", "", ""),
+                    })
+                end,
+                desc = "[Git] Find branch",
+                mode = "n",
+                noremap = true,
+            },
+            {
+                "fgf",
+                function()
+                    require("telescope.builtin").git_files({
+                        cwd = vim.fn.substitute(vim.fn.FugitiveGitDir(), ".git", "", ""),
+                    })
+                end,
+                desc = "[Git] Find file",
+                mode = "n",
+                noremap = true,
+            },
+            {
+                "fgl",
+                function()
+                    require("telescope.builtin").live_grep({
+                        cwd = vim.fn.substitute(vim.fn.FugitiveGitDir(), ".git", "", ""),
+                    })
+                end,
+                desc = "[Git] Find text",
+                mode = "n",
+                noremap = true,
+            },
+            {
+                "fgw",
+                function()
+                    require("telescope.builtin").grep_string({
+                        cwd = vim.fn.substitute(vim.fn.FugitiveGitDir(), ".git", "", ""),
+                    })
+                end,
+                desc = "[Git] Find word",
+                mode = "n",
+                noremap = true,
+            },
         },
     },
     {
@@ -101,7 +146,7 @@ return {
                 },
             },
         },
-        cmd = { "DiffviewOpen" },
+        cmd = { "DiffviewOpen", "DiffviewFileHistory" },
         keys = {
             { "<leader>gdf", ":DiffviewFileHistory %<CR>", mode = "n", desc = "[Git] Diff file", noremap = true },
             {
@@ -119,6 +164,12 @@ return {
                 desc = "[Git] Diff line..head",
                 ft = { "git", "fugitiveblame" },
                 noremap = true,
+            },
+        },
+        commander = {
+            {
+                desc = "[Git] Diff branch",
+                cmd = ":DiffviewFileHistory<CR>"
             },
         },
         init = function()
