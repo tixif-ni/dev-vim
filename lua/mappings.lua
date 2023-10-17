@@ -47,4 +47,6 @@ vim.cmd("nmap cp :let @+ = expand('%').':'.line('.')<CR>")
 vim.keymap.set("n", "H", "^", { noremap = true })
 -- Move to end of line
 vim.keymap.set("n", "L", "g_", { noremap = true })
--- Remove highlights
+
+-- Diagnostics
+vim.keymap.set("n", "<space>", vim.diagnostic.open_float, { noremap = true })
