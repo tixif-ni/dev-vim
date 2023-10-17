@@ -160,56 +160,54 @@ return {
             "nvim-lua/plenary.nvim",
             { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
         },
-        opts = function()
-            return {
-                defaults = {
+        opts = {
+            defaults = {
+                mappings = {
+                    i = {
+                        ["<C-n>"] = false,
+                        ["<C-p>"] = false,
+                        ["<C-j>"] = "move_selection_next",
+                        ["<C-k>"] = "move_selection_previous",
+                    },
+                },
+            },
+            pickers = {
+                buffers = {
                     mappings = {
-                        i = {
-                            ["<C-n>"] = false,
-                            ["<C-p>"] = false,
-                            ["<C-j>"] = "move_selection_next",
-                            ["<C-k>"] = "move_selection_previous",
+                        n = {
+                            ["dd"] = "delete_buffer",
                         },
                     },
+                    theme = "ivy",
                 },
-                pickers = {
-                    buffers = {
-                        mappings = {
-                            n = {
-                                ["dd"] = "delete_buffer",
-                            },
-                        },
-                        theme = "ivy",
-                    },
-                    lsp_references = {
-                        show_line = false,
-                        theme = "ivy",
-                    },
-                    lsp_definitions = {
-                        show_line = false,
-                        theme = "ivy",
-                    },
-                    lsp_implementations = {
-                        show_line = false,
-                        theme = "ivy",
-                    },
-                    git_branches = {
-                        theme = "ivy",
-                    },
-                    git_status = {
-                        theme = "ivy",
-                    },
+                lsp_references = {
+                    show_line = false,
+                    theme = "ivy",
                 },
-                extensions = {
-                    fzf = {
-                        fuzzy = true,
-                        override_generic_sorter = true,
-                        override_file_sorter = true,
-                        case_mode = "smart_case",
-                    },
+                lsp_definitions = {
+                    show_line = false,
+                    theme = "ivy",
                 },
-            }
-        end,
+                lsp_implementations = {
+                    show_line = false,
+                    theme = "ivy",
+                },
+                git_branches = {
+                    theme = "ivy",
+                },
+                git_status = {
+                    theme = "ivy",
+                },
+            },
+            extensions = {
+                fzf = {
+                    fuzzy = true,
+                    override_generic_sorter = true,
+                    override_file_sorter = true,
+                    case_mode = "smart_case",
+                },
+            },
+        },
         keys = {
             { "ff", ":Telescope find_files<CR>", desc = "[File] Find file", mode = "n", noremap = true },
             { "fl", ":Telescope live_grep<CR>", desc = "[File] Find text", mode = "n", noremap = true },
@@ -235,7 +233,13 @@ return {
                 mode = "n",
                 noremap = true,
             },
-            { "fm", ":Telescope harpoon marks theme=ivy<CR>", desc = "[File] Find mark", mode = "n", noremap = true },
+            {
+                "fm",
+                ":Telescope harpoon marks theme=ivy<CR>",
+                desc = "[File] Find mark",
+                mode = "n",
+                noremap = true,
+            },
         },
     },
 }
