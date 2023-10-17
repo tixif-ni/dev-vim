@@ -15,6 +15,7 @@ return {
                     -- Buffer local mappings.
                     -- See `:help vim.lsp.*` for documentation on any of the below functions
                     local opts = { buffer = ev.buf }
+                    vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
                     vim.keymap.set("n", "gd", ":Telescope lsp_definitions<CR>", opts)
                     vim.keymap.set("n", "gi", ":Telescope lsp_implementations<CR>", opts)
                     vim.keymap.set("n", "gt", ":Telescope lsp_type_definitions<CR>", opts)
