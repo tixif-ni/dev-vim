@@ -132,4 +132,26 @@ return {
             })
         end,
     },
+    {
+        "ThePrimeagen/refactoring.nvim",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "nvim-treesitter/nvim-treesitter",
+        },
+        keys = {
+            {
+                "<leader>rr",
+                function()
+                    require("telescope").extensions.refactoring.refactors()
+                end,
+                desc = "[Code] Refactor",
+                mode = { "n", "x" },
+            },
+        },
+        ft = {
+            "typescript",
+            "javascript",
+            "python",
+        },
+    },
 }
