@@ -220,4 +220,22 @@ return {
             require("telescope").load_extension("fzf")
         end,
     },
+    {
+        "https://github.com/ThePrimeagen/harpoon.git",
+        dependencies = {
+            "nvim-telescope/telescope.nvim",
+        },
+        keys = {
+            {
+                "mf",
+                function()
+                    require("harpoon.mark").add_file()
+                end,
+                desc = "[File] Add mark",
+                mode = "n",
+                noremap = true,
+            },
+            { "fm", ":Telescope harpoon marks theme=ivy<CR>", desc = "[File] Find mark", mode = "n", noremap = true },
+        },
+    },
 }

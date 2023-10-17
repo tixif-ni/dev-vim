@@ -94,67 +94,6 @@ return {
         cmd = "Cheatsheet",
     },
     {
-        "MattesGroeger/vim-bookmarks",
-        lazy = false,
-        dependencies = {
-            "nvim-telescope/telescope.nvim",
-            "https://github.com/tom-anders/telescope-vim-bookmarks.nvim.git",
-        },
-        keys = {
-            { "mm", "<Plug>BookmarkToggle", desc = "[Bookmark] Toggle", mode = "n" },
-            { "mi", "<Plug>BookmarkAnnotate", desc = "[Bookmark] Save", mode = "n" },
-            { "fm", ":Telescope vim_bookmarks all theme=ivy<CR>", desc = "[Bookmark] Find mark", mode = "n" },
-        },
-        commander = {
-            {
-                desc = "[Bookmark] Find file mark",
-                cmd = ":Telescope vim_bookmarks current_file theme=ivy<CR>",
-            },
-            {
-                desc = "[Bookmark] Clear mark",
-                cmd = ":BookmarkClearAll<CR>",
-            },
-            {
-                desc = "[Bookmark] Clear file mark",
-                cmd = ":BookmarkClear<CR>",
-            },
-        },
-        init = function()
-            vim.g.bookmark_no_default_key_mappings = 1
-            vim.g.bookmark_save_per_working_dir = 1
-            vim.g.bookmark_auto_save = 1
-            -- Disables signs so we only get the diagnostic one from the lsp integration
-            vim.g.bookmark_annotation_sign = ""
-            vim.g.bookmark_sign = ""
-
-            local null_ls = require("null-ls")
-            null_ls.register({
-                method = null_ls.methods.DIAGNOSTICS,
-                filetypes = {},
-                generator = {
-                    fn = function(params)
-                        local diagnostics = {}
-
-                        for _, line in ipairs(vim.fn["bm#all_lines"](params.bufname)) do
-                            local bookmark = vim.fn["bm#get_bookmark_by_line"](params.bufname, line)
-
-                            table.insert(diagnostics, {
-                                row = tonumber(line),
-                                source = "bookmark",
-                                message = bookmark.annotation or "Empty bookmark",
-                                severity = vim.diagnostic.severity.HINT,
-                            })
-                        end
-
-                        return diagnostics
-                    end,
-                },
-            })
-
-            require("telescope").load_extension("vim_bookmarks")
-        end,
-    },
-    {
         "lpoto/telescope-docker.nvim",
         dependencies = {
             "nvim-telescope/telescope.nvim",
