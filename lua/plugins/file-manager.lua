@@ -48,7 +48,13 @@ return {
                 local function wrap_cwd_context(f)
                     return function(node, ...)
                         node = node or require("nvim-tree.lib").get_node_at_cursor()
-                        local cwd = node.type == "directory" and node.absolute_path or node.parent.absolute_path
+
+                        local cwd = "."
+                        if node.type == "directory" then
+                            cwd = node.absolute_path
+                        elseif node.type == "file" then
+                            cwd = node.parent.absolute_path
+                        end
 
                         f(cwd, node, ...)
                     end
@@ -219,10 +225,11 @@ return {
         end,
     },
     {
-        "https://github.com/ThePrimeagen/harpoon.git",
+        "https://github.com/radyz/harpoon.git",
         dependencies = {
             "nvim-telescope/telescope.nvim",
         },
+        branch = "feat/path-display-support",
         keys = {
             {
                 "mf",
@@ -235,7 +242,13 @@ return {
             },
             {
                 "fm",
-                ":Telescope harpoon marks theme=ivy<CR>",
+                function()
+                    require("telescope").extensions.harpoon.marks(require("telescope.themes").get_ivy({
+                        path_display = {
+                            shorten = { len = 1, exclude = { 1, -1, -2 } },
+                        },
+                    }))
+                end,
                 desc = "[File] Find mark",
                 mode = "n",
                 noremap = true,
