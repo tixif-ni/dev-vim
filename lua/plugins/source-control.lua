@@ -128,6 +128,10 @@ return {
             { "<leader>gy", "<Plug>(gh-line)", desc = "[Git] Github url", mode = "n" },
         },
         init = function()
+            -- Disable default mappings
+            vim.g.gh_line_map_default = 0
+            vim.g.gh_line_blame_map_default = 0
+
             vim.g.gh_open_command = 'fn() { echo "$@" | pbcopy; }; fn '
         end,
     },
