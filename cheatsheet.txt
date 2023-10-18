@@ -6,6 +6,12 @@ Get filetype | :echo &ft
 ## Git
 Diff against immediate parent | git diff <hash>^!
 
+## Treesitter
+Show the highlight groups under the cursor | :Inspect 
+Show the parsed syntax tree | :InspectTree
+Open the Live Query Editor | :TSEditQuery 
+
+
 ## Misc
 Clear search hightlight | :noh
 Disable auto command | :noa <...>
