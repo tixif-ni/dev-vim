@@ -27,7 +27,7 @@ return {
         },
         init = function()
             local null_ls = require("null-ls")
-            local verbs = { "GET", "POST", "PUT", "PATCH", "DELETE" }
+            local ts = require("vim.treesitter")
 
             null_ls.register({
                 method = null_ls.methods.DIAGNOSTICS,
@@ -35,23 +35,21 @@ return {
                 generator = {
                     fn = function(params)
                         local diagnostics = {}
+                        local parser = ts.get_parser(params.bufnr, params.filetype)
+                        local root = parser:parse()[1]:root()
 
-                        for i, line in ipairs(params.content) do
-                            for j = 1, #verbs do
-                                local col, end_col = line:find(verbs[j], 1, true)
-                                if col == 1 then
-                                    table.insert(diagnostics, {
-                                        row = i,
-                                        col = 1,
-                                        end_col = end_col + 1,
-                                        source = "http",
-                                        message = "This http request can be executed.",
-                                        severity = vim.diagnostic.severity.HINT,
-                                    })
+                        local query = ts.query.parse(params.filetype, "(request (method) @requestMethod)")
+                        for _, node in query:iter_captures(root, params.bufnr) do
+                            local row, col, _, _, end_col, _ = node:range({ include_bytes = false })
 
-                                    break
-                                end
-                            end
+                            table.insert(diagnostics, {
+                                row = row,
+                                col = col,
+                                end_col = end_col + 1,
+                                source = "http",
+                                message = "This http request can be executed.",
+                                severity = vim.diagnostic.severity.HINT,
+                            })
                         end
 
                         return diagnostics

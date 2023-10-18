@@ -7,6 +7,7 @@ Get filetype | :echo &ft
 Diff against immediate parent | git diff <hash>^!
 
 ## Treesitter
+Docs | https://neovim.io/doc/user/treesitter.html
 Show the highlight groups under the cursor | :Inspect 
 Show the parsed syntax tree | :InspectTree
 Open the Live Query Editor | :TSEditQuery 
