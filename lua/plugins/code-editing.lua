@@ -1,8 +1,13 @@
+local constants = require("constants")
+
 return {
     "preservim/nerdcommenter",
     "https://github.com/mattn/emmet-vim.git",
     {
         "nvim-treesitter/nvim-treesitter",
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter-textobjects",
+        },
         build = ":TSUpdate",
         config = function()
             require("nvim-treesitter.configs").setup({
@@ -22,6 +27,23 @@ return {
                 matchup = {
                     enable = true,
                 },
+                textobjects = {
+                    select = {
+                        enable = true,
+                        -- Automatically jump forward to textobj, similar to targets.vim
+                        lookahead = true,
+                        keymaps = {
+                            ["of"] = "@function.outer",
+                            ["if"] = "@function.inner",
+                            ["oc"] = "@class.outer",
+                            ["ic"] = "@class.inner",
+                            ["ob"] = "@block.outer",
+                            ["ib"] = "@block.inner",
+                            ["op"] = "@parameter.inner",
+                            ["ip"] = "@parameter.inner",
+                        },
+                    },
+                },
             })
         end,
     },
@@ -31,7 +53,12 @@ return {
             "nvim-treesitter/nvim-treesitter",
             "nvim-tree/nvim-web-devicons",
         },
-        opts = {},
+        opts = {
+            backends = { "treesitter", "lsp" },
+            ignore = {
+                filetypes = constants.ignored_buffer_types,
+            },
+        },
         cmd = { "AerialToggle" },
         keys = {
             { "gc", ":AerialToggle float<CR>", desc = "[Code] Navigation", mode = "n" },
