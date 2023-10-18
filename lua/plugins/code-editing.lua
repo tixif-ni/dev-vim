@@ -26,20 +26,15 @@ return {
         end,
     },
     {
-        "https://github.com/nvim-treesitter/nvim-treesitter-context.git",
-        lazy = false,
+        "stevearc/aerial.nvim",
         dependencies = {
             "nvim-treesitter/nvim-treesitter",
+            "nvim-tree/nvim-web-devicons",
         },
         opts = {},
+        cmd = { "AerialToggle" },
         keys = {
-            {
-                "gc",
-                function()
-                    require("treesitter-context").go_to_context()
-                end,
-                mode = "n",
-            },
+            { "gc", ":AerialToggle float<CR>", desc = "[Code] Navigation", mode = "n" },
         },
     },
     {
