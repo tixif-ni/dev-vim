@@ -68,7 +68,7 @@ return {
                 -- BEGIN_DEFAULT_ON_ATTACH
                 vim.keymap.set("n", "<C-]>", api.tree.change_root_to_node, opts("CD"))
                 vim.keymap.set("n", "<C-e>", api.node.open.replace_tree_buffer, opts("Open: In Place"))
-                vim.keymap.set("n", "<C-k>", api.node.show_info_popup, opts("Info"))
+                --vim.keymap.set("n", "<C-k>", api.node.show_info_popup, opts("Info"))
                 vim.keymap.set("n", "<C-r>", api.fs.rename_sub, opts("Rename: Omit Filename"))
                 vim.keymap.set("n", "<C-t>", api.node.open.tab, opts("Open: New Tab"))
                 vim.keymap.set("n", "<C-v>", api.node.open.vertical, opts("Open: Vertical Split"))
@@ -103,7 +103,7 @@ return {
                 vim.keymap.set("n", "H", api.tree.toggle_hidden_filter, opts("Toggle Filter: Dotfiles"))
                 vim.keymap.set("n", "I", api.tree.toggle_gitignore_filter, opts("Toggle Filter: Git Ignore"))
                 vim.keymap.set("n", "J", api.node.navigate.sibling.last, opts("Last Sibling"))
-                vim.keymap.set("n", "K", api.node.navigate.sibling.first, opts("First Sibling"))
+                --vim.keymap.set("n", "K", api.node.navigate.sibling.first, opts("First Sibling"))
                 --vim.keymap.set("n", "m", api.marks.toggle, opts("Toggle Bookmark"))
                 vim.keymap.set("n", "o", api.node.open.edit, opts("Open"))
                 vim.keymap.set("n", "O", api.node.open.no_window_picker, opts("Open: No Window Picker"))
@@ -124,6 +124,8 @@ return {
                 vim.keymap.set("n", "<2-RightMouse>", api.tree.change_root_to_node, opts("CD"))
                 -- END_DEFAULT_ON_ATTACH
 
+                -- CUSTOM
+                vim.keymap.set("n", "K", api.node.show_info_popup, opts("Info"), { noremap = true })
                 vim.keymap.set("n", "f", function() end, opts("No op"))
                 vim.keymap.set(
                     "n",
