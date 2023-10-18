@@ -8,5 +8,6 @@ return {
         "NvimTree",
         "spectre_panel",
         "TelescopePrompt",
+        "gitmessengerpopup",
     },
 }

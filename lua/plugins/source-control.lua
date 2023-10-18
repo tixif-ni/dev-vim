@@ -121,7 +121,15 @@ return {
             end,
         },
     },
-    { "https://github.com/rhysd/git-messenger.vim.git", cmd = { "GitMessenger" } },
+    {
+        "https://github.com/rhysd/git-messenger.vim.git",
+        keys = {
+            { "<leader>gm", "<Plug>(GitMessenger)<CR>", desc = "[Git] Line history", mode = "n" },
+        },
+        init = function()
+            vim.g.git_messenger_always_into_popup = true
+        end,
+    },
     {
         "ruanyl/vim-gh-line",
         keys = {
