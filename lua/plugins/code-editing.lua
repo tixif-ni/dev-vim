@@ -58,6 +58,22 @@ return {
             ignore = {
                 filetypes = constants.ignored_buffer_types,
             },
+            post_parse_symbol = function(bufnr, item, ctx)
+                local ts = require("vim.treesitter")
+
+                if ctx.backend_name == "treesitter" and item.kind == "Method" then
+                    for node in ctx.match.type.node:iter_children() do
+                        if node:type() == "accessibility_modifier" then
+                            if ts.get_node_text(node, bufnr) == "private" then
+                                item.name = " " .. item.name
+                            end
+                            break
+                        end
+                    end
+                end
+
+                return true
+            end,
         },
         cmd = { "AerialToggle" },
         keys = {
