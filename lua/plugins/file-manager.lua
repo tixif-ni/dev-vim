@@ -188,18 +188,6 @@ return {
                     },
                     theme = "ivy",
                 },
-                lsp_references = {
-                    show_line = false,
-                    theme = "ivy",
-                },
-                lsp_definitions = {
-                    show_line = false,
-                    theme = "ivy",
-                },
-                lsp_implementations = {
-                    show_line = false,
-                    theme = "ivy",
-                },
                 git_branches = {
                     theme = "ivy",
                 },
