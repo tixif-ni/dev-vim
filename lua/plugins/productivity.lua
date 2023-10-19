@@ -28,6 +28,7 @@ return {
         init = function()
             local null_ls = require("null-ls")
             local ts = require("vim.treesitter")
+            local ts_utils = require("nvim-treesitter.ts_utils")
 
             null_ls.register({
                 method = null_ls.methods.DIAGNOSTICS,
@@ -40,7 +41,7 @@ return {
 
                         local query = ts.query.parse(params.filetype, "(request (method) @requestMethod)")
                         for _, node in query:iter_captures(root, params.bufnr) do
-                            local row, col, _, _, end_col, _ = node:range({ include_bytes = false })
+                            local row, col, _, end_col = ts_utils.get_vim_range({ node:range() }, params.bufnr)
 
                             table.insert(diagnostics, {
                                 row = row,
