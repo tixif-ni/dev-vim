@@ -72,7 +72,7 @@ return {
             end,
             float = {
                 override = function(conf)
-                    conf.width = 30
+                    conf.width = 40
                     return conf
                 end,
             },
