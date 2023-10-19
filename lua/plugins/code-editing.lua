@@ -61,7 +61,7 @@ return {
             post_parse_symbol = function(bufnr, item, ctx)
                 local ts = require("vim.treesitter")
 
-                if ctx.match.accessModifier then
+                if ctx.backend_name == "treesitter" and ctx.match.accessModifier then
                     local accessModifier = ts.get_node_text(ctx.match.accessModifier.node, bufnr)
                     if accessModifier == "private" then
                         item.name = " " .. item.name
