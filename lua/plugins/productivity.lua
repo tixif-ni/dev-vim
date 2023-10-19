@@ -108,8 +108,4 @@ return {
             require("telescope").load_extension("docker")
         end,
     },
-    {
-        "stevearc/stickybuf.nvim",
-        opts = {},
-    },
 }
