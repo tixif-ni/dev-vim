@@ -74,6 +74,12 @@ return {
 
                 return true
             end,
+            float = {
+                override = function(conf)
+                    conf.width = 30
+                    return conf
+                end,
+            },
         },
         cmd = { "AerialToggle" },
         keys = {
