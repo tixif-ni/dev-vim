@@ -28,32 +28,37 @@ return {
         end,
     },
     {
+        "L3MON4D3/LuaSnip",
+        build = "make install_jsregexp",
+        dependencies = {
+            "rafamadriz/friendly-snippets",
+        },
+        init = function()
+            require("luasnip.loaders.from_vscode").lazy_load()
+        end,
+    },
+    {
         "hrsh7th/nvim-cmp",
         dependencies = {
             "hrsh7th/cmp-buffer",
             "hrsh7th/cmp-path",
             "hrsh7th/cmp-calc",
-            "hrsh7th/cmp-vsnip",
-            "hrsh7th/vim-vsnip",
             "hrsh7th/cmp-nvim-lsp",
-            "tzachar/cmp-tabnine",
-            "L3MON4D3/LuaSnip",
+            "ray-x/cmp-treesitter",
             "saadparwaiz1/cmp_luasnip",
-            {
-                "tzachar/cmp-tabnine",
-                build = "./install.sh",
-                opts = {
-                    max_lines = 1000,
-                    max_num_results = 20,
-                    sort = true,
-                },
-            },
             "https://github.com/onsails/lspkind-nvim.git",
             "neovim/nvim-lspconfig",
         },
         opts = function()
             local cmp = require("cmp")
             local lspkind = require("lspkind")
+            local source_mapping = {
+                nvim_lsp = "力",
+                buffer = "",
+                path = "",
+                luasnip = "",
+                treesitter = "",
+            }
 
             return {
                 formatting = {
@@ -87,15 +92,6 @@ return {
                             TypeParameter = "",
                         },
                         before = function(entry, vim_item)
-                            local source_mapping = {
-                                nvim_lsp = "[LSP]",
-                                buffer = "[Buffer]",
-                                path = "[Path]",
-                                luasnip = "[Snippets]",
-                                cmp_tabnine = "[TN]",
-                                treesitter = "[TS]",
-                            }
-
                             vim_item.menu = source_mapping[entry.source.name]
 
                             return vim_item
@@ -116,12 +112,11 @@ return {
                 },
                 sources = {
                     { name = "nvim_lsp" },
+                    { name = "treesitter" },
+                    { name = "luasnip" },
                     { name = "buffer" },
                     { name = "path" },
                     { name = "calc" },
-                    { name = "luasnip" },
-                    { name = "cmp_tabnine" },
-                    { name = "treesitter" },
                 },
             }
         end,
