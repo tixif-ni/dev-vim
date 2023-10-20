@@ -50,37 +50,64 @@ return {
     {
         "stevearc/aerial.nvim",
         dependencies = {
+            "nvim-lua/plenary.nvim",
             "nvim-treesitter/nvim-treesitter",
             "nvim-tree/nvim-web-devicons",
         },
-        opts = {
-            backends = { "treesitter", "lsp" },
-            ignore = {
-                filetypes = constants.ignored_buffer_types,
-            },
-            post_parse_symbol = function(bufnr, item, ctx)
-                local ts = require("vim.treesitter")
+        opts = function()
+            local List = require("plenary.collections.py_list")
 
-                if ctx.backend_name == "treesitter" and ctx.match.accessModifier then
-                    local accessModifier = ts.get_node_text(ctx.match.accessModifier.node, bufnr)
-                    if accessModifier == "private" then
-                        item.name = " " .. item.name
+            return {
+                backends = { "treesitter", "lsp" },
+                ignore = {
+                    filetypes = List({ "markdown" }):concat(constants.ignored_buffer_types),
+                },
+                post_parse_symbol = function(bufnr, item, ctx)
+                    local ts = require("vim.treesitter")
+
+                    if ctx.backend_name == "treesitter" and ctx.match.accessModifier then
+                        local accessModifier = ts.get_node_text(ctx.match.accessModifier.node, bufnr)
+                        if accessModifier == "private" then
+                            item.name = " " .. item.name
+                        end
                     end
-                end
 
-                return true
-            end,
-            float = {
-                override = function(conf)
-                    conf.width = 40
-                    return conf
+                    return true
                 end,
-            },
-        },
+                float = {
+                    override = function(conf)
+                        conf.width = 40
+                        return conf
+                    end,
+                },
+            }
+        end,
         cmd = { "AerialToggle" },
         keys = {
             { "gc", ":AerialToggle float<CR>", desc = "[Code] Navigation", mode = "n" },
         },
+    },
+    {
+        "andersevenrud/nvim_context_vt",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "nvim-treesitter/nvim-treesitter",
+        },
+        opts = function()
+            local List = require("plenary.collections.py_list")
+
+            return {
+                disable_ft = List({ "markdown" }):concat(constants.ignored_buffer_types),
+            }
+        end,
+        keys = {
+            { "<leader><space>", ":NvimContextVtToggle<CR>", desc = "[Code] Show Context", mode = "n" },
+        },
+        init = function()
+            -- This is hack, cause setting it enable = false from opts causes the first
+            -- toggle calls to fail, so toggling it off on init.
+            require("nvim_context_vt").toggle_context()
+        end,
     },
     {
         "mhartington/formatter.nvim",
