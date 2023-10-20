@@ -76,7 +76,6 @@ return {
                 },
                 post_parse_symbol = function(bufnr, item, ctx)
                     local ts = require("vim.treesitter")
-                    print(vim.inspect(ctx))
 
                     if ctx.backend_name == "treesitter" then
                         if ctx.match.private then
