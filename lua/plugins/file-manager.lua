@@ -212,6 +212,9 @@ return {
         },
         init = function()
             require("telescope").load_extension("fzf")
+
+            -- Add line numbering to preview buffers
+            vim.cmd("autocmd User TelescopePreviewerLoaded setlocal number")
         end,
     },
     {
