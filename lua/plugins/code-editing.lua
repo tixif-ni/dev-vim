@@ -46,6 +46,18 @@ return {
                 },
             })
         end,
+        init = function()
+            local ts = require("vim.treesitter")
+
+            ts.query.add_directive("set_if_eq!", function(match, pattern, bufnr, predicate, metadata)
+                local _, key, capture_id, rhs = unpack(predicate)
+
+                local node = match[capture_id]
+                if node and ts.get_node_text(node, bufnr) == rhs then
+                    metadata[key] = true
+                end
+            end)
+        end,
     },
     {
         "stevearc/aerial.nvim",
@@ -64,11 +76,13 @@ return {
                 },
                 post_parse_symbol = function(bufnr, item, ctx)
                     local ts = require("vim.treesitter")
+                    print(vim.inspect(ctx))
 
-                    if ctx.backend_name == "treesitter" and ctx.match.accessModifier then
-                        local accessModifier = ts.get_node_text(ctx.match.accessModifier.node, bufnr)
-                        if accessModifier == "private" then
+                    if ctx.backend_name == "treesitter" then
+                        if ctx.match.private then
                             item.name = " " .. item.name
+                        elseif ctx.match.protected then
+                            item.name = " " .. item.name
                         end
                     end
 

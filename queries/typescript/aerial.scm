@@ -27,6 +27,8 @@
   (accessibility_modifier)? @accessModifier
   name: (property_identifier) @name
   (#set! "kind" "Method")
+  (#set_if_eq! "private" @accessModifier "private")
+  (#set_if_eq! "protected" @accessModifier "protected")
   ) @type
 
 (public_field_definition
