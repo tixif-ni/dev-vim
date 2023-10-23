@@ -194,6 +194,9 @@ return {
                 git_status = {
                     theme = "ivy",
                 },
+                diagnostics = {
+                    theme = "ivy",
+                },
             },
             extensions = {
                 fzf = {
@@ -209,6 +212,13 @@ return {
             { "fl", ":Telescope live_grep<CR>", desc = "[File] Find text", mode = "n", noremap = true },
             { "fw", ":Telescope grep_string<CR>", desc = "[File] Find word", mode = "n", noremap = true },
             { "fb", ":Telescope buffers<CR>", desc = "[File] Find buffer", mode = "n", noremap = true },
+            {
+                "fd",
+                ":Telescope diagnostics bufnr=0<CR>",
+                desc = "[File] Find diagnostics",
+                mode = "n",
+                noremap = true,
+            },
         },
         init = function()
             require("telescope").load_extension("fzf")
