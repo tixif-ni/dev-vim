@@ -1,7 +1,6 @@
 local constants = require("constants")
 
 return {
-    "preservim/nerdcommenter",
     "https://github.com/mattn/emmet-vim.git",
     {
         "nvim-treesitter/nvim-treesitter",
@@ -43,6 +42,11 @@ return {
                             ["ip"] = "@parameter.inner",
                         },
                     },
+                },
+                -- This is necessary by commentstring plugin
+                context_commentstring = {
+                    enable = true,
+                    enable_autocmd = false,
                 },
             })
         end,
@@ -234,5 +238,30 @@ return {
             "javascript",
             "python",
         },
+    },
+    {
+        "numToStr/Comment.nvim",
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter",
+            { "JoosepAlviste/nvim-ts-context-commentstring", opts = {} },
+        },
+        lazy = false,
+        opts = function()
+            return {
+                padding = false,
+                toggler = {
+                    line = "<leader>cc",
+                    block = "<leader>cc",
+                },
+                opleader = {
+                    line = "<leader>cc",
+                    block = "<leader>cc",
+                },
+                mappings = {
+                    extra = false,
+                },
+                pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
+            }
+        end,
     },
 }
