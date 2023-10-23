@@ -102,6 +102,7 @@ return {
     },
     {
         "andersevenrud/nvim_context_vt",
+        lazy = false,
         dependencies = {
             "nvim-lua/plenary.nvim",
             "nvim-treesitter/nvim-treesitter",
@@ -110,17 +111,13 @@ return {
             local List = require("plenary.collections.py_list")
 
             return {
+                enabled = false,
                 disable_ft = List({ "markdown" }):concat(constants.ignored_buffer_types),
             }
         end,
         keys = {
             { "<leader><space>", ":NvimContextVtToggle<CR>", desc = "[Code] Show Context", mode = "n" },
         },
-        init = function()
-            -- This is hack, cause setting it enable = false from opts causes the first
-            -- toggle calls to fail, so toggling it off on init.
-            require("nvim_context_vt").toggle_context()
-        end,
     },
     {
         "mhartington/formatter.nvim",
