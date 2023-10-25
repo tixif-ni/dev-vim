@@ -3,7 +3,6 @@ return {
         "https://github.com/tpope/vim-fugitive.git",
         dependencies = {
             "https://github.com/tommcdo/vim-fugitive-blame-ext.git",
-            "sindrets/diffview.nvim",
             "nvim-telescope/telescope.nvim",
         },
         keys = {
@@ -145,6 +144,9 @@ return {
     },
     {
         "sindrets/diffview.nvim",
+        dependencies = {
+            "https://github.com/tpope/vim-fugitive.git",
+        },
         opts = {
             keymaps = {
                 view = {
@@ -158,9 +160,9 @@ return {
                 },
             },
         },
-        cmd = { "DiffviewOpen", "DiffviewFileHistory" },
+        cmd = { "DiffviewOpen", "DiffviewFileHistory", "DiffviewLine" },
         keys = {
-            { "<leader>gdf", ":DiffviewFileHistory %<CR>", mode = "n", desc = "[Git] Diff file", noremap = true },
+            { "<leader>gd", ":DiffviewFileHistory %<CR>", mode = "n", desc = "[Git] Diff file", noremap = true },
             {
                 "dd",
                 ":DiffviewLine<CR>",
@@ -177,10 +179,22 @@ return {
                 ft = { "git", "fugitiveblame" },
                 noremap = true,
             },
+            -- TODO: Maybe add per line mapping to open DiffviewFileHistory?
+            {
+                "dd",
+                function()
+                    local git_dir = vim.fn.substitute(vim.fn.FugitiveGitDir(), ".git", "", "")
+                    vim.cmd(string.format("DiffviewOpen -C%s", git_dir))
+                end,
+                mode = "n",
+                desc = "[Git] Diff staged files",
+                ft = { "fugitive" },
+                noremap = true,
+            },
         },
         commander = {
             {
-                desc = "[Git] Diff branch",
+                desc = "[Git] Diff branch history",
                 cmd = ":DiffviewFileHistory<CR>",
             },
         },
