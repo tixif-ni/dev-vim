@@ -71,4 +71,8 @@ return {
         },
     },
     { "stevearc/dressing.nvim", opts = {} },
+    {
+        "norcalli/nvim-colorizer.lua",
+        opts = { "css", "sass", "scss" },
+    },
 }
