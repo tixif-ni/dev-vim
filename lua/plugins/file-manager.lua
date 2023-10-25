@@ -162,18 +162,19 @@ return {
     },
     {
         "nvim-telescope/telescope.nvim",
-        tag = "0.1.3",
+        tag = "0.1.4",
         dependencies = {
             "nvim-lua/popup.nvim",
             "nvim-lua/plenary.nvim",
             { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
         },
+        lazy = false,
         opts = {
             defaults = {
                 mappings = {
                     i = {
-                        ["<C-n>"] = false,
-                        ["<C-p>"] = false,
+                        ["<C-n>"] = "nop",
+                        ["<C-p>"] = "nop",
                         ["<C-j>"] = "move_selection_next",
                         ["<C-k>"] = "move_selection_previous",
                     },
@@ -190,6 +191,16 @@ return {
                 },
                 git_branches = {
                     theme = "ivy",
+                    mappings = {
+                        i = {
+                            ["<c-a>"] = "nop",
+                            ["<c-b>"] = "git_create_branch",
+                        },
+                        n = {
+                            ["<c-a>"] = "nop",
+                            ["<c-b>"] = "git_create_branch",
+                        },
+                    },
                 },
                 git_status = {
                     theme = "ivy",

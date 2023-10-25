@@ -12,6 +12,8 @@ Show the highlight groups under the cursor | :Inspect
 Show the parsed syntax tree | :InspectTree
 Open the Live Query Editor | :TSEditQuery 
 
+## Telescope
+Create git branch | Type the name of the new branch and then the mapping to create it
 
 ## Misc
 Clear search hightlight | :noh
