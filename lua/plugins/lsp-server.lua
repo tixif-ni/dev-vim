@@ -16,13 +16,28 @@ return {
                     -- See `:help vim.lsp.*` for documentation on any of the below functions
                     local opts = { buffer = ev.buf }
                     vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
-                    vim.keymap.set("n", "gd", ":Telescope lsp_definitions show_line=false theme=ivy<CR>", opts)
-                    vim.keymap.set("n", "gi", ":Telescope lsp_implementations show_line=false theme=ivy<CR>", opts)
-                    vim.keymap.set("n", "gt", ":Telescope lsp_type_definitions show_line=false theme=ivy<CR>", opts)
+                    vim.keymap.set(
+                        "n",
+                        "gd",
+                        ":Telescope lsp_definitions show_line=false theme=ivy initial_mode=normal<CR>",
+                        opts
+                    )
+                    vim.keymap.set(
+                        "n",
+                        "gi",
+                        ":Telescope lsp_implementations show_line=false theme=ivy initial_mode=normal<CR>",
+                        opts
+                    )
+                    vim.keymap.set(
+                        "n",
+                        "gt",
+                        ":Telescope lsp_type_definitions show_line=false theme=ivy initial_mode=normal<CR>",
+                        opts
+                    )
                     vim.keymap.set(
                         "n",
                         "gr",
-                        ":Telescope lsp_references include_declaration=false show_line=false theme=ivy<CR>",
+                        ":Telescope lsp_references include_declaration=false show_line=false theme=ivy initial_mode=normal<CR>",
                         opts
                     )
                     vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)

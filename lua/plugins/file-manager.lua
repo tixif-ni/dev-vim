@@ -178,6 +178,9 @@ return {
                         ["<C-j>"] = "move_selection_next",
                         ["<C-k>"] = "move_selection_previous",
                     },
+                    n = {
+                        ["q"] = "close",
+                    },
                 },
             },
             pickers = {
@@ -258,6 +261,7 @@ return {
                 "fm",
                 function()
                     require("telescope").extensions.harpoon.marks(require("telescope.themes").get_ivy({
+                        initial_mode = "normal",
                         path_display = {
                             shorten = { len = 1, exclude = { 1, -1, -2 } },
                         },
