@@ -179,18 +179,6 @@ return {
                 ft = { "git", "fugitiveblame" },
                 noremap = true,
             },
-            -- TODO: Maybe add per line mapping to open DiffviewFileHistory?
-            {
-                "dd",
-                function()
-                    local git_dir = vim.fn.substitute(vim.fn.FugitiveGitDir(), ".git", "", "")
-                    vim.cmd(string.format("DiffviewOpen -C%s", git_dir))
-                end,
-                mode = "n",
-                desc = "[Git] Diff staged files",
-                ft = { "fugitive" },
-                noremap = true,
-            },
         },
         commander = {
             {
