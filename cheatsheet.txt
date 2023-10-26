@@ -5,6 +5,7 @@ Get filetype | :echo &ft
 
 ## Git
 Diff against immediate parent | git diff <hash>^!
+Diff current line | <leader>ghd
 
 ## Treesitter
 Docs | https://neovim.io/doc/user/treesitter.html
