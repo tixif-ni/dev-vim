@@ -60,6 +60,7 @@ return {
     },
     {
         "lewis6991/gitsigns.nvim",
+        lazy = false,
         opts = {
             numhl = true,
             on_attach = function(bufnr)
@@ -96,6 +97,9 @@ return {
                 map("n", "<leader>ghp", gs.preview_hunk)
                 map("n", "<leader>ghd", gs.diffthis)
             end,
+        },
+        keys = {
+            { "fh", ":Gitsigns setqflist<CR>", desc = "[Git] File hunks", mode = "n" },
         },
     },
     {
