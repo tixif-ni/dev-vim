@@ -94,10 +94,6 @@ return {
                     end)
                     return "<Ignore>"
                 end, { expr = true })
-
-                -- Actions
-                map("n", "<leader>ghp", gs.preview_hunk)
-                map("n", "<leader>ghd", gs.diffthis)
             end,
         },
         keys = {
