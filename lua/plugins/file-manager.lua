@@ -194,7 +194,6 @@ return {
         dependencies = {
             "nvim-lua/plenary.nvim",
             { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-            "nvim-telescope/telescope-ui-select.nvim",
         },
         lazy = false,
         opts = {
@@ -247,11 +246,6 @@ return {
                     override_file_sorter = true,
                     case_mode = "smart_case",
                 },
-                ["ui-select"] = {
-                    require("telescope.themes").get_dropdown({
-                        initial_mode = "normal",
-                    }),
-                },
             },
         },
         keys = {
@@ -275,7 +269,6 @@ return {
         },
         init = function()
             require("telescope").load_extension("fzf")
-            require("telescope").load_extension("ui-select")
 
             -- Add line numbering to preview buffers
             vim.cmd("autocmd User TelescopePreviewerLoaded setlocal number")
@@ -312,5 +305,23 @@ return {
                 noremap = true,
             },
         },
+    },
+    {
+        "stevearc/dressing.nvim",
+        dependencies = {
+            "nvim-telescope/telescope.nvim",
+        },
+        opts = function()
+            return {
+                input = {
+                    prefer_width = 50,
+                },
+                select = {
+                    telescope = require("telescope.themes").get_cursor({
+                        initial_mode = "normal",
+                    }),
+                },
+            }
+        end,
     },
 }
