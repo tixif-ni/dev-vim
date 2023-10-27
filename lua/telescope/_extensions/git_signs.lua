@@ -108,7 +108,7 @@ local git_signs = function(opts)
                 finder = finder,
                 sorter = telescope_config.generic_sorter(opts),
                 previewer = telescope_config.grep_previewer(opts),
-                attach_mappings = function(prompt_bufnr, map)
+                attach_mappings = function(_, map)
                     map("n", "dd", git_reset)
                     map("n", "cc", git_stage)
 
