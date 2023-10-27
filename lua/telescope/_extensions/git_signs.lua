@@ -13,7 +13,7 @@ local entry_maker = function(entry)
     }
 
     local displayer = entry_display.create({
-        separator = " | ",
+        separator = "| ",
         items = {
             { width = 2 },
             { remaining = true },
