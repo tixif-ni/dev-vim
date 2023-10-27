@@ -9,7 +9,7 @@ local gitsign_config = require("gitsigns.config").config
 local gitsign_actions = require("gitsigns.actions")
 
 local entry_maker = function(entry)
-    local text = string.format("Lines %d-%d", entry.start, entry.end_)
+    local text = string.format("Lines %d-%d", entry.start, entry.finish)
 
     local displayer = entry_display.create({
         separator = "",
@@ -36,6 +36,8 @@ local entry_maker = function(entry)
         ordinal = text,
         display = make_display,
         lnum = entry.start,
+        start = entry.start,
+        finish = entry.finish,
         filename = entry.filename,
     }
 end
@@ -54,7 +56,7 @@ local generate_new_finder = function()
                 bufnr = current_buf,
                 filename = bcache.file,
                 start = hunk.added.start,
-                end_ = hunk.vend,
+                finish = hunk.vend,
                 type = hunk.type,
             })
         end
@@ -75,7 +77,7 @@ local function git_reset(prompt_bufnr)
         local value = selection.value
 
         local cb = function()
-            gitsign_actions.reset_hunk({ value.start, value.end_ })
+            gitsign_actions.reset_hunk({ value.start, value.finish })
         end
 
         vim.api.nvim_buf_call(value.bufnr, cb)
@@ -89,7 +91,7 @@ local function git_stage(prompt_bufnr)
         local value = selection.value
 
         local cb = function()
-            gitsign_actions.stage_hunk({ value.start, value.end_ })
+            gitsign_actions.stage_hunk({ value.start, value.finish })
         end
 
         vim.api.nvim_buf_call(value.bufnr, cb)
@@ -107,7 +109,7 @@ local git_signs = function(opts)
                 prompt_title = "Git Hunks",
                 finder = finder,
                 sorter = telescope_config.generic_sorter(opts),
-                previewer = telescope_config.grep_previewer(opts),
+                previewer = telescope_config.qflist_previewer(opts),
                 attach_mappings = function(_, map)
                     map("n", "dd", git_reset)
                     map("n", "cc", git_stage)
