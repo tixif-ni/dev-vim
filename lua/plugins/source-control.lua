@@ -1,6 +1,7 @@
 return {
     {
         "https://github.com/tpope/vim-fugitive.git",
+        lazy = false,
         dependencies = {
             "https://github.com/tommcdo/vim-fugitive-blame-ext.git",
             "nvim-telescope/telescope.nvim",
@@ -9,7 +10,6 @@ return {
             { "<leader>gb", ":Git blame<CR>", desc = "[Git] Annotate file", mode = "n" },
             { "<leader>gs", ":Git<CR>", desc = "[Git] Display status", mode = "n" },
             { "<leader>gr", ":Gread<CR>", desc = "[Git] Checkout file", mode = "n" },
-            { "<leader>gl", ":Git log<CR>", desc = "[Git] Find log", mode = "n" },
             { "<leader>gp", ":Git push<CR>", desc = "[Git] Push changes", mode = "n", ft = "fugitive" },
             { "<leader>gP", ":Git push --force<CR>", desc = "[Git] Push forced changes", mode = "n", ft = "fugitive" },
             {
@@ -127,6 +127,7 @@ return {
     },
     {
         "sindrets/diffview.nvim",
+        lazy = false,
         dependencies = {
             "https://github.com/tpope/vim-fugitive.git",
         },
@@ -143,9 +144,10 @@ return {
                 },
             },
         },
-        cmd = { "DiffviewOpen", "DiffviewFileHistory", "DiffviewLine" },
         keys = {
-            { "<leader>gd", ":DiffviewFileHistory %<CR>", mode = "n", desc = "[Git] Diff file", noremap = true },
+            { "<leader>gd", ":DiffviewFile<CR>", mode = "n", desc = "[Git] Diff file", noremap = true },
+            { "<leader>gh", ":DiffviewFileHistory %<CR>", mode = "n", desc = "[Git] File history", noremap = true },
+            { "<leader>gl", ":DiffviewFileHistory<CR>", desc = "[Git] History", mode = "n", remap = true },
             {
                 "dd",
                 ":DiffviewLine<CR>",
@@ -176,6 +178,13 @@ return {
                 local hash_range = git_utils.get_line_hash_range(opts.args)
 
                 vim.cmd(string.format("DiffviewOpen %s -C%s", hash_range, git_dir))
+            end, { nargs = "?" })
+
+            vim.api.nvim_create_user_command("DiffviewFile", function()
+                local git_dir = vim.fn.substitute(vim.fn.FugitiveGitDir(), ".git", "", "")
+                local path = vim.fn.expand("%:p")
+
+                vim.cmd(string.format("DiffviewOpen -C%s -- %s | DiffviewToggleFiles", git_dir, path))
             end, { nargs = "?" })
         end,
     },
