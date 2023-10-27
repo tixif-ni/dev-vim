@@ -1,3 +1,4 @@
+local utils = require("telescope.utils")
 local pickers = require("telescope.pickers")
 local finders = require("telescope.finders")
 local conf = require("telescope.config").values
@@ -57,28 +58,40 @@ local generate_new_finder = function()
         end
     end
 
-    return finders.new_table({
-        results = results,
-        entry_maker = entry_maker,
-    })
+    if not vim.tbl_isempty(results) then
+        return finders.new_table({
+            results = results,
+            entry_maker = entry_maker,
+        })
+    end
 end
 
 local git_signs = function(opts)
     opts = opts or {}
 
-    pickers
-        .new(opts, {
-            prompt_title = "Git Hunks",
-            finder = generate_new_finder(),
-            sorter = conf.generic_sorter(opts),
-            -- TODO: Would it be better to use git diff previewer?
-            previewer = conf.grep_previewer(opts),
-            attach_mappings = function(prompt_bufnr, map)
-                -- TODO: Add mappings to stage | reset hunks
-                return true
-            end,
+    local finder = generate_new_finder()
+
+    if finder then
+        pickers
+            .new(opts, {
+                prompt_title = "Git Hunks",
+                finder = finder,
+                sorter = conf.generic_sorter(opts),
+                -- TODO: Would it be better to use git diff previewer?
+                previewer = conf.grep_previewer(opts),
+                attach_mappings = function(prompt_bufnr, map)
+                    -- TODO: Add mappings to stage | reset hunks
+                    return true
+                end,
+            })
+            :find()
+    else
+        utils.notify("git_signs", {
+            msg = "No git hunks found",
+            level = "INFO",
         })
-        :find()
+        return
+    end
 end
 
 return require("telescope").register_extension({
