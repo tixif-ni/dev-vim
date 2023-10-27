@@ -1,19 +1,13 @@
 local pickers = require("telescope.pickers")
 local finders = require("telescope.finders")
 local conf = require("telescope.config").values
-local actions = require("telescope.actions")
-local action_state = require("telescope.actions.state")
 local entry_display = require("telescope.pickers.entry_display")
 
 local entry_maker = function(entry)
-    local signs = {
-        ["add"] = "+",
-        ["change"] = "~",
-        ["delete"] = "-",
-    }
+    local config = require("gitsigns.config").config
 
     local displayer = entry_display.create({
-        separator = "| ",
+        separator = "",
         items = {
             { width = 2 },
             { remaining = true },
@@ -21,10 +15,12 @@ local entry_maker = function(entry)
     })
 
     local make_display = function()
+        local sign = config.signs[entry.type]
+
         return displayer({
             {
-                signs[entry.type],
-                "GitSigns" .. entry.type:gsub("^%l", string.upper),
+                sign.text,
+                sign.hl,
             },
             entry.text,
         })
@@ -35,13 +31,13 @@ local entry_maker = function(entry)
         ordinal = entry.text,
         display = make_display,
         lnum = entry.lnum,
-        col = 0,
         filename = entry.filename,
     }
 end
 
 local generate_new_finder = function()
     local cache = require("gitsigns.cache").cache
+
     local current_buf = vim.api.nvim_get_current_buf()
     local results = {}
 
