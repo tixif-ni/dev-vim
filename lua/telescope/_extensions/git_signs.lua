@@ -111,6 +111,7 @@ local git_signs = function(opts)
                 sorter = telescope_config.generic_sorter(opts),
                 previewer = telescope_config.qflist_previewer(opts),
                 attach_mappings = function(_, map)
+                    map("i", "<C-d", git_reset)
                     map("n", "dd", git_reset)
                     map("n", "cc", git_stage)
 
