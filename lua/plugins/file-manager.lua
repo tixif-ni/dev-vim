@@ -131,7 +131,9 @@ return {
                     "n",
                     "ff",
                     wrap_cwd_context(function(cwd)
-                        require("telescope.builtin").find_files({ cwd = cwd })
+                        require("telescope.builtin").find_files(
+                            require("telescope.themes").get_dropdown({ cwd = cwd, previewer = false })
+                        )
                     end),
                     opts("Find file")
                 )
@@ -222,7 +224,13 @@ return {
             },
         },
         keys = {
-            { "ff", ":Telescope find_files<CR>", desc = "[File] Find file", mode = "n", noremap = true },
+            {
+                "ff",
+                ":Telescope find_files previewer=false theme=dropdown<CR>",
+                desc = "[File] Find file",
+                mode = "n",
+                noremap = true,
+            },
             { "fl", ":Telescope live_grep<CR>", desc = "[File] Find text", mode = "n", noremap = true },
             { "fw", ":Telescope grep_string<CR>", desc = "[File] Find word", mode = "n", noremap = true },
             { "fb", ":Telescope buffers<CR>", desc = "[File] Find buffer", mode = "n", noremap = true },
