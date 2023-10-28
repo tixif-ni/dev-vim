@@ -50,6 +50,7 @@ return {
                 "fgw",
                 function()
                     require("telescope.builtin").grep_string({
+                        initial_mode = "normal",
                         cwd = vim.fn.substitute(vim.fn.FugitiveGitDir(), ".git", "", ""),
                     })
                 end,

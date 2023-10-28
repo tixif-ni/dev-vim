@@ -257,7 +257,13 @@ return {
                 noremap = true,
             },
             { "fl", ":Telescope live_grep<CR>", desc = "[File] Find text", mode = "n", noremap = true },
-            { "fw", ":Telescope grep_string<CR>", desc = "[File] Find word", mode = "n", noremap = true },
+            {
+                "fw",
+                ":Telescope grep_string initial_mode=normal<CR>",
+                desc = "[File] Find word",
+                mode = "n",
+                noremap = true,
+            },
             { "fb", ":Telescope buffers<CR>", desc = "[File] Find buffer", mode = "n", noremap = true },
             {
                 "fd",
