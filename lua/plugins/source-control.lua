@@ -101,10 +101,10 @@ return {
             end,
         },
         keys = {
-            { "fh", ":Telescope gitsigns theme=ivy initial_mode=normal<CR>", desc = "[Git] File hunks", mode = "n" },
+            { "fh", ":Telescope git_signs theme=ivy initial_mode=normal<CR>", desc = "[Git] File hunks", mode = "n" },
         },
         init = function()
-            require("telescope").load_extension("gitsigns")
+            require("telescope").load_extension("git_signs")
         end,
     },
     {
