@@ -61,7 +61,10 @@ return {
     },
     {
         "lewis6991/gitsigns.nvim",
-        dependencies = { "nvim-telescope/telescope.nvim" },
+        dependencies = {
+            "nvim-telescope/telescope.nvim",
+            "radyz/telescope-gitsigns",
+        },
         lazy = false,
         opts = {
             numhl = true,
@@ -97,10 +100,10 @@ return {
             end,
         },
         keys = {
-            { "fh", ":Telescope git_signs theme=ivy initial_mode=normal<CR>", desc = "[Git] File hunks", mode = "n" },
+            { "fh", ":Telescope gitsigns theme=ivy initial_mode=normal<CR>", desc = "[Git] File hunks", mode = "n" },
         },
         init = function()
-            require("telescope").load_extension("git_signs")
+            require("telescope").load_extension("gitsigns")
         end,
     },
     {
