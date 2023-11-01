@@ -174,6 +174,10 @@ return {
                 desc = "[Git] Diff branch history",
                 cmd = ":DiffviewFileHistory<CR>",
             },
+            {
+                desc = "[Git] Review pull request",
+                cmd = ":DiffviewOpen origin/HEAD...HEAD --imply-local<CR>",
+            },
         },
         init = function()
             vim.api.nvim_create_user_command("DiffviewLine", function(opts)
