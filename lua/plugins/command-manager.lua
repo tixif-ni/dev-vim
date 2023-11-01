@@ -10,12 +10,9 @@ return {
             return {
                 components = {
                     "DESC",
-                    "CMD",
-                    "KEYS",
                 },
                 sorty_by = {
                     "DESC",
-                    "KEYS",
                 },
                 integration = {
                     lazy = {
