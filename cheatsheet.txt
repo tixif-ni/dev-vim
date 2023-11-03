@@ -20,3 +20,7 @@ Create git branch | Type the name of the new branch and then the mapping to crea
 Clear search hightlight | :noh
 Disable auto command | :noa <...>
 Sort lines | :sort
+
+## Folds
+Toggle fold | za
+Toggle fold recursively | zA
