@@ -220,23 +220,20 @@ return {
                     theme = "ivy",
                 },
                 git_branches = {
-                    theme = "ivy",
                     mappings = {
                         i = {
                             ["<c-a>"] = "nop",
+                            ["<c-d>"] = "nop",
                             ["<c-b>"] = "git_create_branch",
+                            ["dd"] = "git_delete_branch",
                         },
                         n = {
                             ["<c-a>"] = "nop",
+                            ["<c-d>"] = "nop",
                             ["<c-b>"] = "git_create_branch",
+                            ["dd"] = "git_delete_branch",
                         },
                     },
-                },
-                git_status = {
-                    theme = "ivy",
-                },
-                diagnostics = {
-                    theme = "ivy",
                 },
             },
             extensions = {
@@ -267,7 +264,7 @@ return {
             { "fb", ":Telescope buffers<CR>", desc = "[File] Find buffer", mode = "n", noremap = true },
             {
                 "fd",
-                ":Telescope diagnostics bufnr=0 initial_mode=normal<CR>",
+                ":Telescope diagnostics bufnr=0 initial_mode=normal theme=ivy<CR>",
                 desc = "[File] Find diagnostics",
                 mode = "n",
                 noremap = true,

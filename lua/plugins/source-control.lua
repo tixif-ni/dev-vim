@@ -10,14 +10,16 @@ return {
             { "<leader>gb", ":Git blame<CR>", desc = "[Git] Annotate file", mode = "n" },
             { "<leader>gs", ":Git<CR>", desc = "[Git] Display status", mode = "n" },
             { "<leader>gr", ":Gread<CR>", desc = "[Git] Checkout file", mode = "n" },
+            { "<leader>gl", ":Git log<CR>", desc = "[Git] Log", mode = "n" },
             { "<leader>gp", ":Git push<CR>", desc = "[Git] Push changes", mode = "n", ft = "fugitive" },
             { "<leader>gP", ":Git push --force<CR>", desc = "[Git] Push forced changes", mode = "n", ft = "fugitive" },
             {
                 "<leader>gt",
                 function()
-                    require("telescope.builtin").git_branches({
+                    require("telescope.builtin").git_branches(require("telescope.themes").get_dropdown({
                         cwd = vim.fn.substitute(vim.fn.FugitiveGitDir(), ".git", "", ""),
-                    })
+                        previewer = false,
+                    }))
                 end,
                 desc = "[Git] Find branch",
                 mode = "n",
@@ -135,24 +137,71 @@ return {
         dependencies = {
             "https://github.com/tpope/vim-fugitive.git",
         },
-        opts = {
-            keymaps = {
-                view = {
-                    ["gq"] = "<CMD>DiffviewClose<CR>",
+        opts = function()
+            local actions = require("diffview.actions")
+
+            return {
+                keymaps = {
+                    view = {
+                        {
+                            "n",
+                            "gq",
+                            "<CMD>DiffviewClose<CR>",
+                            { desc = "Close the panel" },
+                        },
+                    },
+                    file_panel = {
+                        {
+                            "n",
+                            "gq",
+                            "<CMD>DiffviewClose<CR>",
+                            { desc = "Close the panel" },
+                        },
+                        {
+                            "n",
+                            "<c-d>",
+                            actions.scroll_view(0.25),
+                            { desc = "Scroll the view down" },
+                        },
+                        {
+                            "n",
+                            "<c-u>",
+                            actions.scroll_view(-0.25),
+                            { desc = "Scroll the view up" },
+                        },
+                        ["<c-f>"] = false,
+                        ["<c-b>"] = false,
+                    },
+                    file_history_panel = {
+                        {
+                            "n",
+                            "gq",
+                            "<CMD>DiffviewClose<CR>",
+                            { desc = "Close the panel" },
+                        },
+                        {
+                            "n",
+                            "<c-d>",
+                            actions.scroll_view(0.25),
+                            { desc = "Scroll the view down" },
+                        },
+                        {
+                            "n",
+                            "<c-u>",
+                            actions.scroll_view(-0.25),
+                            { desc = "Scroll the view up" },
+                        },
+                        ["<c-f>"] = false,
+                        ["<c-b>"] = false,
+                    },
                 },
-                file_panel = {
-                    ["gq"] = "<CMD>DiffviewClose<CR>",
+                default_args = {
+                    DiffviewOpen = { "--imply-local" },
                 },
-                file_history_panel = {
-                    ["gq"] = "<CMD>DiffviewClose<CR>",
-                },
-            },
-            default_args = {
-                DiffviewOpen = { "--imply-local" },
-            },
-        },
+            }
+        end,
         keys = {
-            { "<leader>gl", ":DiffviewFileHistory<CR>", desc = "[Git] History", mode = "n", remap = true },
+            { "<leader>gh", ":DiffviewFileHistory<CR>", desc = "[Git] History", mode = "n", remap = true },
             {
                 "dd",
                 ":DiffviewLine<CR>",
