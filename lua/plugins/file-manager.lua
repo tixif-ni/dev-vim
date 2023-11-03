@@ -296,8 +296,9 @@ return {
             {
                 "fm",
                 function()
-                    require("telescope").extensions.harpoon.marks(require("telescope.themes").get_ivy({
+                    require("telescope").extensions.harpoon.marks(require("telescope.themes").get_dropdown({
                         initial_mode = "normal",
+                        previewer = false,
                         path_display = {
                             shorten = { len = 1, exclude = { 1, -1, -2 } },
                         },
