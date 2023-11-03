@@ -10,6 +10,7 @@ return {
             return {
                 components = {
                     "DESC",
+                    "KEYS",
                 },
                 sorty_by = {
                     "DESC",
