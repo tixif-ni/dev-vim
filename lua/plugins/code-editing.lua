@@ -223,17 +223,16 @@ return {
             "nvim-treesitter/nvim-treesitter",
             { "JoosepAlviste/nvim-ts-context-commentstring", opts = {} },
         },
-        lazy = false,
         opts = function()
             return {
                 padding = false,
                 toggler = {
                     line = "<leader>cc",
-                    block = "<leader>cc",
+                    block = "<leader>cb",
                 },
                 opleader = {
                     line = "<leader>cc",
-                    block = "<leader>cc",
+                    block = "<leader>cb",
                 },
                 mappings = {
                     extra = false,
