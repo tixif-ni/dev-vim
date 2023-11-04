@@ -10,7 +10,6 @@ return {
             { "<leader>gb", ":Git blame<CR>", desc = "[Git] Annotate file", mode = "n" },
             { "<leader>gs", ":Git<CR>", desc = "[Git] Display status", mode = "n" },
             { "<leader>gr", ":Gread<CR>", desc = "[Git] Checkout file", mode = "n" },
-            { "<leader>gl", ":Git log<CR>", desc = "[Git] Log", mode = "n" },
             { "<leader>gp", ":Git push<CR>", desc = "[Git] Push changes", mode = "n", ft = "fugitive" },
             { "<leader>gP", ":Git push --force<CR>", desc = "[Git] Push forced changes", mode = "n", ft = "fugitive" },
             {
@@ -20,6 +19,20 @@ return {
                         cwd = vim.fn.substitute(vim.fn.FugitiveGitDir(), ".git", "", ""),
                         previewer = false,
                     }))
+                end,
+                desc = "[Git] Find branch",
+                mode = "n",
+                noremap = true,
+            },
+            {
+                "<leader>gl",
+                function()
+                    local opts = {
+                        initial_mode = "normal",
+                        cwd = vim.fn.substitute(vim.fn.FugitiveGitDir(), ".git", "", ""),
+                    }
+
+                    require("telescope").extensions.git_logs.git_logs(opts)
                 end,
                 desc = "[Git] Find branch",
                 mode = "n",
@@ -61,6 +74,9 @@ return {
                 noremap = true,
             },
         },
+        init = function()
+            require("telescope").load_extension("git_logs")
+        end,
     },
     {
         "lewis6991/gitsigns.nvim",

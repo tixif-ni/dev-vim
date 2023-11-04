@@ -196,55 +196,74 @@ return {
             { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
         },
         lazy = false,
-        opts = {
-            defaults = {
-                mappings = {
-                    i = {
-                        ["<C-n>"] = "nop",
-                        ["<C-p>"] = "nop",
-                        ["<C-j>"] = "move_selection_next",
-                        ["<C-k>"] = "move_selection_previous",
-                    },
-                    n = {
-                        ["q"] = "close",
-                    },
-                },
-            },
-            pickers = {
-                buffers = {
-                    mappings = {
-                        n = {
-                            ["dd"] = "delete_buffer",
-                        },
-                    },
-                    theme = "ivy",
-                },
-                git_branches = {
+        opts = function()
+            local action_state = require("telescope.actions.state")
+
+            function git_commit_yank()
+                local selection = action_state.get_selected_entry()
+
+                vim.fn.setreg("+", selection.msg)
+            end
+
+            return {
+                defaults = {
                     mappings = {
                         i = {
-                            ["<c-a>"] = "nop",
-                            ["<c-d>"] = "nop",
-                            ["<c-b>"] = "git_create_branch",
-                            ["dd"] = "git_delete_branch",
+                            ["<C-n>"] = "nop",
+                            ["<C-p>"] = "nop",
+                            ["<C-j>"] = "move_selection_next",
+                            ["<C-k>"] = "move_selection_previous",
                         },
                         n = {
-                            ["<c-a>"] = "nop",
-                            ["<c-d>"] = "nop",
-                            ["<c-b>"] = "git_create_branch",
-                            ["dd"] = "git_delete_branch",
+                            ["q"] = "close",
+                            ["]"] = "cycle_previewers_next",
+                            ["["] = "cycle_previewers_prev",
                         },
                     },
                 },
-            },
-            extensions = {
-                fzf = {
-                    fuzzy = true,
-                    override_generic_sorter = true,
-                    override_file_sorter = true,
-                    case_mode = "smart_case",
+                pickers = {
+                    buffers = {
+                        mappings = {
+                            n = {
+                                ["dd"] = "delete_buffer",
+                            },
+                        },
+                        theme = "ivy",
+                    },
+                    git_branches = {
+                        mappings = {
+                            i = {
+                                ["<c-a>"] = "nop",
+                                ["<c-d>"] = "nop",
+                                ["<c-b>"] = "git_create_branch",
+                                ["dd"] = "git_delete_branch",
+                            },
+                            n = {
+                                ["<c-a>"] = "nop",
+                                ["<c-d>"] = "nop",
+                                ["<c-b>"] = "git_create_branch",
+                                ["dd"] = "git_delete_branch",
+                            },
+                        },
+                    },
+                    git_commits = {
+                        mappings = {
+                            n = {
+                                ["yy"] = git_commit_yank,
+                            },
+                        },
+                    },
                 },
-            },
-        },
+                extensions = {
+                    fzf = {
+                        fuzzy = true,
+                        override_generic_sorter = true,
+                        override_file_sorter = true,
+                        case_mode = "smart_case",
+                    },
+                },
+            }
+        end,
         keys = {
             {
                 "ff",
