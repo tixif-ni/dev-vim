@@ -2,11 +2,18 @@ local pickers = require("telescope.builtin")
 local previewers = require("telescope.previewers")
 local putils = require("telescope.previewers.utils")
 local utils = require("telescope.utils")
+local action_state = require("telescope.actions.state")
 
 local git_command = utils.__git_command
 local ns_previewer = vim.api.nvim_create_namespace("telescope.previewers")
 
-git_logs_previewer = function(opts)
+function git_commit_yank()
+    local selection = action_state.get_selected_entry()
+
+    vim.fn.setreg("+", selection.msg)
+end
+
+function git_logs_previewer(opts)
     local hl_map = {
         "TelescopeResultsIdentifier",
         "TelescopePreviewUser",
@@ -49,6 +56,11 @@ return require("telescope").register_extension({
             opts.previewer = {
                 git_logs_previewer(opts),
             }
+
+            opts.attach_mappings = function(_, map)
+                map("n", "yy", git_commit_yank)
+                return true
+            end
 
             pickers.git_commits(opts)
         end,
