@@ -263,7 +263,13 @@ return {
                 mode = "n",
                 noremap = true,
             },
-            { "fb", ":Telescope buffers<CR>", desc = "[File] Find buffer", mode = "n", noremap = true },
+            {
+                "fb",
+                ":Telescope buffers initial_mode=normal<CR>",
+                desc = "[File] Find buffer",
+                mode = "n",
+                noremap = true,
+            },
             {
                 "fd",
                 ":Telescope diagnostics bufnr=0 initial_mode=normal theme=ivy<CR>",
