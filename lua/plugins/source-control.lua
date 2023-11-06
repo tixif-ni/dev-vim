@@ -17,7 +17,11 @@ return {
                 function()
                     require("telescope.builtin").git_branches(require("telescope.themes").get_dropdown({
                         cwd = vim.fn.substitute(vim.fn.FugitiveGitDir(), ".git", "", ""),
+                        initial_mode = "normal",
                         previewer = false,
+                        layout_config = {
+                            width = 0.75,
+                        },
                     }))
                 end,
                 desc = "[Git] Find branch",
