@@ -218,6 +218,11 @@ return {
                 default_args = {
                     DiffviewOpen = { "--imply-local" },
                 },
+                view = {
+                    merge_tool = {
+                        layout = "diff3_mixed",
+                    },
+                },
             }
         end,
         keys = {
