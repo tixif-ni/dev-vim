@@ -1,26 +1,3 @@
-local function open_telescope_picker_file(prompt_bufnr, mode)
-    -- Using nvim-tree api to split buffers with window pickers cause why not ¯\_(ツ)_/¯
-    local api = require("nvim-tree.api")
-    local actions = require("telescope.actions")
-    local action_state = require("telescope.actions.state")
-    local selection = action_state.get_selected_entry()
-
-    -- Will need to handle possible cases as they arise, giving priority to named
-    -- file path properties.
-    local path = selection.filename or selection[1]
-
-    actions.close(prompt_bufnr)
-    api.node.open[mode]({ absolute_path = path })
-end
-
-local function select_vertical(prompt_bufnr)
-    open_telescope_picker_file(prompt_bufnr, "vertical")
-end
-
-local function select_horizontal(prompt_bufnr)
-    open_telescope_picker_file(prompt_bufnr, "horizontal")
-end
-
 return {
     {
         "nvim-tree/nvim-tree.lua",
@@ -228,15 +205,11 @@ return {
                         ["<C-p>"] = "nop",
                         ["<C-j>"] = "move_selection_next",
                         ["<C-k>"] = "move_selection_previous",
-                        ["<c-v>"] = select_vertical,
-                        ["<c-x>"] = select_horizontal,
                     },
                     n = {
                         ["q"] = "close",
                         ["]"] = "cycle_previewers_next",
                         ["["] = "cycle_previewers_prev",
-                        ["<c-v>"] = select_vertical,
-                        ["<c-x>"] = select_horizontal,
                     },
                 },
             },
