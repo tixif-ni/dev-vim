@@ -38,7 +38,7 @@ return {
 
                     require("telescope").extensions.git_logs.git_logs(opts)
                 end,
-                desc = "[Git] Find branch",
+                desc = "[Git] Find logs",
                 mode = "n",
                 noremap = true,
             },
