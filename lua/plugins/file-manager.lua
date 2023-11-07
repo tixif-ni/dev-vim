@@ -1,9 +1,27 @@
+function open_telescope_picker_file(prompt_bufnr, mode)
+    local api = require("nvim-tree.api")
+    local actions = require("telescope.actions")
+    local action_state = require("telescope.actions.state")
+    local selection = action_state.get_selected_entry()
+
+    actions.close(prompt_bufnr)
+    api.node.open.vertical({ absolute_path = selection[1] }, mode)
+end
+
+function select_vertical(prompt_bufnr)
+    open_telescope_picker_file(prompt_bufnr, "vsplit")
+end
+
+function select_horizontal(prompt_bufnr)
+    open_telescope_picker_file(prompt_bufnr, "split")
+end
+
 return {
     {
         "nvim-tree/nvim-tree.lua",
+        lazy = false,
         dependencies = {
             "nvim-tree/nvim-web-devicons",
-            "nvim-telescope/telescope.nvim",
             "nvim-pack/nvim-spectre",
         },
         opts = {
@@ -204,11 +222,15 @@ return {
                         ["<C-p>"] = "nop",
                         ["<C-j>"] = "move_selection_next",
                         ["<C-k>"] = "move_selection_previous",
+                        ["<c-v>"] = select_vertical,
+                        ["<c-x>"] = select_horizontal,
                     },
                     n = {
                         ["q"] = "close",
                         ["]"] = "cycle_previewers_next",
                         ["["] = "cycle_previewers_prev",
+                        ["<c-v>"] = select_vertical,
+                        ["<c-x>"] = select_horizontal,
                     },
                 },
             },
