@@ -189,6 +189,18 @@ return {
                             actions.scroll_view(-0.25),
                             { desc = "Scroll the view up" },
                         },
+                        {
+                            "n",
+                            "cc",
+                            "<Cmd>Git commit <bar> wincmd J<CR>",
+                            { desc = "Commit staged changes" },
+                        },
+                        {
+                            "n",
+                            "ca",
+                            "<Cmd>Git commit --amend <bar> wincmd J<CR>",
+                            { desc = "Amend the last commit" },
+                        },
                         ["<c-f>"] = false,
                         ["<c-b>"] = false,
                     },
