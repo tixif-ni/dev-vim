@@ -142,12 +142,22 @@ return {
         end,
         init = function()
             local capabilities = require("cmp_nvim_lsp").default_capabilities()
-            local lsp_servers = { "tsserver", "pyright", "ruff_lsp", "terraformls", "lua_ls" }
+            local lsp_servers = {
+                tsserver = {},
+                pyright = {},
+                ruff_lsp = {
+                    on_attach = function(client, _)
+                        -- Disable hover in favor of Pyright
+                        client.server_capabilities.hoverProvider = false
+                    end,
+                },
+                terraformls = {},
+                lua_ls = {},
+            }
 
-            for i = 1, #lsp_servers do
-                require("lspconfig")[lsp_servers[i]].setup({
-                    capabilities = capabilities,
-                })
+            for server, opts in pairs(lsp_servers) do
+                opts.capabilities = capabilities
+                require("lspconfig")[server].setup(opts)
             end
         end,
     },
