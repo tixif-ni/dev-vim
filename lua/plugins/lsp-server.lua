@@ -167,21 +167,6 @@ return {
         opts = {},
     },
     {
-        "kosayoda/nvim-lightbulb",
-        opts = {
-            -- Set a higher priority so it replaces current sign on hover if any
-            -- https://neovim.io/doc/user/diagnostic.html#diagnostic-signs
-            priority = 11,
-            autocmd = { enabled = true },
-            sign = {
-                text = "",
-            },
-            ignore = {
-                ft = constants.ignored_buffer_types,
-            },
-        },
-    },
-    {
         "nvimtools/none-ls.nvim",
         opts = function()
             local null_ls = require("null-ls")
