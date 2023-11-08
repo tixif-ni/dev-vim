@@ -195,16 +195,17 @@ return {
         dependencies = {
             "nvim-lua/plenary.nvim",
             { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+            { "s1n7ax/nvim-window-picker" },
         },
         lazy = false,
         opts = {
             defaults = {
                 mappings = {
                     i = {
-                        ["<C-n>"] = "nop",
-                        ["<C-p>"] = "nop",
-                        ["<C-j>"] = "move_selection_next",
-                        ["<C-k>"] = "move_selection_previous",
+                        ["<c-n>"] = "nop",
+                        ["<c-p>"] = "nop",
+                        ["<c-j>"] = "move_selection_next",
+                        ["<c-k>"] = "move_selection_previous",
                     },
                     n = {
                         ["q"] = "close",
@@ -212,6 +213,15 @@ return {
                         ["["] = "cycle_previewers_prev",
                     },
                 },
+                get_selection_window = function(picker, entry)
+                    local picked_window_id = require("window-picker").pick_window({
+                        filter_rules = {
+                            include_current_win = true,
+                        },
+                    }) or vim.api.nvim_get_current_win()
+
+                    return picked_window_id
+                end,
             },
             pickers = {
                 buffers = {
