@@ -7,13 +7,13 @@ local action_state = require("telescope.actions.state")
 local git_command = utils.__git_command
 local ns_previewer = vim.api.nvim_create_namespace("telescope.previewers")
 
-function git_commit_yank()
+local function git_commit_yank()
     local selection = action_state.get_selected_entry()
 
     vim.fn.setreg("+", selection.msg)
 end
 
-function git_logs_previewer(opts)
+local function git_logs_previewer(opts)
     local hl_map = {
         "TelescopeResultsIdentifier",
         "TelescopePreviewUser",

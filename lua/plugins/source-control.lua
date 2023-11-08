@@ -15,6 +15,13 @@ return {
             {
                 "<leader>gt",
                 function()
+                    local function git_branch_yank()
+                        local action_state = require("telescope.actions.state")
+                        local selection = action_state.get_selected_entry()
+
+                        vim.fn.setreg("+", selection.name)
+                    end
+
                     require("telescope.builtin").git_branches(require("telescope.themes").get_dropdown({
                         cwd = vim.fn.substitute(vim.fn.FugitiveGitDir(), ".git", "", ""),
                         initial_mode = "normal",
@@ -22,6 +29,10 @@ return {
                         layout_config = {
                             width = 0.75,
                         },
+                        attach_mappings = function(_, map)
+                            map("n", "yy", git_branch_yank)
+                            return true
+                        end,
                     }))
                 end,
                 desc = "[Git] Find branch",
