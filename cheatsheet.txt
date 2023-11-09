@@ -24,3 +24,6 @@ Sort lines | :sort
 ## Folds
 Toggle fold | za
 Toggle fold recursively | zA
+
+## CMD
+Find process using port | sudo lsof -i :<port>
