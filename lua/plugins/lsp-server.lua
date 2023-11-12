@@ -1,5 +1,3 @@
-local constants = require("constants")
-
 return {
     {
         "neovim/nvim-lspconfig",

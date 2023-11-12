@@ -29,12 +29,6 @@ return {
         },
     },
     {
-        "dhruvasagar/vim-table-mode",
-        init = function()
-            vim.g.table_mode_corner = "|"
-        end,
-    },
-    {
         "https://github.com/easymotion/vim-easymotion.git",
         lazy = false,
         keys = {

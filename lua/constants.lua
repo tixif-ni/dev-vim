@@ -9,5 +9,6 @@ return {
         "spectre_panel",
         "TelescopePrompt",
         "gitmessengerpopup",
+        "toggleterm",
     },
 }
