@@ -115,40 +115,4 @@ return {
         version = "2.*",
         opts = {},
     },
-    {
-        "akinsho/toggleterm.nvim",
-        dependencies = {
-            "nvim-telescope/telescope.nvim",
-            "radyz/telescope-terminals",
-        },
-        version = "*",
-        opts = {},
-        keys = {
-            {
-                "ft",
-                ":Telescope terminal theme=dropdown initial_mode=normal<CR>",
-                desc = "[Terminals] Find terminal",
-                mode = "n",
-                noremap = true,
-            },
-            {
-                "<leader>tt",
-                ":ToggleTerm direction=float<CR>",
-                desc = "[Terminals] Toggle terminal",
-                mode = "n",
-                noremap = true,
-            },
-        },
-        init = function()
-            function _G.set_terminal_keymaps()
-                local opts = { buffer = 0 }
-                vim.keymap.set("t", "<esc>", [[<C-\><C-n>]], opts)
-                vim.keymap.set("t", "jj", [[<C-\><C-n>]], opts)
-            end
-
-            vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
-
-            require("telescope").load_extension("terminal")
-        end,
-    },
 }
