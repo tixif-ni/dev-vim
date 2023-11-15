@@ -22,7 +22,6 @@ return {
                         local window_w_int = math.floor(window_w)
                         local window_h_int = math.floor(window_h)
 
-                        print(window_h_int)
                         return {
                             border = "rounded",
                             relative = "editor",
