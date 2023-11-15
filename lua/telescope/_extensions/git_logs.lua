@@ -3,14 +3,33 @@ local previewers = require("telescope.previewers")
 local putils = require("telescope.previewers.utils")
 local utils = require("telescope.utils")
 local action_state = require("telescope.actions.state")
+local Job = require("plenary.job")
 
 local git_command = utils.__git_command
 local ns_previewer = vim.api.nvim_create_namespace("telescope.previewers")
 
-local function git_commit_yank()
+local function git_commit_yank(prompt_bufnr)
     local selection = action_state.get_selected_entry()
+    local current_picker = action_state.get_current_picker(prompt_bufnr)
 
-    vim.fn.setreg("+", selection.msg)
+    Job:new({
+        command = "git",
+        args = {
+            "show",
+            '--pretty=format:"%B"',
+            "-s",
+            selection.value,
+        },
+        cwd = current_picker.cwd,
+        on_exit = function(j, _)
+            local message = table.concat(j:result(), "\n")
+
+            vim.schedule(function()
+                -- Need to strip leading and trailing quotes
+                vim.fn.setreg("+", message:sub(2, #message - 1))
+            end)
+        end,
+    }):start()
 end
 
 local function git_logs_previewer(opts)
