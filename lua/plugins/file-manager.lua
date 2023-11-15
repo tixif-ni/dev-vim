@@ -9,33 +9,12 @@ return {
         },
         opts = {
             view = {
-                float = {
-                    enable = true,
-                    open_win_config = function()
-                        local HEIGHT_RATIO = 0.5
-                        local WIDTH_RATIO = 0.3
-
-                        local screen_w = vim.opt.columns:get()
-                        local screen_h = vim.opt.lines:get() - vim.opt.cmdheight:get()
-                        local window_w = screen_w * WIDTH_RATIO
-                        local window_h = screen_h * HEIGHT_RATIO
-                        local window_w_int = math.floor(window_w)
-                        local window_h_int = math.floor(window_h)
-
-                        return {
-                            border = "rounded",
-                            relative = "editor",
-                            row = 1,
-                            col = 1,
-                            width = math.max(window_w_int, 40),
-                            height = math.max(window_h_int, 30),
-                        }
-                    end,
-                },
+                adaptive_size = true,
             },
             actions = {
                 open_file = {
                     resize_window = false,
+                    quit_on_open = true,
                 },
             },
             filters = {
