@@ -43,11 +43,6 @@ return {
                         },
                     },
                 },
-                -- This is necessary by commentstring plugin
-                context_commentstring = {
-                    enable = true,
-                    enable_autocmd = false,
-                },
             })
         end,
         init = function()
