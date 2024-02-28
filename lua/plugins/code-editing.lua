@@ -188,6 +188,9 @@ return {
                             }
                         end,
                     },
+                    rust = {
+                        require("formatter.filetypes.rust").rustfmt,
+                    },
                 },
             }
         end,
@@ -205,7 +208,8 @@ return {
                     "*.yaml",
                     "*.md",
                     "*.html",
-                    "*.tf ",
+                    "*.tf",
+                    "*.rs",
                 },
                 group = vim.api.nvim_create_augroup("FormatAutogroup", {}),
                 command = "FormatWrite",

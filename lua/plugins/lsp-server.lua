@@ -151,6 +151,7 @@ return {
                 },
                 terraformls = {},
                 lua_ls = {},
+                rust_analyzer = {},
             }
 
             for server, opts in pairs(lsp_servers) do
