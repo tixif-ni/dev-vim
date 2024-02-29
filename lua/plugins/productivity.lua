@@ -18,14 +18,15 @@ return {
             "nvim-lua/plenary.nvim",
             "nvimtools/none-ls.nvim",
         },
-        opts = {
-            result_split_horizontal = true,
-            skip_ssl_verification = true,
-            result = {
-                show_curl_command = false,
-            },
-        },
-        config = function() end,
+        config = function()
+            require("rest-nvim").setup({
+                result_split_horizontal = true,
+                skip_ssl_verification = true,
+                result = {
+                    show_curl_command = false,
+                },
+            })
+        end,
         init = function()
             local null_ls = require("null-ls")
             local ts = require("vim.treesitter")
