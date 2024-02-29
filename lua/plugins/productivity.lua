@@ -25,6 +25,7 @@ return {
                 show_curl_command = false,
             },
         },
+        config = function() end,
         init = function()
             local null_ls = require("null-ls")
             local ts = require("vim.treesitter")
@@ -114,5 +115,16 @@ return {
         event = "VeryLazy",
         version = "2.*",
         opts = {},
+    },
+    {
+        "danymat/neogen",
+        dependencies = "nvim-treesitter/nvim-treesitter",
+        config = true,
+        version = "*",
+        keys = {
+            { "<leader>ngf", ":Neogen func<CR>", desc = "[Code] generates function doc", mode = "n" },
+            { "<leader>ngc", ":Neogen class<CR>", desc = "[Code] generates class doc", mode = "n" },
+            { "<leader>ngt", ":Neogen type<CR>", desc = "[Code] generates type docs", mode = "n" },
+        },
     },
 }
