@@ -13,17 +13,25 @@ return {
         ft = "markdown",
     },
     {
+        "vhyrro/luarocks.nvim",
+        opts = {
+            rocks = { "lua-curl", "nvim-nio", "mimetypes", "xml2lua" }, -- Specify LuaRocks packages to install
+        },
+    },
+    {
         "rest-nvim/rest.nvim",
         dependencies = {
             "nvim-lua/plenary.nvim",
             "nvimtools/none-ls.nvim",
+            "nvim-neotest/nvim-nio",
+            "vhyrro/luarocks.nvim",
         },
         config = function()
             require("rest-nvim").setup({
-                result_split_horizontal = true,
+                -- result_split_horizontal = true,
                 skip_ssl_verification = true,
                 result = {
-                    show_curl_command = false,
+                    -- show_curl_command = false,
                 },
             })
         end,
@@ -112,10 +120,11 @@ return {
     },
     {
         "s1n7ax/nvim-window-picker",
-        name = "window-picker",
         event = "VeryLazy",
         version = "2.*",
-        opts = {},
+        config = function()
+            require("window-picker").setup()
+        end,
     },
     {
         "danymat/neogen",

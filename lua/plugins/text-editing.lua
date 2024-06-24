@@ -76,4 +76,14 @@ return {
         event = "BufRead",
         opts = {},
     },
+    {
+        "kamykn/spelunker.vim",
+        lazy = false,
+        config = function() end,
+        init = function()
+            vim.g.spelunker_disable_uri_checking = 1
+            vim.g.spelunker_disable_email_checking = 1
+        end,
+        opts = {},
+    },
 }

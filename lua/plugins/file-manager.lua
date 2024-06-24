@@ -14,7 +14,7 @@ return {
             actions = {
                 open_file = {
                     resize_window = false,
-                    quit_on_open = true,
+                    --quit_on_open = true,
                 },
             },
             filters = {
@@ -169,7 +169,7 @@ return {
     },
     {
         "nvim-telescope/telescope.nvim",
-        tag = "0.1.4",
+        tag = "0.1.8",
         dependencies = {
             "nvim-lua/plenary.nvim",
             { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
@@ -254,15 +254,22 @@ return {
             },
             {
                 "fb",
-                ":Telescope buffers initial_mode=normal<CR>",
+                ":Telescope buffers<CR>",
                 desc = "[File] Find buffer",
                 mode = "n",
                 noremap = true,
             },
             {
                 "fd",
-                ":Telescope diagnostics bufnr=0 initial_mode=normal theme=ivy<CR>",
+                ":Telescope diagnostics bufnr=0 initial_mode=normal  wrap_results=true theme=ivy<CR>",
                 desc = "[File] Find diagnostics",
+                mode = "n",
+                noremap = true,
+            },
+            {
+                "fD",
+                ":Telescope diagnostics initial_mode=normal  wrap_results=true theme=ivy<CR>",
+                desc = "[All] Find diagnostics",
                 mode = "n",
                 noremap = true,
             },

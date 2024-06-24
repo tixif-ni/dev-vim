@@ -1,4 +1,5 @@
 vim.opt.encoding = "utf-8"
+
 vim.opt.wildmenu = true
 vim.opt.smartcase = true
 vim.opt.ignorecase = true
@@ -7,6 +8,10 @@ vim.opt.more = true
 
 vim.cmd("set guioptions-=m")
 vim.cmd("set guioptions-=T")
+
+---- Spell
+--vim.opt.spelllang = "en_us"
+--vim.opt.spell = true
 
 -- Performance boosters
 vim.opt.cursorline = true
@@ -22,7 +27,7 @@ vim.cmd([[
 ]])
 
 -- Stop vim's crazy formatting when pasting with the mouse
-vim.opt.pastetoggle = "<F5>"
+-- vim.opt.pastetoggle = "<F5>"
 
 -- Reload file if modified
 vim.opt.autoread = true
@@ -62,7 +67,7 @@ vim.filetype.add({
 -- Diagnostics
 --
 -- Disable text object diagnostic next to each line to avoid overbloating UI
-vim.diagnostic.config({ virtual_text = false })
+vim.diagnostic.config({ virtual_text = false, virtual_lines = { only_current_line = true } })
 -- Setup icons
 for severity, icon in pairs({ Error = "✗", Warn = "", Hint = "", Info = " " }) do
     local hl = "DiagnosticSign" .. severity

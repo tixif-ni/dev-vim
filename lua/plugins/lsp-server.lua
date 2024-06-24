@@ -14,15 +14,18 @@ return {
                     -- See `:help vim.lsp.*` for documentation on any of the below functions
                     local opts = { buffer = ev.buf }
                     vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
-                    vim.keymap.set(
-                        "n",
-                        "gd",
-                        ":Telescope lsp_definitions show_line=false theme=ivy initial_mode=normal jump_type=never<CR>",
-                        opts
-                    )
+                    vim.keymap.set("n", "gd", ":Telescope lsp_definitions show_line=false theme=ivy<CR>", opts)
                     vim.keymap.set(
                         "n",
                         "gi",
+                        ":Telescope lsp_implementations show_line=false initial_mode=normal theme=ivy<CR>",
+                        opts
+                    )
+
+                    -- Lets use the preview for this keymaps
+                    vim.keymap.set(
+                        "n",
+                        "gI",
                         ":Telescope lsp_implementations show_line=false theme=ivy initial_mode=normal jump_type=never<CR>",
                         opts
                     )
@@ -79,6 +82,7 @@ return {
             }
 
             return {
+                preselect = cmp.PreselectMode.None,
                 formatting = {
                     format = lspkind.cmp_format({
                         mode = "symbol_text",
@@ -127,6 +131,11 @@ return {
                     ["<CR>"] = cmp.mapping.confirm({ select = false }),
                     ["<Tab>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "s" }),
                     ["<S-Tab>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "s" }),
+                },
+                view = {
+                    entries = {
+                        select_order = "top_down",
+                    },
                 },
                 sources = {
                     { name = "nvim_lsp" },
@@ -184,5 +193,9 @@ return {
                 },
             }
         end,
+    },
+    {
+        "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+        opts = {},
     },
 }
