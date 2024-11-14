@@ -54,3 +54,7 @@ vim.keymap.set("n", "<space>", vim.diagnostic.open_float, { noremap = true })
 -- Move between tabs
 vim.keymap.set("n", "]t", ":tabnext<CR>", { noremap = true })
 vim.keymap.set("n", "[t", ":tabprevious<CR>", { noremap = true })
+
+vim.keymap.set("n", "<Leader>h", function()
+    vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+end)

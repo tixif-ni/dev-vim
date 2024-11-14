@@ -150,7 +150,7 @@ return {
         init = function()
             local capabilities = require("cmp_nvim_lsp").default_capabilities()
             local lsp_servers = {
-                tsserver = {},
+                ts_ls = {},
                 pyright = {},
                 ruff_lsp = {
                     on_attach = function(client, _)
@@ -194,8 +194,8 @@ return {
             }
         end,
     },
-    {
-        "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-        opts = {},
-    },
+    --{
+    --    "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+    --    opts = {},
+    --},
 }
