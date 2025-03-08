@@ -140,4 +140,14 @@ return {
             { "<leader>ngt", ":Neogen type<CR>", desc = "[Code] generates type docs", mode = "n" },
         },
     },
+    {
+        "zbirenbaum/copilot.lua",
+        dependencies = "github/copilot.vim",
+        cmd = "Copilot",
+        event = "InsertEnter",
+        config = function()
+            require("copilot").setup()
+            vim.api.nvim_set_keymap("i", "<C-j>", 'copilot#Accept("<CR>")', { expr = true, silent = true })
+        end,
+    },
 }

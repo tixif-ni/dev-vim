@@ -161,6 +161,7 @@ return {
                 terraformls = {},
                 lua_ls = {},
                 rust_analyzer = {},
+                somesass_ls = {},
             }
 
             for server, opts in pairs(lsp_servers) do
@@ -176,6 +177,7 @@ return {
     },
     {
         "nvimtools/none-ls.nvim",
+        dependencies = { "nvimtools/none-ls-extras.nvim" },
         opts = function()
             local null_ls = require("null-ls")
 
@@ -190,12 +192,13 @@ return {
                     }),
                     null_ls.builtins.hover.printenv,
                     null_ls.builtins.diagnostics.djlint,
+                    --require("none-ls.diagnostics.eslint"),
                 },
             }
         end,
     },
-    --{
-    --    "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-    --    opts = {},
-    --},
+    {
+        "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+        opts = {},
+    },
 }
