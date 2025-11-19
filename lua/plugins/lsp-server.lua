@@ -166,7 +166,9 @@ return {
 
             for server, opts in pairs(lsp_servers) do
                 opts.capabilities = capabilities
-                require("lspconfig")[server].setup(opts)
+
+                vim.lsp.config[server] = { settings = opts }
+                vim.lsp.enable(server)
             end
         end,
     },
@@ -192,7 +194,7 @@ return {
                     }),
                     null_ls.builtins.hover.printenv,
                     null_ls.builtins.diagnostics.djlint,
-                    --require("none-ls.diagnostics.eslint"),
+                    require("none-ls.diagnostics.eslint"),
                 },
             }
         end,
