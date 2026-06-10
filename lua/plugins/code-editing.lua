@@ -11,7 +11,7 @@ return {
         config = function()
             require("nvim-treesitter.configs").setup({
                 ensure_installed = "all",
-                ignore_install = { "phpdoc" },
+                ignore_install = { "phpdoc", "ipkg" },
                 highlight = {
                     enable = true,
                     -- Disable slow treesitter highlight for large files
@@ -251,7 +251,6 @@ return {
     },
     {
         "davidmh/mdx.nvim",
-        config = true,
         dependencies = { "nvim-treesitter/nvim-treesitter" },
     },
 }

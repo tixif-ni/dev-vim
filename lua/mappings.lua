@@ -58,3 +58,9 @@ vim.keymap.set("n", "[t", ":tabprevious<CR>", { noremap = true })
 vim.keymap.set("n", "<Leader>h", function()
     vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 end)
+
+-- Move between buffers
+vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Move left split" })
+vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Move down split" })
+vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Move up split" })
+vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Move right split" })

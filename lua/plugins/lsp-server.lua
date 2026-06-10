@@ -194,7 +194,7 @@ return {
                     }),
                     null_ls.builtins.hover.printenv,
                     null_ls.builtins.diagnostics.djlint,
-                    require("none-ls.diagnostics.eslint"),
+                    --require("none-ls.diagnostics.eslint"),
                 },
             }
         end,
