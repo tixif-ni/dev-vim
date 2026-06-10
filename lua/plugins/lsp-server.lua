@@ -1,6 +1,7 @@
 return {
     {
         "neovim/nvim-lspconfig",
+        commit = "ad95655ec5d13ff7c728d731eb9fd39f34395a03",
         dependencies = {
             "nvim-telescope/telescope.nvim",
         },
@@ -46,6 +47,60 @@ return {
                     vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, opts)
                 end,
             })
+
+            local capabilities = require("cmp_nvim_lsp").default_capabilities()
+            local lsp_servers = {
+                ts_ls = {},
+                pyright = {},
+                ruff_lsp = {
+                    on_attach = function(client, _)
+                        -- Disable hover in favor of Pyright
+                        client.server_capabilities.hoverProvider = false
+                    end,
+                },
+                terraformls = {},
+                lua_ls = {},
+                rust_analyzer = {
+                    settings = {
+                        ["rust-analyzer"] = {
+                            check = {
+                                command = "clippy",
+                                extraArgs = {
+                                    "--",
+                                    "--no-deps",
+                                    "-Wclippy::all",
+                                },
+                            },
+                        },
+                    },
+                },
+                somesass_ls = {},
+            }
+
+            for server, opts in pairs(lsp_servers) do
+                opts.capabilities = capabilities
+
+                vim.lsp.config(server, {
+                    before_init = function(_, config)
+                        local codesettings = require("codesettings")
+                        codesettings
+                            -- starts from the plugin's global config as a base
+                            .loader()
+                            -- override the root directory from the LSP config, which might be a sub-root
+                            :root_dir(
+                                config.root_dir
+                            )
+                            -- merge local settings according to the configuration specified
+                            -- by this `ConfigBuilder`
+                            :with_local_settings(
+                                config.name,
+                                config
+                            )
+                    end,
+                })
+
+                vim.lsp.enable(server)
+            end
         end,
     },
     {
@@ -147,35 +202,15 @@ return {
                 },
             }
         end,
-        init = function()
-            local capabilities = require("cmp_nvim_lsp").default_capabilities()
-            local lsp_servers = {
-                ts_ls = {},
-                pyright = {},
-                ruff_lsp = {
-                    on_attach = function(client, _)
-                        -- Disable hover in favor of Pyright
-                        client.server_capabilities.hoverProvider = false
-                    end,
-                },
-                terraformls = {},
-                lua_ls = {},
-                rust_analyzer = {},
-                somesass_ls = {},
-            }
-
-            for server, opts in pairs(lsp_servers) do
-                opts.capabilities = capabilities
-
-                vim.lsp.config[server] = { settings = opts }
-                vim.lsp.enable(server)
-            end
-        end,
     },
     {
         "ray-x/lsp_signature.nvim",
         event = "VeryLazy",
         opts = {},
+    },
+    {
+        "mrjones2014/codesettings.nvim",
+        tag = "v1.6.7",
     },
     {
         "nvimtools/none-ls.nvim",

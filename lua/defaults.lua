@@ -15,7 +15,7 @@ vim.cmd("set guioptions-=T")
 
 -- Performance boosters
 vim.opt.cursorline = true
-vim.opt.cursorcolumn = true
+vim.opt.cursorcolumn = false
 vim.opt.lazyredraw = true
 vim.opt.re = 1
 vim.opt.showcmd = false
