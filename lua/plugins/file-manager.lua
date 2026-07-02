@@ -178,6 +178,9 @@ return {
         lazy = false,
         opts = {
             defaults = {
+                file_ignore_patterns = {
+                    "^logstash/.*%.log$",
+                },
                 mappings = {
                     i = {
                         ["<c-n>"] = "nop",

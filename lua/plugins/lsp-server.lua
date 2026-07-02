@@ -50,7 +50,16 @@ return {
 
             local capabilities = require("cmp_nvim_lsp").default_capabilities()
             local lsp_servers = {
-                ts_ls = {},
+                ts_ls = {
+                    --init_options = {
+                    --    plugins = {
+                    --        {
+                    --            name = "@effect/language-service",
+                    --            location = "~/.nvm/versions/node/v22.14.0/lib/node_modules/@effect/language-service",
+                    --        },
+                    --    },
+                    --},
+                },
                 pyright = {},
                 ruff_lsp = {
                     on_attach = function(client, _)
@@ -80,24 +89,24 @@ return {
             for server, opts in pairs(lsp_servers) do
                 opts.capabilities = capabilities
 
-                vim.lsp.config(server, {
-                    before_init = function(_, config)
-                        local codesettings = require("codesettings")
-                        codesettings
-                            -- starts from the plugin's global config as a base
-                            .loader()
-                            -- override the root directory from the LSP config, which might be a sub-root
-                            :root_dir(
-                                config.root_dir
-                            )
-                            -- merge local settings according to the configuration specified
-                            -- by this `ConfigBuilder`
-                            :with_local_settings(
-                                config.name,
-                                config
-                            )
-                    end,
-                })
+                opts.before_init = function(_, config)
+                    local codesettings = require("codesettings")
+                    codesettings
+                        -- starts from the plugin's global config as a base
+                        .loader()
+                        -- override the root directory from the LSP config, which might be a sub-root
+                        :root_dir(
+                            config.root_dir
+                        )
+                        -- merge local settings according to the configuration specified
+                        -- by this `ConfigBuilder`
+                        :with_local_settings(
+                            config.name,
+                            config
+                        )
+                end
+
+                vim.lsp.config(server, opts)
 
                 vim.lsp.enable(server)
             end
