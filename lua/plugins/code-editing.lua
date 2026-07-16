@@ -44,9 +44,30 @@ return {
                     },
                 },
             })
+
+            vim.api.nvim_create_autocmd("FileType", {
+                callback = function()
+                    pcall(vim.treesitter.start)
+                    -- Optional: use tree-sitter for indentation
+                    vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+                end,
+            })
         end,
         init = function()
             local ts = require("vim.treesitter")
+
+            -- Neovim 0.12 hands directive/predicate handlers a list of nodes
+            -- (TSNode[]) per capture instead of a single TSNode. The frozen
+            -- nvim-treesitter master branch (and the set_if_eq! directive below)
+            -- still expect a single node, so get_node_text gets a table and
+            -- crashes in get_range. Unwrap the 1-element list transparently.
+            local orig_get_node_text = ts.get_node_text
+            ts.get_node_text = function(node, source, opts)
+                if type(node) == "table" and type(node[1]) == "userdata" then
+                    node = node[1]
+                end
+                return orig_get_node_text(node, source, opts)
+            end
 
             ts.query.add_directive("set_if_eq!", function(match, pattern, bufnr, predicate, metadata)
                 local _, key, capture_id, rhs = unpack(predicate)
