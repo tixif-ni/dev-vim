@@ -32,7 +32,13 @@ return {
             require("github-theme").setup({
                 groups = {
                     all = {
-                        DiagnosticFloatingHint = { fg = "#79c0ff" },
+                        DiagnosticHint = { fg = "#0969DA" },
+                        DiagnosticVirtualTextHint = { fg = "#0969DA" },
+                        DiagnosticUnderlineHint = {
+                            sp = "#0969DA",
+                            style = "undercurl",
+                        },
+                        DiagnosticFloatingHint = { fg = "#0969DA" },
                     },
                 },
             })
