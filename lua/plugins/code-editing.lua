@@ -4,79 +4,34 @@ return {
     "https://github.com/mattn/emmet-vim.git",
     {
         "nvim-treesitter/nvim-treesitter",
-        dependencies = {
-            "nvim-treesitter/nvim-treesitter-textobjects",
-        },
+        branch = "main",
+        lazy = false,
         build = ":TSUpdate",
         config = function()
-            require("nvim-treesitter.configs").setup({
-                ensure_installed = "all",
-                ignore_install = { "phpdoc", "ipkg" },
-                highlight = {
-                    enable = true,
-                    -- Disable slow treesitter highlight for large files
-                    disable = function(_, buf)
-                        local max_filesize = 100 * 1024 -- 100 KB
-                        local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
-                        if ok and stats and stats.size > max_filesize then
-                            return true
-                        end
-                    end,
-                },
-                matchup = {
-                    enable = true,
-                },
-                textobjects = {
-                    select = {
-                        enable = true,
-                        -- Automatically jump forward to textobj, similar to targets.vim
-                        lookahead = true,
-                        keymaps = {
-                            ["of"] = "@function.outer",
-                            ["if"] = "@function.inner",
-                            ["oc"] = "@class.outer",
-                            ["ic"] = "@class.inner",
-                            ["ob"] = "@block.outer",
-                            ["ib"] = "@block.inner",
-                            ["op"] = "@parameter.inner",
-                            ["ip"] = "@parameter.inner",
-                        },
-                    },
-                },
+            require("nvim-treesitter").install({
+                "rust",
+                "typescript",
+                "javascript",
+                "tsx",
+                "html",
+                "css",
+                "json",
+                "toml",
+                "yaml",
+                "bash",
+                "c_sharp",
+                "python",
+                "terraform",
+                "markdown",
+                "markdown_inline",
+                "sql",
             })
 
             vim.api.nvim_create_autocmd("FileType", {
                 callback = function()
                     pcall(vim.treesitter.start)
-                    -- Optional: use tree-sitter for indentation
-                    vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
                 end,
             })
-        end,
-        init = function()
-            local ts = require("vim.treesitter")
-
-            -- Neovim 0.12 hands directive/predicate handlers a list of nodes
-            -- (TSNode[]) per capture instead of a single TSNode. The frozen
-            -- nvim-treesitter master branch (and the set_if_eq! directive below)
-            -- still expect a single node, so get_node_text gets a table and
-            -- crashes in get_range. Unwrap the 1-element list transparently.
-            local orig_get_node_text = ts.get_node_text
-            ts.get_node_text = function(node, source, opts)
-                if type(node) == "table" and type(node[1]) == "userdata" then
-                    node = node[1]
-                end
-                return orig_get_node_text(node, source, opts)
-            end
-
-            ts.query.add_directive("set_if_eq!", function(match, pattern, bufnr, predicate, metadata)
-                local _, key, capture_id, rhs = unpack(predicate)
-
-                local node = match[capture_id]
-                if node and ts.get_node_text(node, bufnr) == rhs then
-                    metadata[key] = true
-                end
-            end)
         end,
     },
     {
@@ -86,6 +41,25 @@ return {
             "nvim-treesitter/nvim-treesitter",
             "nvim-tree/nvim-web-devicons",
         },
+        init = function()
+            local ts = require("vim.treesitter")
+
+            -- Custom directive used by the aerial queries in queries/.
+            -- Neovim 0.12 hands directive handlers a TSNode[] list per
+            -- capture instead of a single TSNode, so unwrap before comparing.
+            ts.query.add_directive("set_if_eq!", function(match, _, bufnr, predicate, metadata)
+                local _, key, capture_id, rhs = unpack(predicate)
+
+                local nodes = match[capture_id]
+                if type(nodes) == "userdata" then
+                    nodes = { nodes }
+                end
+                local node = nodes and nodes[1]
+                if node and ts.get_node_text(node, bufnr) == rhs then
+                    metadata[key] = true
+                end
+            end, { force = true })
+        end,
         opts = function()
             local List = require("plenary.collections.py_list")
 

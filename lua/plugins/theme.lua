@@ -1,28 +1,6 @@
 local constants = require("constants")
 
 return {
-    --{
-    --"kristijanhusak/vim-hybrid-material",
-    --lazy = false, -- make sure we load this during startup
-    --priority = 1000, -- make sure to load this before all the other start plugins
-    --config = function()
-    --vim.g.enable_bold_font = 1
-    --vim.env.NVIM_TUI_ENABLE_TRUE_COLOR = 1
-
-    --vim.opt.termguicolors = true
-    --vim.opt.background = "dark"
-    --vim.cmd("colorscheme hybrid_material")
-    --end,
-    --},
-    --{
-    --    "Mofiqul/vscode.nvim",
-    --    lazy = false, -- make sure we load this during startup
-    --    priority = 1000, -- make sure to load this before all the other start plugins
-    --    init = function()
-    --        vim.opt.background = "dark"
-    --        require("vscode").load()
-    --    end,
-    --},
     {
         "projekt0n/github-nvim-theme",
         name = "github-theme",
@@ -43,6 +21,20 @@ return {
                 },
             })
 
+            -- Nvim 0.11+ auto-sets 'background' from OSC 11 terminal color
+            -- reports, which flips it to dark (and breaks the colorscheme)
+            -- when iTerm2 re-reports its colors on window resize. Setting
+            -- 'background' from Lua does NOT disable this (nvim can't tell
+            -- user Lua from its own SID_LUA setter), so delete the
+            -- auto-detection autocmd directly.
+            vim.opt.background = "light"
+            -- pcall: the nvim.tty group only exists when a TUI is attached
+            local ok, aus = pcall(vim.api.nvim_get_autocmds, { event = "TermResponse", group = "nvim.tty" })
+            for _, au in ipairs(ok and aus or {}) do
+                if (au.desc or ""):find("'background'", 1, true) then
+                    pcall(vim.api.nvim_del_autocmd, au.id)
+                end
+            end
             vim.cmd("colorscheme github_light_default")
         end,
     },
@@ -80,19 +72,19 @@ return {
             vim.g.lengthmatters_start_at_column = 88
         end,
     },
-    {
-        "https://github.com/levouh/tint.nvim.git",
-        opts = {
-            window_ignore_function = function(winid)
-                local bufid = vim.api.nvim_win_get_buf(winid)
-                local filetype = vim.api.nvim_buf_get_option(bufid, "filetype")
-                local floating = vim.api.nvim_win_get_config(winid).relative ~= ""
+    --{
+    --    "https://github.com/levouh/tint.nvim.git",
+    --    opts = {
+    --        window_ignore_function = function(winid)
+    --            local bufid = vim.api.nvim_win_get_buf(winid)
+    --            local filetype = vim.api.nvim_buf_get_option(bufid, "filetype")
+    --            local floating = vim.api.nvim_win_get_config(winid).relative ~= ""
 
-                -- Do not tint under these conditions
-                return filetype == "NvimTree" or floating
-            end,
-        },
-    },
+    --            -- Do not tint under these conditions
+    --            return filetype == "NvimTree" or floating
+    --        end,
+    --    },
+    --},
     {
         "norcalli/nvim-colorizer.lua",
         opts = { "css", "sass", "scss" },

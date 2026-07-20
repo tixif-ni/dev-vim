@@ -41,7 +41,6 @@ return {
         init = function()
             local null_ls = require("null-ls")
             local ts = require("vim.treesitter")
-            local ts_utils = require("nvim-treesitter.ts_utils")
 
             null_ls.register({
                 method = null_ls.methods.DIAGNOSTICS,
@@ -54,11 +53,13 @@ return {
 
                         local query = ts.query.parse(params.filetype, "(request (method) @requestMethod)")
                         for _, node in query:iter_captures(root, params.bufnr) do
-                            local row, col, _, end_col = ts_utils.get_vim_range({ node:range() }, params.bufnr)
+                            -- node:range() is 0-based with exclusive end-col;
+                            -- null-ls wants 1-based cols with exclusive end-col
+                            local row, col, _, end_col = node:range()
 
                             table.insert(diagnostics, {
-                                row = row,
-                                col = col,
+                                row = row + 1,
+                                col = col + 1,
                                 end_col = end_col + 1,
                                 source = "http",
                                 message = "This http request can be executed.",
