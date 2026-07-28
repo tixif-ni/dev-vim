@@ -59,6 +59,7 @@ return {
                     require("telescope.builtin").git_files(require("telescope.themes").get_dropdown({
                         cwd = vim.fn.substitute(vim.fn.FugitiveGitDir(), ".git", "", ""),
                         previewer = false,
+                        layout_config = { width = 0.8 },
                     }))
                 end,
                 desc = "[Git] Find file",
