@@ -8,6 +8,11 @@ return {
         priority = 1000, -- make sure to load this before all the other start plugins
         config = function()
             require("github-theme").setup({
+                options = {
+                    styles = {
+                        strings = "italic",
+                    },
+                },
                 groups = {
                     all = {
                         -- ts_ls tags identifiers whose TYPE is a class (e.g.
@@ -43,6 +48,27 @@ return {
                 end
             end
             vim.cmd("colorscheme github_light_default")
+
+            -- The TUI emits cells that carry the Normal background as the
+            -- terminal's *default* colour, so anything that recolours the
+            -- terminal background (agent-manager sends OSC 11 to match its
+            -- theme) turns the whole buffer dark under this light scheme.
+            -- Pin the tmux window's background to Normal's so tmux paints it
+            -- explicitly and the terminal's default never shows through.
+            if vim.env.TMUX then
+                local function pin_tmux_bg()
+                    local bg = vim.api.nvim_get_hl(0, { name = "Normal" }).bg
+                    if bg then
+                        vim.system({ "tmux", "set", "-w", "window-style", ("bg=#%06x"):format(bg) })
+                    end
+                end
+                vim.api.nvim_create_autocmd({ "VimEnter", "ColorScheme" }, { callback = pin_tmux_bg })
+                vim.api.nvim_create_autocmd("VimLeavePre", {
+                    callback = function()
+                        vim.system({ "tmux", "set", "-wu", "window-style" }):wait()
+                    end,
+                })
+            end
         end,
     },
     {
@@ -76,7 +102,7 @@ return {
     {
         "https://github.com/whatyouhide/vim-lengthmatters.git",
         config = function()
-            vim.g.lengthmatters_start_at_column = 88
+            vim.g.lengthmatters_start_at_column = 100
         end,
     },
     --{
