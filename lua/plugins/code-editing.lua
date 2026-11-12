@@ -209,6 +209,16 @@ return {
                 group = vim.api.nvim_create_augroup("FormatAutogroup", {}),
                 command = "FormatWrite",
             })
+
+            -- C# is formatted by the Roslyn server itself (honours .editorconfig),
+            -- so it runs before the write instead of through formatter.nvim.
+            vim.api.nvim_create_autocmd("BufWritePre", {
+                pattern = { "*.cs" },
+                group = vim.api.nvim_create_augroup("FormatCSharp", {}),
+                callback = function(ev)
+                    vim.lsp.buf.format({ bufnr = ev.buf, name = "roslyn_ls", timeout_ms = 5000 })
+                end,
+            })
         end,
     },
     {

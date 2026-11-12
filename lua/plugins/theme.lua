@@ -103,6 +103,7 @@ return {
         "https://github.com/whatyouhide/vim-lengthmatters.git",
         config = function()
             vim.g.lengthmatters_start_at_column = 100
+            vim.g.lengthmatters_excluded = { "dbout" }
         end,
     },
     --{

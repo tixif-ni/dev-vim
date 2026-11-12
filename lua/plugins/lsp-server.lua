@@ -84,6 +84,16 @@ return {
                     },
                 },
                 somesass_ls = {},
+                -- Official Roslyn C# server. Install it with
+                -- scripts/install-roslyn-ls.sh (it must be on PATH).
+                roslyn_ls = {},
+                -- Postgres syntax diagnostics for .sql files. Install it with
+                -- `brew install postgres-language-server`. The default config
+                -- only attaches inside a project with a
+                -- postgres-language-server.jsonc, so allow loose files too.
+                postgres_lsp = {
+                    workspace_required = false,
+                },
             }
 
             for server, opts in pairs(lsp_servers) do
