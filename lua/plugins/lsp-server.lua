@@ -88,7 +88,9 @@ return {
                 -- scripts/install-roslyn-ls.sh (it must be on PATH).
                 roslyn_ls = {},
                 -- Postgres syntax diagnostics for .sql files. Install it with
-                -- `brew install postgres-language-server`. The default config
+                -- `npm install -g @postgres-language-server/cli`, not Homebrew:
+                -- the brew build links a newer libpg_query and reports bogus
+                -- "failed to decode Protobuf message" errors. The default config
                 -- only attaches inside a project with a
                 -- postgres-language-server.jsonc, so allow loose files too.
                 postgres_lsp = {

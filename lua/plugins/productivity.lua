@@ -157,4 +157,52 @@ return {
             })
         end,
     },
+    {
+        "olimorris/codecompanion.nvim",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "nvim-treesitter/nvim-treesitter",
+            "hrsh7th/nvim-cmp", -- Optional: for autocompletion inside agent prompts
+            "nvim-telescope/telescope.nvim", -- Optional: for file fuzzy-finding
+        },
+        config = function()
+            require("codecompanion").setup({
+                strategies = {
+                    -- Tell CodeCompanion to pipe requests through your local Claude Code CLI agent
+                    chat = {
+                        adapter = "claude_code",
+                    },
+                    inline = {
+                        adapter = "claude_code",
+                    },
+                },
+                adapters = {
+                    acp = {
+                        claude_code = function()
+                            return require("codecompanion.adapters").extend("claude_code", {
+                                commands = {
+                                    -- This instructs Neovim to fetch and spin it dynamically via npm
+                                    -- instead of breaking when the path environment isn't globally found.
+                                    default = { "npx", "@agentclientprotocol/claude-agent-acp" },
+                                },
+                            })
+                        end,
+                    },
+                },
+            })
+            -- Convenient Keymaps for Linear-style workflow
+            vim.keymap.set(
+                "n",
+                "<leader>ccr",
+                "<cmd>CodeCompanionCodeReview<cr>",
+                { desc = "Start Linear Code Review" }
+            )
+            vim.keymap.set(
+                "n",
+                "<leader>cca",
+                "<cmd>CodeCompanionChat Toggle<cr>",
+                { desc = "Toggle Claude Chat Sidebar" }
+            )
+        end,
+    },
 }
