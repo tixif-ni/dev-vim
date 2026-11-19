@@ -154,6 +154,22 @@ return {
                 end,
             })
 
+            -- Shut the runners down now instead of waiting for the idle
+            -- minute. Not during a run: neotest would wait for results
+            -- that never come.
+            vim.api.nvim_create_user_command("TestRelease", function()
+                if busy > 0 then
+                    vim.notify("Tests are still running; stop them first", vim.log.levels.WARN)
+                    return
+                end
+
+                generation = generation + 1
+                for _, runner in ipairs(runners) do
+                    runner.stop()
+                end
+                vim.notify("Test runners stopped")
+            end, { desc = "Stop the idle test runner processes" })
+
             local vstest_client = require("neotest-vstest.vstest.client")
             local discover_tests_in_project = vstest_client.discover_tests_in_project
             vstest_client.discover_tests_in_project = function(...)
@@ -366,6 +382,12 @@ return {
                 end,
                 ft = { "cs" },
                 desc = "[Test] Stop",
+            },
+            {
+                "<localleader>tq",
+                "<cmd>TestRelease<cr>",
+                ft = { "cs" },
+                desc = "[Test] Stop the idle test runners",
             },
             {
                 "<localleader>to",
