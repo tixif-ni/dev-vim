@@ -59,6 +59,7 @@ work in C# buffers:
 | `\tp` | Run everything under the current working directory      |
 | `\tl` | Re-run the last run                                     |
 | `\tx` | Stop a run                                              |
+| `\tq` | Stop the idle test runners now (`:TestRelease`)         |
 | `\to` | Show the output of the test under the cursor            |
 | `\ts` | Toggle the summary tree                                 |
 
