@@ -288,11 +288,14 @@ return {
                 return is_test_file(file_path)
             end
 
-            -- Bold dark green and amber for passed and running tests; the
-            -- default light colours are faint on a light theme.
+            -- Bold dark green, amber, red and blue for passed, running,
+            -- failed and skipped tests; the default light colours are faint
+            -- on a light theme.
             local function set_highlights()
                 vim.api.nvim_set_hl(0, "TestPassed", { fg = "#116329", bold = true })
                 vim.api.nvim_set_hl(0, "TestRunning", { fg = "#9a6700", bold = true })
+                vim.api.nvim_set_hl(0, "TestFailed", { fg = "#a40e26", bold = true })
+                vim.api.nvim_set_hl(0, "TestSkipped", { fg = "#0550ae", bold = true })
             end
             vim.api.nvim_create_autocmd("ColorScheme", {
                 group = vim.api.nvim_create_augroup("NeotestHighlights", {}),
@@ -314,6 +317,8 @@ return {
                     file = "Normal",
                     passed = "TestPassed",
                     running = "TestRunning",
+                    failed = "TestFailed",
+                    skipped = "TestSkipped",
                 },
                 adapters = {
                     adapter,
