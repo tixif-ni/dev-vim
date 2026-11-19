@@ -65,6 +65,10 @@ work in C# buffers:
 Stopping kills the test host, so the stopped test shows as failed and its
 teardown does not run.
 
+The summary tree and `\tp` only cover test files you have opened. The test
+runner processes are shut down a minute after the last run and start again on
+the next one.
+
 Inside the summary tree:
 
 | Key           | Action                                          |

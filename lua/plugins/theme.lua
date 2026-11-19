@@ -53,19 +53,24 @@ return {
             -- terminal's *default* colour, so anything that recolours the
             -- terminal background (agent-manager sends OSC 11 to match its
             -- theme) turns the whole buffer dark under this light scheme.
-            -- Pin the tmux window's background to Normal's so tmux paints it
+            -- Pin this tmux pane's background to Normal's so tmux paints it
             -- explicitly and the terminal's default never shows through.
-            if vim.env.TMUX then
+            -- Pane-level (-p), not window-level: a shell in another pane of
+            -- the same window must keep its own colours.
+            -- Target $TMUX_PANE explicitly: without -t, tmux acts on whichever
+            -- pane is active, which is not always the one nvim runs in.
+            local pane = vim.env.TMUX_PANE
+            if vim.env.TMUX and pane then
                 local function pin_tmux_bg()
                     local bg = vim.api.nvim_get_hl(0, { name = "Normal" }).bg
                     if bg then
-                        vim.system({ "tmux", "set", "-w", "window-style", ("bg=#%06x"):format(bg) })
+                        vim.system({ "tmux", "set", "-p", "-t", pane, "window-style", ("bg=#%06x"):format(bg) })
                     end
                 end
                 vim.api.nvim_create_autocmd({ "VimEnter", "ColorScheme" }, { callback = pin_tmux_bg })
                 vim.api.nvim_create_autocmd("VimLeavePre", {
                     callback = function()
-                        vim.system({ "tmux", "set", "-wu", "window-style" }):wait()
+                        vim.system({ "tmux", "set", "-pu", "-t", pane, "window-style" }):wait()
                     end,
                 })
             end
